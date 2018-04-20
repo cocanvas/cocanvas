@@ -1,6 +1,6 @@
-#canvasDiv {
+#canvas {
   box-shadow:1px 14px 93px 2px rgba(0, 0, 0, 0.41);
-  background: #fff;
+  background: #eee;
 }
 
 body {
@@ -9,8 +9,4 @@ body {
   height: 100vh;
   justify-content: center;
   align-items: center;
-}
-
-.pixel {
-  
 }
