@@ -1,0 +1,12 @@
+#canvasDiv { 
+  box-shadow:1px 14px 93px 2px rgba(0, 0, 0, 0.41);
+  background: #fff;
+}
+
+body {
+  display: flex;
+  background:#f4f4f4;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+}
