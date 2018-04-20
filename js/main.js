@@ -8,14 +8,14 @@ $(document).ready( function () {
   let tileHeight;
 
   // canvas.onresize = calcSize;
-  canvas.onmousemove = highlight;
+  canvas.onmousedown = highlight;
 
   canvas.width = w = 802;
   canvas.height = h = 602;
   tileWidth = w / columns;
   tileHeight = h / rows;
-  ctx.strokeStyle = '#a1a1a1';
-  ctx.fillStyle = '#f70';
+  ctx.strokeStyle = '#e6e6e6';
+  ctx.fillStyle = '#fcc126';
   render();
 
   // calcSize();
@@ -32,7 +32,7 @@ $(document).ready( function () {
 
   function render() {
 
-      ctx.clearRect(0, 0, w, h);
+      // ctx.clearRect(0, 0, w, h);
 
       ctx.beginPath();
 
