@@ -1,79 +1,55 @@
-$(document).ready( function () {
-  let colorPurple = "#cb3594";
-  let colorGreen = "#659b41";
-  let colorYellow = "#ffcf33";
-  let colorBrown = "#986928";
+let context = canvas.getContext('2d'),
+let columns = 80;
+let rows = 60;
+let w
+h, tileWidth, tileHeight;
 
-  let curColor = colorPurple;
-  let clickColor = new Array();
+canvas.onresize = calcSize;
+canvas.onmousemove = highlight;
 
+calcSize();
 
-  let canvasDiv = document.getElementById('canvasDiv');
-  canvas = document.createElement('canvas');
-  canvas.setAttribute('width', '800px');
-  canvas.setAttribute('height', '600px');
-  canvas.setAttribute('id', 'canvas');
-  canvasDiv.appendChild(canvas);
-  if(typeof G_vmlCanvasManager != 'undefined') {
-  	canvas = G_vmlCanvasManager.initElement(canvas);
-  }
-  context = canvas.getContext("2d");
+function calcSize() {
+    canvas.width = w = window.innerWidth;
+    canvas.height = h = window.innerHeight;
 
-  $('#canvas').mousedown(function(e){
-    let mouseX = e.pageX - this.offsetLeft;
-    let mouseY = e.pageY - this.offsetTop;
+    tileWidth = w / columns;
+    tileHeight = h / rows;
 
-    paint = true;
-    addClick(e.pageX - this.offsetLeft, e.pageY - this.offsetTop);
-    redraw();
-  });
+    ctx.strokeStyle = '#000';
+    ctx.fillStyle = '#f70';
 
-  $('#canvas').mousemove(function(e){
-    if(paint){
-      addClick(e.pageX - this.offsetLeft, e.pageY - this.offsetTop, true);
-      redraw();
+    render();
+}
+function render() {
+
+    ctx.clearRect(0, 0, w, h);
+
+    ctx.beginPath();
+
+    for(var x = 0; x < columns; x++) {
+        ctx.moveTo(x * tileWidth, 0);
+        ctx.lineTo(x * tileWidth, h);
     }
-  });
-
-  $('#canvas').mouseup(function(e){
-    paint = false;
-  });
-
-  $('#canvas').mouseleave(function(e){
-    paint = false;
-  });
-// Not entirely sure how this works, but will need to store coordinates inside these arrays and then in DB
-let clickX = new Array(); // Constantly
-let clickY = new Array();
-let clickDrag = new Array();
-let paint;
-
-function addClick(x, y, dragging) {
-  clickX.push(x);
-  clickY.push(y);
-  clickDrag.push(dragging);
-  clickColor.push(curColor);
+    for(var y = 0; y < rows; y++) {
+        ctx.moveTo(0, y * tileHeight);
+        ctx.lineTo(w, y * tileHeight);
+    }
+    ctx.stroke();
 }
+function highlight(e) {
 
+    var rect = canvas.getBoundingClientRect(),
+        mx = e.clientX - rect.left,
+        my = e.clientY - rect.top,
 
-function redraw(){
-  context.clearRect(0, 0, context.canvas.width, context.canvas.height); // Clears the canvas
+        /// get index from mouse position
+        xIndex = Math.round((mx - tileWidth * 0.5) / tileWidth),
+        yIndex = Math.round((my - tileHeight * 0.5) / tileHeight);
 
-  context.lineJoin = "round";
-  context.lineWidth = 10;
+    render();
 
-  for(var i=0; i < clickX.length; i++) {
-    context.beginPath();
-    if(clickDrag[i] && i){
-      context.moveTo(clickX[i-1], clickY[i-1]);
-     }else{
-       context.moveTo(clickX[i]-1, clickY[i]);
-     }
-     context.lineTo(clickX[i], clickY[i]);
-     context.closePath();
-     context.strokeStyle = clickColor[i];
-     context.stroke();
-  }
-}
-
-});
+    ctx.fillRect(xIndex * tileWidth,
+                 yIndex * tileHeight,
+                 tileWidth,
+                 tileHeight);
