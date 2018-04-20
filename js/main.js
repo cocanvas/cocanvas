@@ -1,3 +1,5 @@
+const SERVER_URL = 'https://localhost:3000/coordinates';
+
 $(document).ready( function () {
   let canvas = document.getElementById('canvas');
 
@@ -15,6 +17,7 @@ $(document).ready( function () {
     ctx.strokeStyle = '#a1a1a1';
     // color when the small squares are filled (this will need to be changeable later)
     ctx.fillStyle = '#f70';
+    currentFillColour = '#f70';
 
     let filledSquares = [];
 
@@ -90,18 +93,35 @@ $(document).ready( function () {
       yIndex = Math.round((my - tileHeight * 0.5) / tileHeight);
 
       // render(); // not sure this render is needed
-      fillCoords = {
-        xCoord: xIndex * tileWidth,
-        yCoord: yIndex * tileHeight
+      fillDeets = {
+        x: xIndex * tileWidth,
+        y: yIndex * tileHeight,
+        colour: currentFillColour
       }
 
       if (filledSquares.length >= 10) {
+        sendCoordDeets();
         return;
       } else {
-        filledSquares.push(fillCoords);
+        filledSquares.push(fillDeets);
         console.log(filledSquares);
         ctx.fillRect(xIndex * tileWidth, yIndex * tileHeight, tileWidth, tileHeight);
       }
+    }
+    const sendCoordDeets = function() {
+      for (let i = 0; i < filledSquares.length; i++) {
+        $.ajax('/coordinates', {
+        method: 'post',
+        dataType: 'json', // data type you want back
+        data: // what you're sending - needs to be a json object? needs a madeup key for each value
+        {colour: filledSquares[i].colour, x: filledSquares[i].x, y: filledSquares[i].y}
+        }).done(function(response) {
+        console.log(`response back from postInfo ajax request was: ${response}`);
+        }).fail(function() {
+        alert('something bad happened, sorry.')
+        });
+      }
+
     }
 
 
