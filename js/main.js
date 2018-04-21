@@ -136,7 +136,7 @@ $(document).ready( function () {
     'initialColor': '#f1c40f',
     'allowRecent': true,
     'recentMax': 20,
-    'palette': ["#1abc9c", "#16a085", "#2ecc71", "#27ae60", "#3498db", "#2980b9", "#9b59b6", "#8e44ad", "#34495e", "#2c3e50", "#f1c40f", "#f39c12", "#e67e22", "#d35400", "#e74c3c", "#c0392b", "#ecf0f1", "#bdc3c7", "#95a5a6", "#7f8c8d"],
+    'palette': ["#1abc9c", "#16a085", "#2ecc71", "#27ae60", "#63DDDD", "#3498db", "#2980b9", "#295B88", "#9b59b6", "#8e44ad", "#A5567C", "#602650", "#7B1A34","#8A2755", "#CC647B",  "#FF747C", "#002642", "#34495e", "#2c3e50", "#000000", "#FFF07C", "#f1c40f", "#f39c12", "#e67e22", "#d35400", "#f70", "#e74c3c", "#c0392b", "#ecf0f1", "#bdc3c7", "#95a5a6", "#7f8c8d"],
     'onColorSelected': function() {
       this.element.css({'backgroundColor': this.color, 'color': this.color});
       ctx.fillStyle = this.color;
