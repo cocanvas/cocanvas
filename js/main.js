@@ -56,8 +56,7 @@ $(document).ready( function () {
         for (let i = 0; i < clickedCoords.length; i++) {
           if (clickedCoords[i].xCoord === currentCoords.xCoord && clickedCoords[i].yCoord === currentCoords.yCoord) {
             console.log('square already filled so not going to clear that square');
-            ctx.fillRect(currentCoords.xCoord, currentCoords.yCoord, tileWidth, tileHeight);
-            render();
+            ctx.fillRect(clickedCoords[i].xCoord, clickedCoords[i].yCoord, tileWidth, tileHeight);
           } else {
             ctx.clearRect(currentCoords.xCoord, currentCoords.yCoord, tileWidth, tileHeight);
             render();
@@ -84,7 +83,7 @@ $(document).ready( function () {
           xCoord: xIndex * tileWidth,
           yCoord: yIndex * tileHeight
         }
-      console.log(currentCoords);
+      // console.log(currentCoords);
       ctx.fillRect(xIndex * tileWidth, yIndex * tileHeight, tileWidth, tileHeight);
     }
 
