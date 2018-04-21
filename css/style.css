@@ -1,41 +1,49 @@
 @import url('https://fonts.googleapis.com/css?family=Pacifico');
 
-BODY {
+body {
   background: #bac1c7;
   background-size: .12em 100%;
   font: 8em/0.6 Arial;
   margin: 0 auto;
   text-align: center;
-  width: 100vw;
+  width: 100vw !important;
+  min-height: 100vh;
+  display:flex;
+  flex-direction: column;
 }
 
 #canvas {
   box-shadow: 1px 4px 53px 2px rgba(0, 0, 0, 0.21);
   background: white;
-  margin-top: 1%;
+  margin-bottom: 0%;
+  margin-top: 2% !important;
+  max-width: 800px;
+  max-height: 600px;
+  margin: 0 auto;
 }
 
 #wrapper {
   width: 60vw;
-      display: flex;
-      justify-content: space-between;
-      flex-direction: column;
-      margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  margin: 0 auto;
+  text-align: center;
 }
 
 #wrapper img {
   width: 100%;
   bottom: 0;
   left: 0;
+  margin: 0 auto;
 }
 
-
-
 .stage {
-  height: 150px;
-  width: 250px;
+  height: 75px;
+  width: 125px;
   margin-top: 0% !important;
-  margin-left: 30% !important;
+  margin-bottom: 2% !important;
+  margin-left: 38% !important;
   display: block;
   margin: 0 auto;
   transform-style: preserve-3d;
@@ -51,8 +59,9 @@ BODY {
   transform: rotateY(1deg) rotateX(2deg) translateZ(0);
 }
 
+
 .layer:after {
-  font: 75px/0.65 'Pacifico', 'Kaushan Script', Futura, 'Roboto', 'Trebuchet MS', Helvetica, sans-serif;
+  font: 55px/0.65 'Pacifico', 'Kaushan Script', Futura, 'Roboto', 'Trebuchet MS', Helvetica, sans-serif;
   content: 'CoCanvas';
   white-space: pre;
   text-align: center;
@@ -60,7 +69,7 @@ BODY {
   width: 100%;
   position: absolute;
   top: 50px;
-  color: whitesmoke;
+  color: #f3be43;
   letter-spacing: -1px;
   text-shadow: 2px 0 5px rgba(0, 0, 0, 0.13);
 }
@@ -150,8 +159,8 @@ BODY {
 }
 
 .layer:nth-child(n+11):after {
-  -webkit-text-stroke: 7.5px #f3be43;
-  text-shadow: 3px 0 3px #1e1a10, 2.5px 2.5px 2.5px #282111, 0 3px 3px #2b220d;
+  -webkit-text-stroke: 7.5px #0f0e0d;
+  text-shadow: 3px 0 3px #282111, 2.5px 2.5px 2.5px #1a1815, 0 3px 3px #000;
 }
 
 .layer:nth-child(n+12):after {
@@ -163,6 +172,5 @@ BODY {
 }
 
 .layer:first-child:after {
-  color: #fff;
+  color: #f3be43;
   text-shadow: none;
-}
