@@ -19,6 +19,7 @@ $(document).ready( function () {
     currentFillColour = '#f70';
 
     let filledSquares = [];
+    let clickedCoords = [];
 
     render();
 
@@ -46,40 +47,45 @@ $(document).ready( function () {
     }
 
     // below: bonus feature for showing colour on hover
-    // let currentParams = [];
-    // canvas.onmousemove = highlight;
-    // function highlight(e) {
-    //
-    //   if (filledSquares.length > 0) {
-    //     for (let i = 0; i < filledSquares.length; i++) {
-    //       if (filledSquares[i] === currentParams) {
-    //         return;
-    //       } else {
-    //         ctx.clearRect(currentParams[0], currentParams[1], currentParams[2], currentParams[3]);
-    //       }
-    //     }
-    //   } else {
-    //     ctx.clearRect(currentCoords.xCoord, currentCoords.yCoord, tileWidth, tileHeight);
-    //   }
-    //
-    //   render();
-    //
-    //   var rect = canvas.getBoundingClientRect(),
-    //       mx = e.clientX - rect.left,
-    //       my = e.clientY - rect.top,
-    //
-    //       /// get index from mouse position
-    //       xIndex = Math.round((mx - tileWidth * 0.5) / tileWidth),
-    //       yIndex = Math.round((my - tileHeight * 0.5) / tileHeight);
-    //
-    //   currentCoords = {
-          // xCoord: xIndex * tileWidth,
-          // yCoord: yIndex * tileHeight
-        // }
-    //   console.log(currentParams);
-    //   ctx.fillRect(xIndex * tileWidth, yIndex * tileHeight, tileWidth, tileHeight);
-    //
-    // }
+    let currentCoords;
+    canvas.onmousemove = highlight;
+
+    function highlight(e) {
+      if (clickedCoords.length > 0) {
+        for (let i = 0; i < clickedCoords.length; i++) {
+          if (clickedCoords[i].xCoord === currentCoords.xCoord && clickedCoords[i].yCoord === currentCoords.yCoord) {
+            console.log('square already filled so not going to clear that square');
+            ctx.fillRect(currentCoords.xCoord, currentCoords.yCoord, tileWidth, tileHeight);
+            render();
+          } else {
+            ctx.clearRect(currentCoords.xCoord, currentCoords.yCoord, tileWidth, tileHeight);
+            render();
+          }
+        }
+      } else {
+        if (currentCoords) {
+          ctx.clearRect(currentCoords.xCoord, currentCoords.yCoord, tileWidth, tileHeight);
+          render();
+        }
+      }
+
+      // render();
+
+      var rect = canvas.getBoundingClientRect(),
+          mx = e.clientX - rect.left,
+          my = e.clientY - rect.top,
+
+          /// get index from mouse position
+          xIndex = Math.round((mx - tileWidth * 0.5) / tileWidth),
+          yIndex = Math.round((my - tileHeight * 0.5) / tileHeight);
+
+      currentCoords = {
+          xCoord: xIndex * tileWidth,
+          yCoord: yIndex * tileHeight
+        }
+      console.log(currentCoords);
+      ctx.fillRect(xIndex * tileWidth, yIndex * tileHeight, tileWidth, tileHeight);
+    }
 
     canvas.onmousedown = fill;
     function fill(e) {
@@ -98,29 +104,32 @@ $(document).ready( function () {
         colour: currentFillColour
       }
 
+      coords = {
+        xCoord: xIndex * tileWidth,
+        yCoord: yIndex * tileHeight
+      }
+
       if (filledSquares.length >= 10) {
-        sendCoordDeets();
         return;
       } else {
         filledSquares.push(fillDeets);
         console.log(filledSquares);
         ctx.fillRect(xIndex * tileWidth, yIndex * tileHeight, tileWidth, tileHeight);
+        clickedCoords.push(coords);
+        console.log(clickedCoords);
+        // sendCoordDeets(fillDeets);
       }
     }
-    const sendCoordDeets = function() {
-      for (let i = 0; i < filledSquares.length; i++) {
-        $.ajax('/coordinates', {
-        method: 'post',
-        dataType: 'json', // data type you want back
-        data: // what you're sending - needs to be a json object? needs a madeup key for each value
-        {colour: filledSquares[i].colour, x: filledSquares[i].x, y: filledSquares[i].y}
-        }).done(function(response) {
-        console.log(`response back from postInfo ajax request was: ${response}`);
-        }).fail(function() {
-        alert('something bad happened, sorry.')
-        });
-      }
-
+    const sendCoordDeets = function(deets) {
+      $.ajax('SERVER_URL', {
+      method: 'post',
+      dataType: 'json', // data type you want back
+      data: {coordinate: {colour: deets.colour, x: deets.x, y: deets.y}}// what you're sending - needs to be a json object? needs a madeup key for each value
+      }).done(function(response) {
+      console.log(`response back from postInfo ajax request was: ${response}`);
+      }).fail(function() {
+      alert('something bad happened, sorry.')
+      });
     }
 
 
