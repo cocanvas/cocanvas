@@ -1,13 +1,8 @@
-// # Place all the behaviors and hooks related to the matching controller here.
-// # All this logic will automatically be available in application.js.
-// # You can use CoffeeScript in this file: http://coffeescript.org/
-
-
 $(document).ready( function () {
   let canvas = document.getElementById('canvas');
 
   if (canvas.getContext) {
-    let ctx = canvas.getContext('2d');
+    var ctx = canvas.getContext('2d');
     // drawing code here
     let columns = 80;
     let rows = 60;
@@ -17,7 +12,7 @@ $(document).ready( function () {
     let tileHeight = h / rows;
 
     // color of the lines making up the grid
-    ctx.strokeStyle = '#a1a1a1';
+    ctx.strokeStyle = '#e3e3e3';
     // color when the small squares are filled (this will need to be changeable later)
     ctx.fillStyle = '#f70';
     currentFillColour = '#f70';
@@ -133,4 +128,27 @@ $(document).ready( function () {
   } else {
     // canvas-unsupported code here
   }
+
+
+  $(".colorPickSelector").colorPick();
+
+  $(".colorPickSelector").colorPick({
+    'initialColor': '#f1c40f',
+    'allowRecent': true,
+    'recentMax': 20,
+    'palette': ["#1abc9c", "#16a085", "#2ecc71", "#27ae60", "#3498db", "#2980b9", "#9b59b6", "#8e44ad", "#34495e", "#2c3e50", "#f1c40f", "#f39c12", "#e67e22", "#d35400", "#e74c3c", "#c0392b", "#ecf0f1", "#bdc3c7", "#95a5a6", "#7f8c8d"],
+    'onColorSelected': function() {
+      this.element.css({'backgroundColor': this.color, 'color': this.color});
+      ctx.fillStyle = this.color;
+      currentFillColour = this.color;
+    }
+  });
+
+
+
+
+
+
+
+
 });
