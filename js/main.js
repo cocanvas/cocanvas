@@ -141,26 +141,6 @@ $(document).ready( function () {
       data: {coordinate: {x: deets.x, y: deets.y, colour: deets.colour, user_id: 1}} // what you're sending - needs to be a json object? needs a madeup key for each value
       })
     }
-
-      // // Polling
-      //    const fetchSecrets = () => { // fat arrow functions don’t break the connection to this. yay. don’t need .bind
-      //      axios.get(SERVER_URL).then(results => this.setState( {secrets: results.data}));
-      //      setTimeout(fetchSecrets, 4000); // recursion - calling itself again after four seconds
-      //    }
-
-
-      // .done(function(response) {
-      //   console.log(`response back from postInfo ajax request was: ${response}`);
-      //   // }).fail(function() {
-      //   // alert('something bad happened, sorry.')
-      //   });
-      // axios.post(SERVER_URL, {content: s}).then((results) => {
-      //     console.log(results);
-      //     this.setState({secrets: [results.data, ...this.state.secrets, s]}); //splat/spread operator
-      //   });
-
-
-
     const fetchCoords = () => {
       $.ajax('https://cocanvas-server.herokuapp.com/coordinates.json', {
       method: 'get',
@@ -182,7 +162,6 @@ $(document).ready( function () {
   } else {
     // canvas-unsupported code here
   }
-
 
 
 
