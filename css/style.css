@@ -30,6 +30,13 @@ header {
 	cursor: pointer;
 }
 
+.chat-nav {
+  position: absolute;
+  right: 0;
+  margin-right: 2%;
+  cursor: pointer;
+}
+
 a {
 	display: inline-block;
 	height: 40px;
@@ -42,9 +49,9 @@ a {
 }
 
 li {
-		display: inline-block;
-		margin-left: 1em;
-  }
+	display: inline-block;
+	margin-left: 1em;
+}
 
 .login, .register {
   padding: 10px 14px 0px 14px;
@@ -65,7 +72,7 @@ li {
   text-shadow: 1px 1px 2px #427388;
 }
 
-.login-modal-overlay, .register-modal-overlay {
+ .login-modal-overlay, .register-modal-overlay {
   position: fixed;
   width: 100%;
   height: 100%;
@@ -223,6 +230,26 @@ input[type=text] {
   transition: all 250ms linear;
 }
 
+ .chat, .online {
+  padding: .6em 0.9em 0em 0.9em !important;
+  height: 45px;
+  border: 1px solid #fff;
+  text-align: left;
+  border-radius: 10px;
+}
+
+.chat {
+  width: 238px;
+}
+
+.online {
+  width: 165px;
+}
+
+.expand {
+  text-align: right;
+}
+
 body {
   background-color: #4f60ad;
   margin: 0 auto;
@@ -257,7 +284,8 @@ body:before {
 }
 
 #wrapper {
-  width: 60vw;
+  /* width: 60vw; */
+  width: 100vw;
   display: flex;
   justify-content: space-between;
   flex-direction: column;

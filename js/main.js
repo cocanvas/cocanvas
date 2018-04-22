@@ -38,10 +38,10 @@ $(document).ready( function () {
     method: 'get',
     dataType: 'json' // data type you want back
     }).done(function(response) {
-      console.log(response);
+      // console.log(response);
       for (let i = 0; i < response.length; i++) {
         ctx.fillStyle = response[i].colour;
-        console.log(response[i].colour);
+        // console.log(response[i].colour);
         ctx.fillRect(response[i].x, response[i].y, tileWidth, tileHeight);
       }
     });
@@ -133,8 +133,8 @@ $(document).ready( function () {
     };
 
     const sendCoordDeets = function(deets) {
-      console.log(deets);
-      console.log(deets.x);
+      // console.log(deets);
+      // console.log(deets.x);
       $.ajax('https://cocanvas-server.herokuapp.com/coordinates', {
       method: 'post',
       dataType: 'json', // data type you want back
@@ -146,10 +146,10 @@ $(document).ready( function () {
       method: 'get',
       dataType: 'json' // data type you want back
       }).done(function(response) {
-        console.log(response);
+        // console.log(response);
         for (let i = 0; i < response.length; i++) {
           ctx.fillStyle = response[i].colour;
-          console.log(response[i].colour);
+          // console.log(response[i].colour);
           ctx.fillRect(response[i].x, response[i].y, tileWidth, tileHeight);
         }
       });
@@ -164,7 +164,7 @@ $(document).ready( function () {
   }
 
 
-
+  // Modal Overlay
   $( ".login-modal-overlay" ).click(function() {
     $(this).fadeOut(200);
   });
@@ -175,8 +175,7 @@ $(document).ready( function () {
     event.stopPropagation();
   });
 
-
-  // Input label
+  // Input label for modal
   $('input').blur(function() {
     var $this = $(this);
     if ($this.val())
@@ -184,7 +183,6 @@ $(document).ready( function () {
     else
       $this.removeClass('used');
   });
-
 
   $( ".register-modal-overlay" ).click(function() {
     $(this).fadeOut(200);
@@ -198,5 +196,33 @@ $(document).ready( function () {
 
 
 
+// const loginUsername = $('#login-username').val();
+// const loginPassword = $('#login-password').val();
 
-});
+
+
+  $( '#register-form' ).on('submit', sendRegisterForm);
+
+  $( '#login-form' ).on('submit', sendLoginForm);
+
+
+}); // end of DOCREADY
+
+
+const sendRegisterForm = function (e) {
+  e.preventDefault();
+  const registerUsername = $('#register-username').val()
+  const registerPassword = $('#register-password').val();
+  const registerPwDigest = $('#register-password-conf').val();
+  console.log(registerUsername, registerPassword, registerPwDigest)
+  //TODO send this data to server via AJAX post
+}
+
+
+const sendLoginForm = function (e) {
+  e.preventDefault();
+  const loginUsername = $('#login-username').val()
+  const loginPassword = $('#login-password').val();
+  console.log(loginUsername, loginPassword)
+  //TODO send this data to server via AJAX post
+}
