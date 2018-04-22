@@ -127,16 +127,11 @@ $(document).ready( function () {
         colour: ctx.fillStyle
       }
 
-      if (filledSquares.length >= 10) {
-        // sendCoordDeets();
-        return;
-      } else {
-        filledSquares.push(fillDeets);
-        console.log(filledSquares);
-        ctx.fillRect(xIndex * tileWidth, yIndex * tileHeight, tileWidth, tileHeight);
-        sendCoordDeets(fillDeets);
-      }
-    }
+      filledSquares.push(fillDeets);
+      ctx.fillRect(xIndex * tileWidth, yIndex * tileHeight, tileWidth, tileHeight);
+      sendCoordDeets(fillDeets);
+    };
+
     const sendCoordDeets = function(deets) {
       console.log(deets);
       console.log(deets.x);
@@ -145,17 +140,28 @@ $(document).ready( function () {
       dataType: 'json', // data type you want back
       data: {coordinate: {x: deets.x, y: deets.y, colour: deets.colour, user_id: 1}} // what you're sending - needs to be a json object? needs a madeup key for each value
       })
-      // .done(function(response) {
-      //   console.log(`response back from postInfo ajax request was: ${response}`);
-      //   // }).fail(function() {
-      //   // alert('something bad happened, sorry.')
-      //   });
     }
+    const fetchCoords = () => {
+      $.ajax('https://cocanvas-server.herokuapp.com/coordinates.json', {
+      method: 'get',
+      dataType: 'json' // data type you want back
+      }).done(function(response) {
+        console.log(response);
+        for (let i = 0; i < response.length; i++) {
+          ctx.fillStyle = response[i].colour;
+          console.log(response[i].colour);
+          ctx.fillRect(response[i].x, response[i].y, tileWidth, tileHeight);
+        }
+      });
+      setTimeout(fetchCoords, 4000);
+
+    }
+
+    fetchCoords();
+
   } else {
     // canvas-unsupported code here
   }
-
-
 
 
 
