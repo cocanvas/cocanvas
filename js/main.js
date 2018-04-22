@@ -150,10 +150,6 @@ $(document).ready( function () {
       //   // }).fail(function() {
       //   // alert('something bad happened, sorry.')
       //   });
-      // axios.post(SERVER_URL, {content: s}).then((results) => {
-      //     console.log(results);
-      //     this.setState({secrets: [results.data, ...this.state.secrets, s]}); //splat/spread operator
-      //   });
     }
   } else {
     // canvas-unsupported code here
