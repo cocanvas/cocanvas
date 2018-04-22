@@ -1,5 +1,5 @@
-const signUpPassword = $(#signUp #password).val();
-const signUpUsername = $(#signUp #username).val();
-const signUpPwDigest = $(#signUp #pw_digest).val();
-const loginUsername = $(#signUp #username).val();
-const loginPassword = $(#signUp #password).val();
+const signUpUsername = $('#signUpUsername').val();
+const signUpPassword = $('#signUpPassword').val();
+const signUpPwDigest = $('#signUpPw_digest').val();
+const loginUsername = $('#signUpUsername').val();
+const loginPassword = $('#signUpPassword').val();

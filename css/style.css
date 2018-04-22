@@ -31,6 +31,13 @@ header {
 	cursor: pointer;
 }
 
+.chat-nav {
+  position: absolute;
+  right: 0;
+  margin-right: 2%;
+  cursor: pointer;
+}
+
 a {
 	display: inline-block;
 	height: 100px;
@@ -56,6 +63,24 @@ li {
   height: 39px;
 }
 
+.chat, .online {
+  padding: .6em 0.9em 0em 0.9em !important;
+  height: 45px;
+  border: 1px solid #fff;
+  text-align: left;
+}
+
+.chat {
+  width: 238px;
+}
+
+.online {
+  width: 165px;
+}
+
+.expand {
+  text-align: right;
+}
 
 body {
   background-color: hsla(230,40%,50%,1);
@@ -91,7 +116,8 @@ body:before {
 }
 
 #wrapper {
-  width: 60vw;
+  /* width: 60vw; */
+  width: 100vw;
   display: flex;
   justify-content: space-between;
   flex-direction: column;
