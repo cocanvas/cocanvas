@@ -8,7 +8,8 @@
 *
 */
 
-@font-face{font-family:'Open Sans';font-style:normal;font-weight:400;src:local('Open Sans'),local('OpenSans'),url(http://fonts.gstatic.com/s/opensans/v13/cJZKeOuBrn4kERxqtaUH3bO3LdcAZYWl9Si6vvxL-qU.woff) format('woff')}@font-face{font-family:'Open Sans';font-style:normal;font-weight:700;src:local('Open Sans Bold'),local('OpenSans-Bold'),url(http://fonts.gstatic.com/s/opensans/v13/k3k702ZOKiLJc3WVjuplzKRDOzjiPcYnFooOUGCOsRk.woff) format('woff')}
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:700');
+@import url('https://fonts.googleapis.com/css?family=Open+Sans');
 
 #colorPick * {
 	-webkit-transition: all linear .2s;
@@ -32,7 +33,7 @@
 #colorPick span {
 	font-size: 9pt;
 	text-transform: uppercase;
-	font-weight: bold;
+	font-weight:900;
 	color: #bbb;
 	margin-bottom: 5px;
 	display: block;
@@ -45,7 +46,7 @@
 	width: 122px;
 	margin: 1px 4px ;
 	padding: 0 4px;
-	border: 1px solid #babbba;	
+	border: 1px solid #babbba;
 	outline: none;
 }
 .customColorHash.error {
