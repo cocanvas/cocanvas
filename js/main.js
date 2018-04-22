@@ -1,4 +1,10 @@
 $(document).ready( function () {
+  $.ajax('http://cocanvas-server.herokuapp.com/coordinates.json', {
+  method: 'get',
+  dataType: 'json' // data type you want back
+  }).done(function(response) {
+    console.log(response);
+  });
   let canvas = document.getElementById('canvas');
 
   if (canvas.getContext) {
@@ -123,8 +129,6 @@ $(document).ready( function () {
       // }
 
     }
-
-
   } else {
     // canvas-unsupported code here
   }
