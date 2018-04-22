@@ -1,4 +1,4 @@
-$(document).ready( function () {
+$(document).ready(function() {
   let canvas = document.getElementById('canvas');
 
   if (canvas.getContext) {
@@ -6,8 +6,8 @@ $(document).ready( function () {
     // drawing code here
     let columns = 80;
     let rows = 60;
-    let w = canvas.width = 800;
-    let h = canvas.height = 600;
+    let w = (canvas.width = 800);
+    let h = (canvas.height = 600);
     let tileWidth = w / columns;
     let tileHeight = h / rows;
 
@@ -22,26 +22,25 @@ $(document).ready( function () {
     render();
 
     // render function creates 80 vertical lines and 60 horizontal lines to create grid
-    function render(clicked=false) {
+    function render(clicked = false) {
+      // below: if statement for distinguishing btw hover and click (bonus for later)
+      // if (clicked) {
+      //
+      // } else {
+      //   ctx.clearRect(0, 0, w, h);
+      // }
 
-        // below: if statement for distinguishing btw hover and click (bonus for later)
-        // if (clicked) {
-        //
-        // } else {
-        //   ctx.clearRect(0, 0, w, h);
-        // }
+      ctx.beginPath();
 
-        ctx.beginPath();
-
-        for(let x = 0; x < columns; x++) {
-            ctx.moveTo(x * tileWidth, 0);
-            ctx.lineTo(x * tileWidth, h);
-        }
-        for(let y = 0; y < rows; y++) {
-            ctx.moveTo(0, y * tileHeight);
-            ctx.lineTo(w, y * tileHeight);
-        }
-        ctx.stroke();
+      for (let x = 0; x < columns; x++) {
+        ctx.moveTo(x * tileWidth, 0);
+        ctx.lineTo(x * tileWidth, h);
+      }
+      for (let y = 0; y < rows; y++) {
+        ctx.moveTo(0, y * tileHeight);
+        ctx.lineTo(w, y * tileHeight);
+      }
+      ctx.stroke();
     }
 
     // below: bonus feature for showing colour on hover
@@ -72,9 +71,9 @@ $(document).ready( function () {
     //       yIndex = Math.round((my - tileHeight * 0.5) / tileHeight);
     //
     //   currentCoords = {
-          // xCoord: xIndex * tileWidth,
-          // yCoord: yIndex * tileHeight
-        // }
+    // xCoord: xIndex * tileWidth,
+    // yCoord: yIndex * tileHeight
+    // }
     //   console.log(currentParams);
     //   ctx.fillRect(xIndex * tileWidth, yIndex * tileHeight, tileWidth, tileHeight);
     //
@@ -95,7 +94,7 @@ $(document).ready( function () {
         x: xIndex * tileWidth,
         y: yIndex * tileHeight,
         colour: currentFillColour
-      }
+      };
 
       if (filledSquares.length >= 10) {
         // sendCoordDeets();
@@ -111,44 +110,53 @@ $(document).ready( function () {
       console.log(deets);
       console.log(deets.x);
       $.ajax('http://localhost:3000/coordinates', {
-      method: 'post',
-      dataType: 'json', // data type you want back
-      data: {coordinate: {x: deets.x, y: deets.y, colour: deets.colour, user_id: 1}} // what you're sending - needs to be a json object? needs a madeup key for each value
-      })
-        // .done(function(response) {
-        // console.log(`response back from postInfo ajax request was: ${response}`);
-        // }).fail(function() {
-        // alert('something bad happened, sorry.')
-        // });
+        method: 'post',
+        dataType: 'json', // data type you want back
+        data: { coordinate: { x: deets.x, y: deets.y, colour: deets.colour, user_id: 1 } } // what you're sending - needs to be a json object? needs a madeup key for each value
+      });
+      // .done(function(response) {
+      // console.log(`response back from postInfo ajax request was: ${response}`);
+      // }).fail(function() {
+      // alert('something bad happened, sorry.')
+      // });
       // }
-
-    }
-
-
+    };
   } else {
     // canvas-unsupported code here
   }
 
+  $('.colorPickSelector').colorPick();
 
-  $(".colorPickSelector").colorPick();
-
-  $(".colorPickSelector").colorPick({
-    'initialColor': '#f1c40f',
-    'allowRecent': true,
-    'recentMax': 20,
-    'palette': ["#1abc9c", "#16a085", "#2ecc71", "#27ae60", "#3498db", "#2980b9", "#9b59b6", "#8e44ad", "#34495e", "#2c3e50", "#f1c40f", "#f39c12", "#e67e22", "#d35400", "#e74c3c", "#c0392b", "#ecf0f1", "#bdc3c7", "#95a5a6", "#7f8c8d"],
-    'onColorSelected': function() {
-      this.element.css({'backgroundColor': this.color, 'color': this.color});
+  $('.colorPickSelector').colorPick({
+    initialColor: '#f1c40f',
+    allowRecent: true,
+    recentMax: 20,
+    palette: [
+      '#1abc9c',
+      '#16a085',
+      '#2ecc71',
+      '#27ae60',
+      '#3498db',
+      '#2980b9',
+      '#9b59b6',
+      '#8e44ad',
+      '#34495e',
+      '#2c3e50',
+      '#f1c40f',
+      '#f39c12',
+      '#e67e22',
+      '#d35400',
+      '#e74c3c',
+      '#c0392b',
+      '#ecf0f1',
+      '#bdc3c7',
+      '#95a5a6',
+      '#7f8c8d'
+    ],
+    onColorSelected: function() {
+      this.element.css({ backgroundColor: this.color, color: this.color });
       ctx.fillStyle = this.color;
       currentFillColour = this.color;
     }
   });
-
-
-
-
-
-
-
-
 });
