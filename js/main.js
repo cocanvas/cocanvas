@@ -165,8 +165,36 @@ $(document).ready( function () {
 
 
 
+  $( ".login-modal-overlay" ).click(function() {
+    $(this).fadeOut(200);
+  });
+  $( ".open-login" ).click(function() {
+    $(".login-modal-overlay").fadeIn(200);
+  });
+  $(".login-modal").click(function(event) {
+    event.stopPropagation();
+  });
 
 
+  // Input label
+  $('input').blur(function() {
+    var $this = $(this);
+    if ($this.val())
+      $this.addClass('used');
+    else
+      $this.removeClass('used');
+  });
+
+
+  $( ".register-modal-overlay" ).click(function() {
+    $(this).fadeOut(200);
+  });
+  $( ".open-register" ).click(function() {
+    $(".register-modal-overlay").fadeIn(200);
+  });
+  $(".register-modal").click(function(event) {
+    event.stopPropagation();
+  });
 
 
 
