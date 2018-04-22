@@ -70,8 +70,11 @@ self.color = $(event.target).attr('hexValue');
 self.appendToStorage($(event.target).attr('hexValue'));
 $.proxy(self.options.onColorSelected, self)();
 return false;
-})
-            this.element.click(function(event) {
+});
+
+
+
+              this.element.click(function(event) {
                 event.preventDefault();
                 self.show(event.pageX, event.pageY);
 

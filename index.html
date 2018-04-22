@@ -3,26 +3,80 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Title</title>
+  <title>CoCanvas</title>
   <link rel="stylesheet" href="css/normalize.css">
   <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
   <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
   <link href="css/colorPick.css" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
-  <link href="" rel="icon" type="image/x-icon" />
+  <link href="css/images/favicon.ico" rel="icon" type="image/x-icon" />
 </head>
 <body>
+  <header>
+		<nav class="main-nav">
+			<ul>
+				<li><a class="login open-login" href="#0">Login</a></li>
+				<li><a class="register open-register" href="#0">Register</a></li>
+			</ul>
+		</nav>
+  </header>
+
+<div class="login-modal-overlay">
+
+  <div class="login-modal">
+<br>
+    <form id="login-form">
+      <div class="group">
+        <input type="text"required id="login-username"><span class="bar"></span>
+        <label>Username</label>
+      </div>
+      <div class="group">
+        <input type="password" required minlength="6" id="login-password"><span class="bar"></span>
+        <label>Password</label>
+      </div>
+      <button type="submit" id="login-button">Login</button>
+  </form>
+  </div>
+</div>
+
+<div class="register-modal-overlay">
+
+  <div class="register-modal">
+<br>
+    <form id="register-form">
+      <div class="group">
+        <input type="text" required id="register-username"><span class="bar"></span>
+        <label>Username</label>
+      </div>
+      <div class="group">
+        <input type="password" required minlength="6" id="register-password"><span class="bar"></span>
+        <label>Password</label>
+      </div>
+      <div class="group">
+        <input type="password" required minlength="6" id="register-password-conf"><span class="bar"></span>
+        <label>Password Confirmation</label>
+      </div>
+      <button type="submit" id="register-button">Register</button>
+  </form>
+  </div>
+</div>
+
+<div class="container">
 <h1 data-shadow='CoCanvas'>CoCanvas</span></h1>
 <h3>Make collaborative pictures with strangers on the internet.</h3>
 <div class="colorPickSelector"></div>
+<canvas id="canvas"></canvas>
 
-  <canvas id="canvas"></canvas>
 
-
-<div id="wrapper"></div>
+<div id="wrapper">
+  <div class="chat-nav">
+    <ul>
+    <li><a class="chat">Live chat</a></li>
+    </ul>
+</div>
 <script src="js/jquery.js"></script>
 <script src="js/colorPick.js"></script>
-<script src="js/visual.js"></script>
 <script src="js/main.js"></script>
+</div>
 </body>
 </html>
