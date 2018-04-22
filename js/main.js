@@ -127,16 +127,11 @@ $(document).ready( function () {
         colour: ctx.fillStyle
       }
 
-      if (filledSquares.length >= 10) {
-        // sendCoordDeets();
-        return;
-      } else {
-        filledSquares.push(fillDeets);
-        console.log(filledSquares);
-        ctx.fillRect(xIndex * tileWidth, yIndex * tileHeight, tileWidth, tileHeight);
-        sendCoordDeets(fillDeets);
-      }
-    }
+      filledSquares.push(fillDeets);
+      ctx.fillRect(xIndex * tileWidth, yIndex * tileHeight, tileWidth, tileHeight);
+      sendCoordDeets(fillDeets);
+    };
+
     const sendCoordDeets = function(deets) {
       console.log(deets);
       console.log(deets.x);
@@ -183,7 +178,7 @@ $(document).ready( function () {
     }
 
     fetchCoords();
-    
+
   } else {
     // canvas-unsupported code here
   }
