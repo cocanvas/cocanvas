@@ -1,10 +1,5 @@
 $(document).ready( function () {
-  $.ajax('http://cocanvas-server.herokuapp.com/coordinates.json', {
-  method: 'get',
-  dataType: 'json' // data type you want back
-  }).done(function(response) {
-    console.log(response);
-  });
+
   let canvas = document.getElementById('canvas');
 
   if (canvas.getContext) {
@@ -21,14 +16,43 @@ $(document).ready( function () {
     ctx.strokeStyle = '#e3e3e3';
     // color when the small squares are filled (this will need to be changeable later)
     ctx.fillStyle = '#f70';
-    currentFillColour = '#f70';
+    // currentFillColour = '#f70';
 
     let filledSquares = [];
+
+    $(".colorPickSelector").colorPick();
+
+    $(".colorPickSelector").colorPick({
+      'initialColor': '#f1c40f',
+      'allowRecent': true,
+      'recentMax': 20,
+      'palette': ["#1abc9c", "#16a085", "#2ecc71", "#27ae60", "#63DDDD", "#3498db", "#2980b9", "#295B88", "#9b59b6", "#8e44ad", "#A5567C", "#602650", "#7B1A34","#8A2755", "#CC647B",  "#FF747C", "#002642", "#34495e", "#2c3e50", "#000000", "#FFF07C", "#f1c40f", "#f39c12", "#e67e22", "#d35400", "#f70", "#e74c3c", "#c0392b", "#ecf0f1", "#bdc3c7", "#95a5a6", "#7f8c8d"],
+      'onColorSelected': function() {
+        this.element.css({'backgroundColor': this.color, 'color': this.color});
+        ctx.fillStyle = this.color;
+        // currentFillColour = this.color;
+      }
+    });
+
+    $.ajax('https://cocanvas-server.herokuapp.com/coordinates.json', {
+    method: 'get',
+    dataType: 'json' // data type you want back
+    }).done(function(response) {
+      console.log(response);
+      for (let i = 0; i < response.length; i++) {
+        ctx.fillStyle = response[i].colour;
+        console.log(response[i].colour);
+        ctx.fillRect(response[i].x, response[i].y, tileWidth, tileHeight);
+      }
+    });
+
+
+
 
     render();
 
     // render function creates 80 vertical lines and 60 horizontal lines to create grid
-    function render(clicked=false) {
+    function render() {
 
         // below: if statement for distinguishing btw hover and click (bonus for later)
         // if (clicked) {
@@ -100,7 +124,7 @@ $(document).ready( function () {
       fillDeets = {
         x: xIndex * tileWidth,
         y: yIndex * tileHeight,
-        colour: currentFillColour
+        colour: ctx.fillStyle
       }
 
       if (filledSquares.length >= 10) {
@@ -116,37 +140,27 @@ $(document).ready( function () {
     const sendCoordDeets = function(deets) {
       console.log(deets);
       console.log(deets.x);
-      $.ajax('http://localhost:3000/coordinates', {
+      $.ajax('https://cocanvas-server.herokuapp.com/coordinates', {
       method: 'post',
       dataType: 'json', // data type you want back
       data: {coordinate: {x: deets.x, y: deets.y, colour: deets.colour, user_id: 1}} // what you're sending - needs to be a json object? needs a madeup key for each value
       })
-        // .done(function(response) {
-        // console.log(`response back from postInfo ajax request was: ${response}`);
-        // }).fail(function() {
-        // alert('something bad happened, sorry.')
-        // });
-      // }
-
+      // .done(function(response) {
+      //   console.log(`response back from postInfo ajax request was: ${response}`);
+      //   // }).fail(function() {
+      //   // alert('something bad happened, sorry.')
+      //   });
+      // axios.post(SERVER_URL, {content: s}).then((results) => {
+      //     console.log(results);
+      //     this.setState({secrets: [results.data, ...this.state.secrets, s]}); //splat/spread operator
+      //   });
     }
   } else {
     // canvas-unsupported code here
   }
 
 
-  $(".colorPickSelector").colorPick();
 
-  $(".colorPickSelector").colorPick({
-    'initialColor': '#f1c40f',
-    'allowRecent': true,
-    'recentMax': 20,
-    'palette': ["#1abc9c", "#16a085", "#2ecc71", "#27ae60", "#63DDDD", "#3498db", "#2980b9", "#295B88", "#9b59b6", "#8e44ad", "#A5567C", "#602650", "#7B1A34","#8A2755", "#CC647B",  "#FF747C", "#002642", "#34495e", "#2c3e50", "#000000", "#FFF07C", "#f1c40f", "#f39c12", "#e67e22", "#d35400", "#f70", "#e74c3c", "#c0392b", "#ecf0f1", "#bdc3c7", "#95a5a6", "#7f8c8d"],
-    'onColorSelected': function() {
-      this.element.css({'backgroundColor': this.color, 'color': this.color});
-      ctx.fillStyle = this.color;
-      currentFillColour = this.color;
-    }
-  });
 
 
 
