@@ -66,9 +66,7 @@ li {
   outline-offset: 15px;
   text-shadow: 1px 1px 2px #427388;
 }
-
-a:hover {
-}
+ 
 body {
   background-color: hsla(230,40%,50%,1);
   margin: 0 auto;
