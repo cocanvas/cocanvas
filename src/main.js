@@ -448,9 +448,13 @@ $(document).ready(function() {
     event.stopPropagation();
   });
 
+  $('.info-modal-overlay').click(function() {
+    $(this).fadeOut(200);
+  });
+  $('#info-button').click(function() {
+    $('.info-modal-overlay').fadeIn(200);
+  });
 
-  // const loginUsername = $('#login-username').val();
-  // const loginPassword = $('#login-password').val();
 
   $('#register-form').on('submit', sendRegisterForm);
 
@@ -510,15 +514,13 @@ const loginRequest = (username, password) => {
 
 
 // Conditional render of login elements
-
   if (window.localStorage.cocanvasAuthToken === 'undefined') {
 
   } else if (window.localStorage.cocanvasAuthToken) {
     $('#logout-link').css("display","inline-block");
     $('#login-link').css("display","none");
     $('#register-link').css("display","none");
-
-   }
+  }
 
 
 
