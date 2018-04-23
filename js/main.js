@@ -252,8 +252,6 @@ const sendLoginForm = function(e) {
   e.preventDefault();
   const loginUsername = $('#login-username').val();
   const loginPassword = $('#login-password').val();
-  console.log(loginUsername, loginPassword);
-  //TODO send this data to server via AJAX post
 
   fetch('https://cocanvas-server.herokuapp.com/auth/login', {
     method: 'POST',
