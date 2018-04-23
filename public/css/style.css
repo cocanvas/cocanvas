@@ -87,6 +87,7 @@ h1:after {
 h3 {
   margin-top: 0;
   margin-bottom: 0;
+  padding-bottom: 20px;
   font-family: 'Pacifico', sans-serif;
   font-weight: 100;
   color: white;
@@ -188,17 +189,19 @@ li {
 
 /* COLOUR PICK SELECTOR */
 .colorPickSelector {
-  margin-left: 55px;
+  position: absolute;
+  margin-top: 120px;
+  margin-left: 60px;
   border-radius: 5px;
   width: 36px;
-  height: 36px;
+  height: 36px !important;
   cursor: pointer;
   -webkit-transition: all linear .2s;
   -moz-transition: all linear .2s;
   -ms-transition: all linear .2s;
   -o-transition: all linear .2s;
   transition: all linear .2s;
-}
+ }
 
 .colorPickSelector:hover { transform: scale(1.1); }
 
