@@ -272,7 +272,7 @@ $(document).ready(function() {
 
     $.ajax('https://cocanvas-server.herokuapp.com/coordinates.json', {
       method: 'get',
-      headers: { Authorization: `Bearer ${window.localStorage.cocanvasAuthToken}` },
+      // headers: { Authorization: `Bearer ${window.localStorage.cocanvasAuthToken}` },
       dataType: 'json' // data type you want back
     }).done(function(response) {
       console.log(response);
