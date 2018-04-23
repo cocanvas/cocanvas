@@ -202,7 +202,7 @@ import Cable from 'actioncable';
 })(jQuery);
 
 /////////////////////////////////////////
-const serverUrl = 'https://cocanvas-server.herokuapp.com';
+const serverUrl = 'http://cocanvas-server.herokuapp.com';
 
 $(document).ready(function() {
   let canvas = document.getElementById('canvas');
@@ -304,7 +304,7 @@ $(document).ready(function() {
 
   fetchCoords();
   const createSocket = () => {
-    let cable = Cable.createConsumer('wss://cocanvas-server.herokuapp.com/cable');
+    let cable = Cable.createConsumer('ws://cocanvas-server.herokuapp.com/cable');
 
     return cable.subscriptions.create(
       {
@@ -445,7 +445,6 @@ $(document).ready(function() {
 
   // Modal Overlay
 
-
   $('.login-modal-overlay').click(function() {
     $(this).fadeOut(200);
   });
@@ -473,7 +472,6 @@ $(document).ready(function() {
     event.stopPropagation();
   });
 
-
   // const loginUsername = $('#login-username').val();
   // const loginPassword = $('#login-password').val();
 
@@ -483,11 +481,9 @@ $(document).ready(function() {
 
   $('#logout-link').click(function(event) {
     event.stopPropagation();
-    window.localStorage.cocanvasAuthToken = "";
+    window.localStorage.cocanvasAuthToken = '';
     window.location.reload(false);
-
   });
-
 }); // end of DOCREADY
 
 const sendRegisterForm = function(e) {
@@ -529,24 +525,17 @@ const loginRequest = (username, password) => {
       window.localStorage.cocanvasAuthToken = data.access_token;
       window.location.reload(false);
     })
-
   );
 };
 
-
 // Conditional render of login elements
 
-  if (window.localStorage.cocanvasAuthToken === 'undefined') {
-
-  } else if (window.localStorage.cocanvasAuthToken) {
-    $('#logout-link').css("display","inline-block");
-    $('#login-link').css("display","none");
-    $('#register-link').css("display","none");
-
-   }
-
-
-
+if (window.localStorage.cocanvasAuthToken === 'undefined') {
+} else if (window.localStorage.cocanvasAuthToken) {
+  $('#logout-link').css('display', 'inline-block');
+  $('#login-link').css('display', 'none');
+  $('#register-link').css('display', 'none');
+}
 
 const sendLoginForm = function(e) {
   e.preventDefault();
