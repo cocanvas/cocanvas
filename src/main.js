@@ -404,6 +404,8 @@ $(document).ready(function() {
   }
 
   // Modal Overlay
+ 
+
   $('.login-modal-overlay').click(function() {
     $(this).fadeOut(200);
   });
@@ -430,6 +432,7 @@ $(document).ready(function() {
   $('.register-modal').click(function(event) {
     event.stopPropagation();
   });
+
 
   // const loginUsername = $('#login-username').val();
   // const loginPassword = $('#login-password').val();
