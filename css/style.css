@@ -22,7 +22,7 @@ body {
   display:flex;
   flex-direction: column;
   width: 100vw !important;
-  height: 93vh;
+  /* height: 93vh; */
 }
 
 body:before {
@@ -87,6 +87,7 @@ h1:after {
 h3 {
   margin-top: 0;
   margin-bottom: 0;
+  padding-bottom: 10px;
   font-family: 'Pacifico', sans-serif;
   font-weight: 100;
   color: white;
@@ -191,14 +192,14 @@ li {
   margin-left: 55px;
   border-radius: 5px;
   width: 36px;
-  height: 36px;
+  height: 36px !important;
   cursor: pointer;
   -webkit-transition: all linear .2s;
   -moz-transition: all linear .2s;
   -ms-transition: all linear .2s;
   -o-transition: all linear .2s;
   transition: all linear .2s;
-}
+ }
 
 .colorPickSelector:hover { transform: scale(1.1); }
 
