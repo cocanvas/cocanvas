@@ -165,9 +165,11 @@ li {
 }
 
 .info-button {
-  width: 28px;
-  height: 28px;
-  float:left;
+  position: absolute;
+  width: 35px;
+  height: 35px;
+  left: 0;
+  margin-bottom: 15px;
   }
 
  .chat {
