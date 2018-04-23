@@ -368,10 +368,11 @@ $(document).ready(function() {
   }
 
   const sendCoordDeets = function(deets) {
-    // console.log(deets);
-    // console.log(deets.x);
+
     const token = window.localStorage.cocanvasAuthToken;
     const user = jwtDecoder(token);
+    console.log(`current user: ${user.user_id}`);
+    
 
     fetch('https://cocanvas-server.herokuapp.com/coordinates', {
       method: 'POST',
@@ -405,7 +406,7 @@ $(document).ready(function() {
       headers: { Authorization: `Bearer ${window.localStorage.cocanvasAuthToken}` },
       dataType: 'json' // data type you want back
     }).done(function(response) {
-      console.log(response);
+      // console.log(response);
       for (let i = 0; i < response.length; i++) {
         ctx.fillStyle = response[i].colour;
         // console.log(response[i].colour);
