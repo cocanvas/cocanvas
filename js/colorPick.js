@@ -63,7 +63,7 @@
             var o = this.options;
             $.proxy($.fn.colorPick.defaults.onColorSelected, this)();
             self.show(80,160);
-$('.customColorHash').val(self.color);
+// $('.customColorHash').val(self.color);
 
 $('.colorPickButton').click(function(event) {
 self.color = $(event.target).attr('hexValue');

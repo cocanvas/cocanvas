@@ -54,7 +54,7 @@ $(document).ready(function() {
         '#f70',
         '#e74c3c',
         '#c0392b',
-        '#ecf0f1',
+        '#ffffff',
         '#bdc3c7',
         '#95a5a6',
         '#7f8c8d'
@@ -265,6 +265,7 @@ const loginRequest = (username, password) => {
     res.json().then((data) => {
       console.log(data);
       window.localStorage.cocanvasAuthToken = data.access_token;
+
     })
   );
 };
