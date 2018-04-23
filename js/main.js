@@ -19,23 +19,57 @@ $(document).ready(function() {
 
     let filledSquares = [];
 
-    $(".colorPickSelector").colorPick();
+    $('.colorPickSelector').colorPick();
 
-    $(".colorPickSelector").colorPick({
-      'initialColor': '#f1c40f',
-      'allowRecent': true,
-      'recentMax': 12,
-      'palette': ["#1abc9c", "#16a085", "#2ecc71", "#27ae60", "#63DDDD", "#3498db", "#2980b9", "#295B88", "#9b59b6", "#8e44ad", "#A5567C", "#602650", "#7B1A34","#8A2755", "#CC647B",  "#FF747C", "#002642", "#34495e", "#2c3e50", "#000000", "#FFF07C", "#f1c40f", "#f39c12", "#e67e22", "#d35400", "#f70", "#e74c3c", "#c0392b", "#ecf0f1", "#bdc3c7", "#95a5a6", "#7f8c8d"],
-      'onColorSelected': function() {
-        this.element.css({'backgroundColor': this.color, 'color': this.color});
+    $('.colorPickSelector').colorPick({
+      initialColor: '#f1c40f',
+      allowRecent: true,
+      recentMax: 12,
+      palette: [
+        '#1abc9c',
+        '#16a085',
+        '#2ecc71',
+        '#27ae60',
+        '#63DDDD',
+        '#3498db',
+        '#2980b9',
+        '#295B88',
+        '#9b59b6',
+        '#8e44ad',
+        '#A5567C',
+        '#602650',
+        '#7B1A34',
+        '#8A2755',
+        '#CC647B',
+        '#FF747C',
+        '#002642',
+        '#34495e',
+        '#2c3e50',
+        '#000000',
+        '#FFF07C',
+        '#f1c40f',
+        '#f39c12',
+        '#e67e22',
+        '#d35400',
+        '#f70',
+        '#e74c3c',
+        '#c0392b',
+        '#ecf0f1',
+        '#bdc3c7',
+        '#95a5a6',
+        '#7f8c8d'
+      ],
+      onColorSelected: function() {
+        this.element.css({ backgroundColor: this.color, color: this.color });
         ctx.fillStyle = this.color;
         // currentFillColour = this.color;
       }
     });
 
     $.ajax('https://cocanvas-server.herokuapp.com/coordinates.json', {
-    method: 'get',
-    dataType: 'json' // data type you want back
+      method: 'get',
+      headers: { Authorization: `Bearer ${window.localStorage.cocanvasAuthToken}` },
+      dataType: 'json' // data type you want back
     }).done(function(response) {
       // console.log(response);
       for (let i = 0; i < response.length; i++) {
@@ -45,20 +79,16 @@ $(document).ready(function() {
       }
     });
 
-
-
-
     render();
 
     // render function creates 80 vertical lines and 60 horizontal lines to create grid
     function render() {
-
-        // below: if statement for distinguishing btw hover and click (bonus for later)
-        // if (clicked) {
-        //
-        // } else {
-        //   ctx.clearRect(0, 0, w, h);
-        // }
+      // below: if statement for distinguishing btw hover and click (bonus for later)
+      // if (clicked) {
+      //
+      // } else {
+      //   ctx.clearRect(0, 0, w, h);
+      // }
 
       ctx.beginPath();
 
@@ -124,26 +154,28 @@ $(document).ready(function() {
         x: xIndex * tileWidth,
         y: yIndex * tileHeight,
         colour: ctx.fillStyle
-      }
+      };
 
       filledSquares.push(fillDeets);
       ctx.fillRect(xIndex * tileWidth, yIndex * tileHeight, tileWidth, tileHeight);
       sendCoordDeets(fillDeets);
-    };
+    }
 
     const sendCoordDeets = function(deets) {
       // console.log(deets);
       // console.log(deets.x);
       $.ajax('https://cocanvas-server.herokuapp.com/coordinates', {
-      method: 'post',
-      dataType: 'json', // data type you want back
-      data: {coordinate: {x: deets.x, y: deets.y, colour: deets.colour, user_id: 1}} // what you're sending - needs to be a json object? needs a madeup key for each value
-      })
-    }
+        method: 'post',
+        headers: { Authorization: `Bearer ${window.localStorage.cocanvasAuthToken}` },
+        dataType: 'json', // data type you want back
+        data: { coordinate: { x: deets.x, y: deets.y, colour: deets.colour, user_id: 1 } } // what you're sending - needs to be a json object? needs a madeup key for each value
+      });
+    };
     const fetchCoords = () => {
       $.ajax('https://cocanvas-server.herokuapp.com/coordinates.json', {
-      method: 'get',
-      dataType: 'json' // data type you want back
+        method: 'get',
+        headers: { Authorization: `Bearer ${window.localStorage.cocanvasAuthToken}` },
+        dataType: 'json' // data type you want back
       }).done(function(response) {
         // console.log(response);
         for (let i = 0; i < response.length; i++) {
@@ -153,75 +185,86 @@ $(document).ready(function() {
         }
       });
       setTimeout(fetchCoords, 4000);
-
-    }
+    };
 
     fetchCoords();
-
   } else {
     // canvas-unsupported code here
   }
 
-
   // Modal Overlay
-  $( ".login-modal-overlay" ).click(function() {
+  $('.login-modal-overlay').click(function() {
     $(this).fadeOut(200);
   });
-  $( ".open-login" ).click(function() {
-    $(".login-modal-overlay").fadeIn(200);
+  $('.open-login').click(function() {
+    $('.login-modal-overlay').fadeIn(200);
   });
-  $(".login-modal").click(function(event) {
+  $('.login-modal').click(function(event) {
     event.stopPropagation();
   });
 
   // Input label for modal
   $('input').blur(function() {
     var $this = $(this);
-    if ($this.val())
-      $this.addClass('used');
-    else
-      $this.removeClass('used');
+    if ($this.val()) $this.addClass('used');
+    else $this.removeClass('used');
   });
 
-  $( ".register-modal-overlay" ).click(function() {
+  $('.register-modal-overlay').click(function() {
     $(this).fadeOut(200);
   });
-  $( ".open-register" ).click(function() {
-    $(".register-modal-overlay").fadeIn(200);
+  $('.open-register').click(function() {
+    $('.register-modal-overlay').fadeIn(200);
   });
-  $(".register-modal").click(function(event) {
+  $('.register-modal').click(function(event) {
     event.stopPropagation();
   });
 
+  // const loginUsername = $('#login-username').val();
+  // const loginPassword = $('#login-password').val();
 
+  $('#register-form').on('submit', sendRegisterForm);
 
-// const loginUsername = $('#login-username').val();
-// const loginPassword = $('#login-password').val();
-
-
-
-  $( '#register-form' ).on('submit', sendRegisterForm);
-
-  $( '#login-form' ).on('submit', sendLoginForm);
-
-
+  $('#login-form').on('submit', sendLoginForm);
 }); // end of DOCREADY
 
-
-const sendRegisterForm = function (e) {
+const sendRegisterForm = function(e) {
   e.preventDefault();
-  const registerUsername = $('#register-username').val()
+  const registerUsername = $('#register-username').val();
   const registerPassword = $('#register-password').val();
-  const registerPwDigest = $('#register-password-conf').val();
-  console.log(registerUsername, registerPassword, registerPwDigest)
-  //TODO send this data to server via AJAX post
-}
+  const registerPwConfirmation = $('#register-password-conf').val();
 
+  // AJAX/fetch call for registering user
+  fetch('https://cocanvas-server.herokuapp.com/auth/signup', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      user: {
+        username: registerUsername,
+        password: registerPassword,
+        password_confirmation: registerPwConfirmation
+      }
+    })
+  }).then((res) => res.json().then((data) => console.log(data)));
+};
 
-const sendLoginForm = function (e) {
+const sendLoginForm = function(e) {
   e.preventDefault();
-  const loginUsername = $('#login-username').val()
+  const loginUsername = $('#login-username').val();
   const loginPassword = $('#login-password').val();
-  console.log(loginUsername, loginPassword)
+  console.log(loginUsername, loginPassword);
   //TODO send this data to server via AJAX post
-}
+
+  fetch('https://cocanvas-server.herokuapp.com/auth/login', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      username: loginUsername,
+      password: loginPassword
+    })
+  }).then((res) =>
+    res.json().then((data) => {
+      window.localStorage.cocanvasAuthToken = data.access_token;
+    })
+  );
+};
