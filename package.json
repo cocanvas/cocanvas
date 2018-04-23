@@ -9,6 +9,7 @@
     "dev-server": "webpack-dev-server"
   },
   "dependencies": {
+    "actioncable": "^5.2.0",
     "babel-cli": "6.24.1",
     "css-loader": "0.28.4",
     "jwt-decode": "^2.2.0",
