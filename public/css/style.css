@@ -171,7 +171,7 @@ li {
   transition: all linear .2s;
 }
 
-.info-button {
+#info-button {
   float:left;
   width: 30px;
   height: 30px;
@@ -181,6 +181,7 @@ li {
   -ms-transition: all linear .2s;
   -o-transition: all linear .2s;
   transition: all linear .2s;
+  z-index: 5;
   }
 
  #logout-link {
@@ -194,7 +195,7 @@ li {
   text-shadow: 1px 1px 2px #427388;
 }
 
-.info-button:hover {
+#info-button:hover {
   opacity: 0.6;
  }
 
@@ -250,7 +251,7 @@ li {
   z-index: 4;
 }
 
-.login-modal {
+.login-modal, #info-modal {
   background: #fff;
   max-width: 480px;
   width: 100%;
@@ -265,7 +266,7 @@ li {
   padding: 25px 30px 30px 30px;
 }
 
-.register-modal, .info-modal {
+.register-modal {
   background: #fff;
   max-width: 480px;
   width: 100%;
@@ -374,6 +375,24 @@ input[type=text] {
   width: 50%;
 }
 
+#info-heading {
+  font-family: 'Pacifico', sans-serif !important;
+  font-weight: bold;
+  font-size: 1.4em;
+  color: #49589f;
+}
+
+#info-modal p {
+  font-family: 'Poppins', sans-serif !important;
+  line-height: 1.9em;
+  color: #626464;
+}
+
+.accent {
+  font-weight: bold;
+  color: #49589f;
+}
+
 #login-button, #register-button {
   background: #5869b3;
   border: 1px solid #49589f;
@@ -395,4 +414,11 @@ input[type=text] {
   text-decoration: none;
   text-shadow: -1px -1px 0 #404e8c;
   transition: all 250ms linear;
+}
+
+#info-modal a {
+  padding: 0 !important;
+  margin: 0 !important;
+  color: #4f61ad;
+  font-weight: bold;
 }
