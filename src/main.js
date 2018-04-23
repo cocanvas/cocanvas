@@ -456,10 +456,11 @@ $(document).ready(function() {
 
   $('#login-form').on('submit', sendLoginForm);
 
-
   $('#logout-link').click(function(event) {
     event.stopPropagation();
     window.localStorage.cocanvasAuthToken = "";
+    window.location.reload(false);
+
   });
 
 }); // end of DOCREADY
@@ -501,6 +502,7 @@ const loginRequest = (username, password) => {
     res.json().then((data) => {
       console.log(data);
       window.localStorage.cocanvasAuthToken = data.access_token;
+      window.location.reload(false);
     })
 
   );
@@ -510,10 +512,13 @@ const loginRequest = (username, password) => {
 // Conditional render of login elements
 
   if (window.localStorage.cocanvasAuthToken === 'undefined') {
-    console.log('no current user');
-  } else {
-    $('#login-link').innerHTML = "";
-  }
+
+  } else if (window.localStorage.cocanvasAuthToken) {
+    $('#logout-link').css("display","inline-block");
+    $('#login-link').css("display","none");
+    $('#register-link').css("display","none");
+
+   }
 
 
 

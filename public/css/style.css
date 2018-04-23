@@ -183,6 +183,10 @@ li {
   transition: all linear .2s;
   }
 
+ #logout-link {
+    display: none;
+  }
+
  .logout:hover, .login:hover, .register:hover, .chat:hover {
   box-shadow: inset 0 0 20px rgba(255, 255, 255, .5), 0 0 20px rgba(255, 255, 255, .2);
   outline-color: rgba(255, 255, 255, 0);
