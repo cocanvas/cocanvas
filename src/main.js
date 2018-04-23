@@ -368,7 +368,7 @@ $(document).ready(function() {
     const sendCoordDeets = function(deets) {
       // console.log(deets);
       // console.log(deets.x);
-      const token = window.localStorage.accessToken;
+      const token = window.localStorage.cocanvasAuthToken;
       const user = jwtDecoder(token);
       console.log(user);
       
