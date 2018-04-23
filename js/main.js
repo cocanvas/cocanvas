@@ -184,7 +184,7 @@ $(document).ready(function() {
           ctx.fillRect(response[i].x, response[i].y, tileWidth, tileHeight);
         }
       });
-      setTimeout(fetchCoords, 4000);
+      // setTimeout(fetchCoords, 4000);
     };
 
     fetchCoords();
@@ -245,24 +245,33 @@ const sendRegisterForm = function(e) {
         password_confirmation: registerPwConfirmation
       }
     })
-  }).then((res) => res.json().then((data) => console.log(data)));
+  }).then((res) =>
+    res.json().then((data) => {
+      loginRequest(registerUsername, registerPassword);
+    })
+  );
+};
+
+const loginRequest = (username, password) => {
+  // AJAX/fetch call for user login
+  fetch('https://cocanvas-server.herokuapp.com/auth/login', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      username: username,
+      password: password
+    })
+  }).then((res) =>
+    res.json().then((data) => {
+      console.log(data);
+      window.localStorage.cocanvasAuthToken = data.access_token;
+    })
+  );
 };
 
 const sendLoginForm = function(e) {
   e.preventDefault();
   const loginUsername = $('#login-username').val();
   const loginPassword = $('#login-password').val();
-
-  fetch('https://cocanvas-server.herokuapp.com/auth/login', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-      username: loginUsername,
-      password: loginPassword
-    })
-  }).then((res) =>
-    res.json().then((data) => {
-      window.localStorage.cocanvasAuthToken = data.access_token;
-    })
-  );
+  loginRequest(loginUsername, loginPassword);
 };
