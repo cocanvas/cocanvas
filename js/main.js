@@ -71,7 +71,7 @@ $(document).ready(function() {
       headers: { Authorization: `Bearer ${window.localStorage.cocanvasAuthToken}` },
       dataType: 'json' // data type you want back
     }).done(function(response) {
-      // console.log(response);
+      console.log(response);
       for (let i = 0; i < response.length; i++) {
         ctx.fillStyle = response[i].colour;
         // console.log(response[i].colour);
