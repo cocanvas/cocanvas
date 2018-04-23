@@ -22,7 +22,7 @@ body {
   display:flex;
   flex-direction: column;
   width: 100vw !important;
-  /* height: 93vh; */
+  height: 93vh;
 }
 
 body:before {
@@ -189,7 +189,9 @@ li {
 
 /* COLOUR PICK SELECTOR */
 .colorPickSelector {
-  margin-left: 55px;
+  position: absolute;
+  margin-top: 120px;
+  margin-left: 60px;
   border-radius: 5px;
   width: 36px;
   height: 36px !important;
