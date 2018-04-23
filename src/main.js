@@ -211,7 +211,7 @@ $(document).ready(function() {
     console.log('sorry your browser sucks');
   }
   var ctx = canvas.getContext('2d');
-  // drawing code here
+
   let columns = 80;
   let rows = 60;
   let w = (canvas.width = 800);
@@ -223,8 +223,8 @@ $(document).ready(function() {
   ctx.strokeStyle = '#e3e3e3';
   // color when the small squares are filled (this will need to be changeable later)
   ctx.fillStyle = '#f70';
-  // currentFillColour = '#f70';
 
+  // array of user's filled squares - relevant if we want to limit squares filled per turn. Otherwise, irrelevant.
   let filledSquares = [];
 
   $('.colorPickSelector').colorPick();
@@ -270,7 +270,6 @@ $(document).ready(function() {
     onColorSelected: function() {
       this.element.css({ backgroundColor: this.color, color: this.color });
       ctx.fillStyle = this.color;
-      // currentFillColour = this.color;
     }
   });
 
