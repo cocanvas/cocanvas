@@ -99,7 +99,7 @@ header {
   height: 0px;
 }
 
-.main-nav {
+#main-nav {
   position: absolute;
   right: 0;
 	margin-right: 2%;
@@ -381,7 +381,6 @@ input[type=text] {
   letter-spacing: 1px;
   transition: all 150ms linear;
   font-family: 'Poppins', sans-serif !important;
-
 }
 
 #login-button:hover, #register-button:hover {

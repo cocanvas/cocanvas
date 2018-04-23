@@ -418,7 +418,7 @@ $(document).ready(function() {
   fetchCoords();
 
   // Modal Overlay
- 
+
 
   $('.login-modal-overlay').click(function() {
     $(this).fadeOut(200);
@@ -454,6 +454,16 @@ $(document).ready(function() {
   $('#register-form').on('submit', sendRegisterForm);
 
   $('#login-form').on('submit', sendLoginForm);
+
+  console.log(window.localStorage.cocanvasAuthToken);
+
+  if (window.localStorage.cocanvasAuthToken) {
+    console.log('there is a user');
+  } else {
+    console.log('no current user');
+  }
+
+
 }); // end of DOCREADY
 
 const sendRegisterForm = function(e) {
@@ -494,8 +504,10 @@ const loginRequest = (username, password) => {
       console.log(data);
       window.localStorage.cocanvasAuthToken = data.access_token;
     })
+
   );
 };
+
 
 const sendLoginForm = function(e) {
   e.preventDefault();
