@@ -372,7 +372,7 @@ $(document).ready(function() {
     const token = window.localStorage.cocanvasAuthToken;
     const user = jwtDecoder(token);
     console.log(`current user: ${user.user_id}`);
-    
+
 
     fetch('https://cocanvas-server.herokuapp.com/coordinates', {
       method: 'POST',
@@ -456,14 +456,11 @@ $(document).ready(function() {
 
   $('#login-form').on('submit', sendLoginForm);
 
-  console.log(window.localStorage.cocanvasAuthToken);
 
-  if (window.localStorage.cocanvasAuthToken) {
-    console.log('there is a user');
-  } else {
-    console.log('no current user');
-  }
-
+  $('#logout-link').click(function(event) {
+    event.stopPropagation();
+    window.localStorage.cocanvasAuthToken = "";
+  });
 
 }); // end of DOCREADY
 
@@ -508,6 +505,17 @@ const loginRequest = (username, password) => {
 
   );
 };
+
+
+// Conditional render of login elements
+
+  if (window.localStorage.cocanvasAuthToken === 'undefined') {
+    console.log('no current user');
+  } else {
+    $('#login-link').innerHTML = "";
+  }
+
+
 
 
 const sendLoginForm = function(e) {
