@@ -15,13 +15,16 @@
 
 <body>
   <header>
-    <nav class="main-nav">
+    <nav id="main-nav">
       <ul>
-        <li>
+        <li id="login-link">
           <a class="login open-login" href="#0">Login</a>
         </li>
-        <li>
+        <li id="register-link">
           <a class="register open-register" href="#0">Register</a>
+        </li>
+        <li id="logout-link">
+          <a class="logout" href="#0">Logout</a>
         </li>
       </ul>
     </nav>
@@ -80,17 +83,18 @@
     <h3>Make collaborative pictures with strangers on the internet.</h3>
 
     <canvas id="canvas"></canvas>
+    <li class="info"><img class="info-button" src="./public/css/images/info.svg"/></li>
     <div class="chat-nav">
       <ul>
         <li>
           <a class="chat">
             <span class="chat-span">Live chat</span>
             <span class="expand">
-              <img class="up-arrow" src="./public/css/images/up2.svg" />
+              <img class="up-arrow" src="./public/css/images/up.svg" />
             </span>
           </a>
         </li>
-      </ul>
+       </ul>
     </div>
   </div>
   <script src="./public/js/jquery.js"></script>

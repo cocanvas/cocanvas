@@ -444,6 +444,8 @@ $(document).ready(function() {
   };
 
   // Modal Overlay
+
+
   $('.login-modal-overlay').click(function() {
     $(this).fadeOut(200);
   });
@@ -471,12 +473,21 @@ $(document).ready(function() {
     event.stopPropagation();
   });
 
+
   // const loginUsername = $('#login-username').val();
   // const loginPassword = $('#login-password').val();
 
   $('#register-form').on('submit', sendRegisterForm);
 
   $('#login-form').on('submit', sendLoginForm);
+
+  $('#logout-link').click(function(event) {
+    event.stopPropagation();
+    window.localStorage.cocanvasAuthToken = "";
+    window.location.reload(false);
+
+  });
+
 }); // end of DOCREADY
 
 const sendRegisterForm = function(e) {
@@ -516,9 +527,26 @@ const loginRequest = (username, password) => {
     res.json().then((data) => {
       console.log(data);
       window.localStorage.cocanvasAuthToken = data.access_token;
+      window.location.reload(false);
     })
+
   );
 };
+
+
+// Conditional render of login elements
+
+  if (window.localStorage.cocanvasAuthToken === 'undefined') {
+
+  } else if (window.localStorage.cocanvasAuthToken) {
+    $('#logout-link').css("display","inline-block");
+    $('#login-link').css("display","none");
+    $('#register-link').css("display","none");
+
+   }
+
+
+
 
 const sendLoginForm = function(e) {
   e.preventDefault();
