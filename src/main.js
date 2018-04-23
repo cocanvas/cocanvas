@@ -371,14 +371,17 @@ $(document).ready(function() {
       const token = window.localStorage.cocanvasAuthToken;
       const user = jwtDecoder(token);
       console.log(user);
-      
+
       $.ajax('https://cocanvas-server.herokuapp.com/coordinates', {
         method: 'post',
         headers: { Authorization: `Bearer ${window.localStorage.cocanvasAuthToken}` },
         dataType: 'json', // data type you want back
         data: { coordinate: { x: deets.x, y: deets.y, colour: deets.colour, user_id: user.user_id } } // what you're sending - needs to be a json object? needs a madeup key for each value
+      }).done(() => {
+        fetchCoords();
       });
     };
+
     const fetchCoords = () => {
       $.ajax('https://cocanvas-server.herokuapp.com/coordinates.json', {
         method: 'get',
