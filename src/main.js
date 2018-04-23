@@ -304,7 +304,7 @@ $(document).ready(function() {
 
   fetchCoords();
   const createSocket = () => {
-    let cable = Cable.createConsumer('ws://cocanvas-server.herokuapp.com/cable');
+    let cable = Cable.createConsumer('wss://cocanvas-server.herokuapp.com/cable');
 
     return cable.subscriptions.create(
       {
