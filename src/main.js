@@ -372,6 +372,8 @@ $(document).ready(function() {
     // console.log(deets.x);
     const token = window.localStorage.cocanvasAuthToken;
     const user = jwtDecoder(token);
+    console.log(`current user: ${user.user_id}`);
+    
 
     fetch('https://cocanvas-server.herokuapp.com/coordinates', {
       method: 'POST',
