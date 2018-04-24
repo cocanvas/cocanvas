@@ -80,6 +80,7 @@ import App from './App'
     ],
     onColorSelected: function() {
       this.element.css({ backgroundColor: this.color, color: this.color });
+
     }
   };
 
@@ -207,6 +208,8 @@ import App from './App'
 const serverUrl = 'https://cocanvas-server.herokuapp.com';
 
 $(document).ready(function() {
+  screen.orientation.lock('landscape');
+
   let canvas = document.getElementById('canvas');
 
   if (!canvas.getContext) {
