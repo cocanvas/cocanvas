@@ -1,4 +1,6 @@
 import jwtDecoder from 'jwt-decode';
+import Cable from 'actioncable';
+import App from './App'
 
 ///////////////////////////////////////
 /*!
@@ -202,6 +204,8 @@ import jwtDecoder from 'jwt-decode';
 
 /////////////////////////////////////////
 
+const serverUrl = 'https://cocanvas-server.herokuapp.com';
+
 $(document).ready(function() {
   let canvas = document.getElementById('canvas');
 
@@ -271,21 +275,6 @@ $(document).ready(function() {
     }
   });
 
-  $.ajax('https://cocanvas-server.herokuapp.com/coordinates.json', {
-    method: 'get',
-    // headers: { Authorization: `Bearer ${window.localStorage.cocanvasAuthToken}` },
-    dataType: 'json' // data type you want back
-  }).done(function(response) {
-    // console.log(response);
-    for (let i = 0; i < response.length; i++) {
-      ctx.fillStyle = response[i].colour;
-      // console.log(response[i].colour);
-      ctx.fillRect(response[i].x, response[i].y, tileWidth, tileHeight);
-    }
-  });
-
-  render();
-
   // render function creates 80 vertical lines and 60 horizontal lines to create grid
   function render() {
     // below: if statement for distinguishing btw hover and click (bonus for later)
@@ -307,6 +296,49 @@ $(document).ready(function() {
     }
     ctx.stroke();
   }
+  render();
+
+  const fetchCoords = () => {
+    $.ajax(`${serverUrl}/coordinates.json`, {
+      method: 'get',
+      headers: { Authorization: `Bearer ${window.localStorage.cocanvasAuthToken}` },
+      dataType: 'json' // data type you want back
+    }).done(function(response) {
+      for (let i = 0; i < response.length; i++) {
+        ctx.fillStyle = response[i].colour;
+
+        ctx.fillRect(response[i].x, response[i].y, tileWidth, tileHeight);
+      }
+    });
+  };
+
+  fetchCoords();
+
+  const createSocket = () => {
+    let cable = Cable.createConsumer('wss://cocanvas-server.herokuapp.com/cable');
+
+    return cable.subscriptions.create(
+      {
+        channel: 'CoordChannel'
+      },
+      {
+        connected: () => {
+          console.log('connected to coord channel!');
+        },
+        received: (data) => {
+          ctx.fillStyle = data.colour;
+          ctx.fillRect(data.x, data.y, tileWidth, tileHeight);
+        },
+        create: function(data) {
+          this.perform('create', {
+            coordinate: { x: data.x, y: data.y, colour: data.colour, user_id: data.user_id }
+          });
+        }
+      }
+    );
+  };
+
+  const coordSocket = createSocket();
 
   // below: bonus feature for showing colour on hover
   // let currentParams = [];
@@ -367,24 +399,23 @@ $(document).ready(function() {
   }
 
   const sendCoordDeets = function(deets) {
-
     const token = window.localStorage.cocanvasAuthToken;
     const user = jwtDecoder(token);
     console.log(`current user: ${user.user_id}`);
+    coordSocket.create({ x: deets.x, y: deets.y, colour: deets.colour, user_id: user.user_id });
 
-
-    fetch('https://cocanvas-server.herokuapp.com/coordinates', {
-      method: 'POST',
-      headers: {
-        authorization: `Bearer ${token}`,
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        coordinate: { x: deets.x, y: deets.y, colour: deets.colour, user_id: user.user_id }
-      })
-    }).then((res) => {
-      fetchCoords();
-    });
+    // fetch('https://cocanvas-server.herokuapp.com/coordinates', {
+    //   method: 'POST',
+    //   headers: {
+    //     authorization: `Bearer ${token}`,
+    //     'Content-Type': 'application/json'
+    //   },
+    //   body: JSON.stringify({
+    //     coordinate: { x: deets.x, y: deets.y, colour: deets.colour, user_id: user.user_id }
+    //   })
+    // }).then((res) => {
+    //   fetchCoords();
+    // });
     // $.ajax('https://cocanvas-server.herokuapp.com/coordinates', {
     //   method: 'post',
     //   headers: {
@@ -398,24 +429,6 @@ $(document).ready(function() {
     //   fetchCoords();
     // });
   };
-
-  const fetchCoords = () => {
-    $.ajax('https://cocanvas-server.herokuapp.com/coordinates.json', {
-      method: 'get',
-      headers: { Authorization: `Bearer ${window.localStorage.cocanvasAuthToken}` },
-      dataType: 'json' // data type you want back
-    }).done(function(response) {
-      // console.log(response);
-      for (let i = 0; i < response.length; i++) {
-        ctx.fillStyle = response[i].colour;
-        // console.log(response[i].colour);
-        ctx.fillRect(response[i].x, response[i].y, tileWidth, tileHeight);
-      }
-    });
-    // setTimeout(fetchCoords, 4000);
-  };
-
-  fetchCoords();
 
   // Modal Overlay
   $('.login-modal-overlay').click(function() {
@@ -452,17 +465,15 @@ $(document).ready(function() {
     $('.info-modal-overlay').fadeIn(200);
   });
 
-
   $('#register-form').on('submit', sendRegisterForm);
 
   $('#login-form').on('submit', sendLoginForm);
 
   $('#logout-link').click(function(event) {
     event.stopPropagation();
-    window.localStorage.cocanvasAuthToken = "";
+    window.localStorage.cocanvasAuthToken = '';
     window.location.reload(false);
   });
-
 }); // end of DOCREADY
 
 const sendRegisterForm = function(e) {
@@ -520,7 +531,7 @@ const loginRequest = (username, password) => {
     res.json().then((data) => {
       console.log(data);
       window.localStorage.cocanvasAuthToken = data.access_token;
-      if (window.localStorage.cocanvasAuthToken !== "undefined") {
+      if (window.localStorage.cocanvasAuthToken !== 'undefined') {
         window.location.reload(false);
       } else {
         console.log('login failed');
@@ -528,7 +539,7 @@ const loginRequest = (username, password) => {
         $('#password-label-login').css("color", "red");
         $('#login-modal').addClass('animated shake');
 
-       }
+        }
        setTimeout( function () {
          $('#login-modal').removeClass('animated shake');
          }, 900);
@@ -537,19 +548,20 @@ const loginRequest = (username, password) => {
   );
 };
 
+
+// Conditional render of login elements
+if (window.localStorage.cocanvasAuthToken === 'undefined') {
+  // Require undefined if statement otherwise any input logged results as undefined and is considered "logged in"
+} else if (window.localStorage.cocanvasAuthToken) {
+
+  $('#logout-link').css('display', 'inline-block');
+  $('#login-link').css('display', 'none');
+  $('#register-link').css('display', 'none');
+}
+
 const sendLoginForm = function(e) {
   e.preventDefault();
   const loginUsername = $('#login-username').val();
   const loginPassword = $('#login-password').val();
   loginRequest(loginUsername, loginPassword);
 };
-
-
-// Conditional render of login elements
-  if (window.localStorage.cocanvasAuthToken === 'undefined') {
-// Require undefined if statement otherwise any input logged results as undefined and is considered "logged in"
-} else if (window.localStorage.cocanvasAuthToken) {
-    $('#logout-link').css("display","inline-block");
-    $('#login-link').css("display","none");
-    $('#register-link').css("display","none");
-  }
