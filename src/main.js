@@ -326,7 +326,7 @@ $(document).ready(function() {
           console.log('connected to coord channel!');
         },
         received: (data) => {
-          ctx.fillStyle = data.colour;
+          // ctx.fillStyle = data.colour;
           ctx.fillRect(data.x, data.y, tileWidth, tileHeight);
         },
         create: function(data) {
