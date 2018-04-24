@@ -418,8 +418,6 @@ $(document).ready(function() {
   fetchCoords();
 
   // Modal Overlay
-
-
   $('.login-modal-overlay').click(function() {
     $(this).fadeOut(200);
   });
@@ -486,6 +484,7 @@ const sendRegisterForm = function(e) {
     })
   }).then((res) =>
     res.json().then((data) => {
+
       loginRequest(registerUsername, registerPassword);
     })
   );
@@ -514,14 +513,20 @@ const loginRequest = (username, password) => {
         $('#password-label').css("color", "red");
        }
        setTimeout( function () {
-     $('#login-modal').removeClass('animated shake');
-     }, 900);
-    })
+         $('#login-modal').removeClass('animated shake');
+         }, 900);
+       })
 
   );
 };
 
 
+const sendLoginForm = function(e) {
+  e.preventDefault();
+  const loginUsername = $('#login-username').val();
+  const loginPassword = $('#login-password').val();
+  loginRequest(loginUsername, loginPassword);
+};
 
 
 // Conditional render of login elements
@@ -532,13 +537,3 @@ const loginRequest = (username, password) => {
     $('#login-link').css("display","none");
     $('#register-link').css("display","none");
   }
-
-
-
-
-const sendLoginForm = function(e) {
-  e.preventDefault();
-  const loginUsername = $('#login-username').val();
-  const loginPassword = $('#login-password').val();
-  loginRequest(loginUsername, loginPassword);
-};
