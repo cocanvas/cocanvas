@@ -217,38 +217,69 @@ li {
 @media only screen and (max-width: 1356px)  {
   #chat-button {
     width: 160px;
-    padding-left: 15px;
+    padding-left: -2%;
   }
 
 }
 
 @media only screen and (max-width: 1332px)  {
   #chat-button, .register {
-    margin-right: -15px;
+    margin-right: -5%;
+  }
+  #info-button {
+    width: 20px;
+    height: 20px;
   }
 }
 
 @media only screen and (max-width: 1256px)  {
   #colorPick {
-    margin-left: -6%;
+    margin-left: -5%;
   }
 
   .colorPickSelector {
-    margin-left: -6% !important;
+    margin-left: -5% !important;
   }
 }
 
-@media only screen and (max-width: 1243px)  {
+@media only screen and (max-width: 1265px)  {
   #colorPick {
-    margin-left: -6%;
+    margin-left: -2.75%;
   }
 
   .colorPickSelector {
-    margin-left: -6% !important;
+    margin-left: 2% !important;
   }
 }
 
+@media only screen and (max-width: 1209px)  {
+  #colorPick {
+    margin-left: -3.2%;
+    width: 90px;
+  }
+  h1 {
+    font-size: 3em;
+  }
 
+  h1:after {
+    padding-top: 13px;
+  }
+
+  h3 {
+    font-size: 1.2em;
+  }
+  .colorPickSelector {
+    margin-left: 2% !important;
+  }
+}
+
+@media only screen and (max-width: 1115px)  {
+
+
+  .colorPickSelector {
+    margin-left: 2% !important;
+  }
+}
 
 .up-arrow {
   width: 20px !important;
@@ -263,7 +294,7 @@ li {
 /* COLOUR PICK SELECTOR */
 .colorPickSelector {
   position: absolute;
-  margin-top: 120px;
+  margin-top: 125px;
   margin-left: 60px;
   border-radius: 5px;
   width: 36px;
