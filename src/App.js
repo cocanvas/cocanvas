@@ -1,5 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Chat from 'components/Chat';
+import Chat from './components/Chat';
 
-ReactDOM.render(<Chat />, $('#chat-box'));
+ReactDOM.render(<Chat />, document.querySelector('#chat-box'));
