@@ -496,17 +496,18 @@ const sendRegisterForm = function(e) {
   }).then((res) =>
     res.json().then((data) => {
 
-      if (data.username[0] === "has already been taken") {
-        $('#username-label-register').css("color","red");
-        $('#register-modal').addClass('animated shake');
-        let temp_username_input = $('#register-username').val();
-        $('#username-label-register').html(`${temp_username_input} has already been taken.`).css("margin","-10px").css("padding-top", "10px");
-        
-        setTimeout( function () {
-          $('#register-modal').removeClass('animated shake');
-        }, 900);
-      }
+      if (data.username) {
+        if (data.username[0] === "has already been taken") {
+          $('#username-label-register').css("color","red");
+          $('#register-modal').addClass('animated shake');
+          let temp_username_input = $('#register-username').val();
+          $('#username-label-register').html(`${temp_username_input} has already been taken.`).css("margin","-10px").css("padding-top", "10px");
 
+          setTimeout( function () {
+            $('#register-modal').removeClass('animated shake');
+          }, 900);
+        }
+      }
       if (data.password_confirmation) {
         $('#password-label-register').css("color","red");
         $('#conf-pw-label-register').css("color","red");
