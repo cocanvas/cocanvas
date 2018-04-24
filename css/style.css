@@ -87,7 +87,7 @@ h1:after {
 h3 {
   margin-top: 0;
   margin-bottom: 0;
-  padding-bottom: 20px;
+  padding-bottom: 10px;
   font-family: 'Pacifico', sans-serif;
   font-weight: 100;
   color: white;
@@ -99,7 +99,7 @@ header {
   height: 0px;
 }
 
-#main-nav {
+.main-nav {
   position: absolute;
   right: 0;
 	margin-right: 2%;
@@ -145,7 +145,7 @@ li {
 }
 
 /* NAVIGATION & CHAT */
-.logout, .login, .register, .chat {
+.login, .register, .chat {
   padding: 10px 14px 0px 14px;
   border: 1px solid #fff;
   border-radius: 10px;
@@ -157,47 +157,12 @@ li {
 	transition: all linear .2s;
 }
 
-
-.info {
-  position: absolute;
-  width: 40px;
-  height: 35px;
-  bottom: -25px;
-  left: 2px;
-  -webkit-transition: all linear .2s;
-  -moz-transition: all linear .2s;
-  -ms-transition: all linear .2s;
-  -o-transition: all linear .2s;
-  transition: all linear .2s;
-}
-
-#info-button {
-  float:left;
-  width: 30px;
-  height: 30px;
-  padding-bottom: 0px;
-  -webkit-transition: all linear .2s;
-  -moz-transition: all linear .2s;
-  -ms-transition: all linear .2s;
-  -o-transition: all linear .2s;
-  transition: all linear .2s;
-  z-index: 5;
-  }
-
- #logout-link {
-    display: none;
-  }
-
- .logout:hover, .login:hover, .register:hover, .chat:hover {
+.login:hover, .register:hover, .chat:hover {
   box-shadow: inset 0 0 20px rgba(255, 255, 255, .5), 0 0 20px rgba(255, 255, 255, .2);
   outline-color: rgba(255, 255, 255, 0);
   outline-offset: 15px;
   text-shadow: 1px 1px 2px #427388;
 }
-
-#info-button:hover {
-  opacity: 0.6;
- }
 
  .chat {
   width: 238px;
@@ -241,7 +206,7 @@ li {
 .colorPickSelector:hover { transform: scale(1.1); }
 
 /* LOGIN & REGISTER MODAL */
- .info-modal-overlay, .login-modal-overlay, .register-modal-overlay {
+ .login-modal-overlay, .register-modal-overlay {
   position: fixed;
   width: 100%;
   height: 100%;
@@ -251,7 +216,7 @@ li {
   z-index: 4;
 }
 
-.login-modal, #info-modal {
+.login-modal {
   background: #fff;
   max-width: 480px;
   width: 100%;
@@ -375,18 +340,6 @@ input[type=text] {
   width: 50%;
 }
 
-#info-heading {
-  font-family: 'Pacifico', sans-serif !important;
-  font-weight: bold;
-  font-size: 1.4em;
-  color: #49589f;
-}
-
-.accent {
-  font-weight: bold;
-  color: #49589f;
-}
-
 #login-button, #register-button {
   background: #5869b3;
   border: 1px solid #49589f;
@@ -398,6 +351,7 @@ input[type=text] {
   letter-spacing: 1px;
   transition: all 150ms linear;
   font-family: 'Poppins', sans-serif !important;
+
 }
 
 #login-button:hover, #register-button:hover {
@@ -409,29 +363,3 @@ input[type=text] {
   text-shadow: -1px -1px 0 #404e8c;
   transition: all 250ms linear;
 }
-
-#info-modal p {
-  font-family: 'Poppins', sans-serif !important;
-  line-height: 1.85em;
-  color: #626464;
-}
-
-#info-modal p a {
-  padding: 0 !important;
-  margin: 0 !important;
-  color: #4f61ad;
-  font-weight: bold;
-  height: 20px;
-  opacity: 0.6;
-  border-bottom: 1px dashed #4f61ad;
-  -webkit-transition: all 0.2s ease;
-  -moz-transition: all 0.2s ease;
-  -ms-transition: all 0.2s ease;
-  -o-transition: all 0.2s ease;
-  transition: all 0.2s ease;
-}
-
-#info-modal p a:hover {
-  opacity: 1;
-}
- 

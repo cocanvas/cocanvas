@@ -1,5 +1,4 @@
 import jwtDecoder from 'jwt-decode';
-import Cable from 'actioncable';
 
 ///////////////////////////////////////
 /*!
@@ -202,7 +201,6 @@ import Cable from 'actioncable';
 })(jQuery);
 
 /////////////////////////////////////////
-const serverUrl = 'https://cocanvas-server.herokuapp.com';
 
 $(document).ready(function() {
   let canvas = document.getElementById('canvas');
@@ -211,7 +209,7 @@ $(document).ready(function() {
     console.log('sorry your browser sucks');
   }
   var ctx = canvas.getContext('2d');
-  // drawing code here
+
   let columns = 80;
   let rows = 60;
   let w = (canvas.width = 800);
@@ -223,8 +221,8 @@ $(document).ready(function() {
   ctx.strokeStyle = '#e3e3e3';
   // color when the small squares are filled (this will need to be changeable later)
   ctx.fillStyle = '#f70';
-  // currentFillColour = '#f70';
 
+  // array of user's filled squares - relevant if we want to limit squares filled per turn. Otherwise, irrelevant.
   let filledSquares = [];
 
   $('.colorPickSelector').colorPick();
@@ -270,64 +268,23 @@ $(document).ready(function() {
     onColorSelected: function() {
       this.element.css({ backgroundColor: this.color, color: this.color });
       ctx.fillStyle = this.color;
-      // currentFillColour = this.color;
     }
   });
 
-  // $.ajax('https://cocanvas-server.herokuapp.com/coordinates.json', {
-  //   method: 'get',
-  //   dataType: 'json' // data type you want back
-  // }).done(function(response) {
-  //   // console.log(response);
-  //   for (let i = 0; i < response.length; i++) {
-  //     ctx.fillStyle = response[i].colour;
-  //     // console.log(response[i].colour);
-  //     ctx.fillRect(response[i].x, response[i].y, tileWidth, tileHeight);
-  //   }
-  // });
-  const fetchCoords = () => {
-    // $.ajax('https://cocanvas-server.herokuapp.com/coordinates.json', {
-    $.ajax(`${serverUrl}/coordinates.json`, {
-      method: 'get',
-      headers: { Authorization: `Bearer ${window.localStorage.cocanvasAuthToken}` },
-      dataType: 'json' // data type you want back
-    }).done(function(response) {
-      // console.log(response);
-      for (let i = 0; i < response.length; i++) {
-        ctx.fillStyle = response[i].colour;
-        // console.log(response[i].colour);
-        ctx.fillRect(response[i].x, response[i].y, tileWidth, tileHeight);
-      }
-    });
-    // setTimeout(fetchCoords, 4000);
-  };
+  $.ajax('https://cocanvas-server.herokuapp.com/coordinates.json', {
+    method: 'get',
+    // headers: { Authorization: `Bearer ${window.localStorage.cocanvasAuthToken}` },
+    dataType: 'json' // data type you want back
+  }).done(function(response) {
+    // console.log(response);
+    for (let i = 0; i < response.length; i++) {
+      ctx.fillStyle = response[i].colour;
+      // console.log(response[i].colour);
+      ctx.fillRect(response[i].x, response[i].y, tileWidth, tileHeight);
+    }
+  });
 
-  fetchCoords();
-  const createSocket = () => {
-    let cable = Cable.createConsumer('wss://cocanvas-server.herokuapp.com/cable');
-
-    return cable.subscriptions.create(
-      {
-        channel: 'CoordChannel'
-      },
-      {
-        connected: () => {
-          console.log('connected to coord channel!');
-        },
-        received: (data) => {
-          ctx.fillStyle = data.colour;
-          ctx.fillRect(data.x, data.y, tileWidth, tileHeight);
-        },
-        create: function(data) {
-          this.perform('create', {
-            coordinate: { x: data.x, y: data.y, colour: data.colour, user_id: data.user_id }
-          });
-        }
-      }
-    );
-  };
-
-  const coordSocket = createSocket();
+  render();
 
   // render function creates 80 vertical lines and 60 horizontal lines to create grid
   function render() {
@@ -350,7 +307,6 @@ $(document).ready(function() {
     }
     ctx.stroke();
   }
-  render();
 
   // below: bonus feature for showing colour on hover
   // let currentParams = [];
@@ -411,24 +367,24 @@ $(document).ready(function() {
   }
 
   const sendCoordDeets = function(deets) {
+
     const token = window.localStorage.cocanvasAuthToken;
     const user = jwtDecoder(token);
     console.log(`current user: ${user.user_id}`);
 
-    coordSocket.create({ x: deets.x, y: deets.y, colour: deets.colour, user_id: user.user_id });
 
-    // fetch('https://cocanvas-server.herokuapp.com/coordinates', {
-    //   method: 'POST',
-    //   headers: {
-    //     authorization: `Bearer ${token}`,
-    //     'Content-Type': 'application/json'
-    //   },
-    //   body: JSON.stringify({
-    //     coordinate: { x: deets.x, y: deets.y, colour: deets.colour, user_id: user.user_id }
-    //   })
-    // }).then((res) => {
-    //   fetchCoords();
-    // });
+    fetch('https://cocanvas-server.herokuapp.com/coordinates', {
+      method: 'POST',
+      headers: {
+        authorization: `Bearer ${token}`,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        coordinate: { x: deets.x, y: deets.y, colour: deets.colour, user_id: user.user_id }
+      })
+    }).then((res) => {
+      fetchCoords();
+    });
     // $.ajax('https://cocanvas-server.herokuapp.com/coordinates', {
     //   method: 'post',
     //   headers: {
@@ -443,7 +399,26 @@ $(document).ready(function() {
     // });
   };
 
+  const fetchCoords = () => {
+    $.ajax('https://cocanvas-server.herokuapp.com/coordinates.json', {
+      method: 'get',
+      headers: { Authorization: `Bearer ${window.localStorage.cocanvasAuthToken}` },
+      dataType: 'json' // data type you want back
+    }).done(function(response) {
+      // console.log(response);
+      for (let i = 0; i < response.length; i++) {
+        ctx.fillStyle = response[i].colour;
+        // console.log(response[i].colour);
+        ctx.fillRect(response[i].x, response[i].y, tileWidth, tileHeight);
+      }
+    });
+    // setTimeout(fetchCoords, 4000);
+  };
+
+  fetchCoords();
+
   // Modal Overlay
+
 
   $('.login-modal-overlay').click(function() {
     $(this).fadeOut(200);
@@ -479,8 +454,6 @@ $(document).ready(function() {
     $('.info-modal-overlay').fadeIn(200);
   });
 
-  // const loginUsername = $('#login-username').val();
-  // const loginPassword = $('#login-password').val();
 
   $('#register-form').on('submit', sendRegisterForm);
 
@@ -488,9 +461,10 @@ $(document).ready(function() {
 
   $('#logout-link').click(function(event) {
     event.stopPropagation();
-    window.localStorage.cocanvasAuthToken = '';
+    window.localStorage.cocanvasAuthToken = "";
     window.location.reload(false);
   });
+
 }); // end of DOCREADY
 
 const sendRegisterForm = function(e) {
@@ -500,7 +474,7 @@ const sendRegisterForm = function(e) {
   const registerPwConfirmation = $('#register-password-conf').val();
 
   // AJAX/fetch call for registering user
-  fetch(`${serverUrl}/auth/signup`, {
+  fetch('https://cocanvas-server.herokuapp.com/auth/signup', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
@@ -519,7 +493,7 @@ const sendRegisterForm = function(e) {
 
 const loginRequest = (username, password) => {
   // AJAX/fetch call for user login
-  fetch(`${serverUrl}/auth/login`, {
+  fetch('https://cocanvas-server.herokuapp.com/auth/login', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
@@ -530,13 +504,27 @@ const loginRequest = (username, password) => {
     res.json().then((data) => {
       console.log(data);
       window.localStorage.cocanvasAuthToken = data.access_token;
-      window.location.reload(false);
+      if (window.localStorage.cocanvasAuthToken !== "undefined") {
+        window.location.reload(false);
+      } else {
+        console.log('login failed');
+        $('#login-modal').addClass('animated shake');
+
+        $('#username-label').css("color", "red");
+        $('#password-label').css("color", "red");
+       }
+       setTimeout( function () {
+     $('#login-modal').removeClass('animated shake');
+     }, 900);
     })
+
   );
 };
 
-// Conditional render of login elements
 
+
+
+// Conditional render of login elements
   if (window.localStorage.cocanvasAuthToken === 'undefined') {
 // Require undefined if statement otherwise any input logged results as undefined and is considered "logged in"
 } else if (window.localStorage.cocanvasAuthToken) {
@@ -544,6 +532,8 @@ const loginRequest = (username, password) => {
     $('#login-link').css("display","none");
     $('#register-link').css("display","none");
   }
+
+
 
 
 const sendLoginForm = function(e) {
