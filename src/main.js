@@ -208,7 +208,6 @@ import App from './App';
 const serverUrl = 'https://cocanvas-server.herokuapp.com';
 
 $(document).ready(function() {
-  screen.orientation.lock('landscape');
 
   let canvas = document.getElementById('canvas');
 
@@ -304,7 +303,7 @@ $(document).ready(function() {
   // calling the render function to draw grid
   render();
 
-  // defining fetchCoords function 
+  // defining fetchCoords function
   const fetchCoords = () => {
     $.ajax(`${serverUrl}/coordinates.json`, {
       method: 'get',
