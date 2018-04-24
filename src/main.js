@@ -463,7 +463,6 @@ $(document).ready(function() {
     event.stopPropagation();
     window.localStorage.cocanvasAuthToken = "";
     window.location.reload(false);
-
   });
 
 }); // end of DOCREADY
@@ -505,11 +504,24 @@ const loginRequest = (username, password) => {
     res.json().then((data) => {
       console.log(data);
       window.localStorage.cocanvasAuthToken = data.access_token;
-      window.location.reload(false);
+      if (window.localStorage.cocanvasAuthToken !== "undefined") {
+        window.location.reload(false);
+      } else {
+        console.log('login failed');
+        $('#login-modal').addClass('animated shake');
+
+        $('#username-label').css("color", "red");
+        $('#password-label').css("color", "red");
+       }
+       setTimeout( function () {
+     $('#login-modal').removeClass('animated shake');
+     }, 900);
     })
 
   );
 };
+
+
 
 
 // Conditional render of login elements
