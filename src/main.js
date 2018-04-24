@@ -1,5 +1,5 @@
-import jwtDecoder from 'jwt-decode';
 import Cable from 'actioncable';
+import getUserFromToken from './getUserFromToken';
 import App from './App';
 
 ///////////////////////////////////////
@@ -301,7 +301,7 @@ $(document).ready(function() {
   // calling the render function to draw grid
   render();
 
-  // defining fetchCoords function 
+  // defining fetchCoords function
   const fetchCoords = () => {
     $.ajax(`${serverUrl}/coordinates.json`, {
       method: 'get',
@@ -406,9 +406,8 @@ $(document).ready(function() {
   }
 
   const sendCoordDeets = function(deets) {
-    const token = window.localStorage.cocanvasAuthToken;
-    const user = jwtDecoder(token);
-    console.log(`current user: ${user.user_id}`);
+    const user = getUserFromToken();   
+
     coordSocket.create({ x: deets.x, y: deets.y, colour: deets.colour, user_id: user.user_id });
 
     // fetch('https://cocanvas-server.herokuapp.com/coordinates', {
