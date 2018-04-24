@@ -294,8 +294,10 @@ $(document).ready(function() {
     }
     ctx.stroke();
   }
+  // calling the render function to draw grid
   render();
 
+  // defining fetchCoords function 
   const fetchCoords = () => {
     // $.ajax('https://cocanvas-server.herokuapp.com/coordinates.json', {
     $.ajax(`${serverUrl}/coordinates.json`, {
