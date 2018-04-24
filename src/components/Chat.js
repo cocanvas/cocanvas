@@ -85,7 +85,9 @@ class Chat extends Component {
       <div className="Chat">
         <div className="chat-header">
           <p className="live-chat-heading">
-            <a>Live chat</a>
+            <a>Live chat<span className="collapse">
+              <img className="down-arrow" src="./public/css/images/down.svg" />
+            </span></a>
           </p>
         </div>
         <div className="chat-logs-div">

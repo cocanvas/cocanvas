@@ -194,7 +194,18 @@ li {
   width: 238px !important;
   /* height: 400px; */
   border-radius: 10px;
-  position: relative;
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  background-color: red;
+}
+
+#chat-box div {
+  width: inherit;
+}
+
+.chat {
+
 }
 
 .chat-header {

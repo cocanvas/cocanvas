@@ -213,13 +213,11 @@ li {
   background: #4f60ad !important;
 }
 
-
 @media only screen and (max-width: 1356px)  {
   #chat-button {
     width: 160px;
     padding-left: 15px;
   }
-
 }
 
 @media only screen and (max-width: 1332px)  {
@@ -248,8 +246,6 @@ li {
   }
 }
 
-
-
 .up-arrow {
   width: 20px !important;
   height: 20px;
@@ -258,6 +254,73 @@ li {
 .expand {
   float: right;
   height: 20px !important;
+}
+
+/* CHAT BOX */
+
+#chat-box {
+  /* display: none; */
+  width: 250px !important;
+  /* height: 400px; */
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  margin-right: 2%;
+  margin-bottom: 4%;
+  padding: 5px;
+}
+
+#chat-box div {
+  width: 238px;
+}
+
+.Chat {
+  border-radius: 10px;
+  border: 1px solid #fff;
+  width: 240px !important;
+}
+
+.chat-header, .chat-header p {
+  top: 0;
+  left: 0;
+  padding: 0;
+  text-align: left;
+  margin: 0;
+  background: #4f60ad !important;
+  height: 40px;
+  border-bottom: 1px solid #fff;
+}
+
+.chat-header p a {
+  line-height: 40px;
+}
+
+.chat-logs-div {
+  background-color: #E5E6F3;
+  color: black;
+  min-height: 100px;
+}
+
+.chat-input-div {
+  background-color: #fff;
+  color: black;
+  border-top: 1px solid grey;
+  height: 40px;
+  line-height: 40px;
+  font-size: 14px;
+  border-bottom-left-radius: 10%;
+  border-bottom-right-radius: 10%;
+}
+
+.chat-input-div input {
+  padding-right: 20px;
+  border: none;
+}
+
+.chat-input-div button {
+  border: 1px solid black;
+  font-size: 14px;
+  padding: 2px;
 }
 
 /* COLOUR PICK SELECTOR */
