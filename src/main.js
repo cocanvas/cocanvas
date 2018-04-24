@@ -485,6 +485,23 @@ const sendRegisterForm = function(e) {
   }).then((res) =>
     res.json().then((data) => {
 
+      if (data.username[0] === "has already been taken") {
+        $('#username-label-register').css("color","red");
+        $('#register-modal').addClass('animated shake');
+        let temp_username_input = $('#register-username').val();
+        $('#username-label-register').html(`${temp_username_input} has already been taken.`).css("margin","-10px").css("padding-top", "10px");
+
+      }
+
+      if (data.password_confirmation) {
+        $('#password-label-register').css("color","red");
+        $('#conf-pw-label-register').css("color","red");
+        $('#register-modal').addClass('animated shake');
+
+        setTimeout( function () {
+          $('#register-modal').removeClass('animated shake');
+        }, 900);
+      }
       loginRequest(registerUsername, registerPassword);
     })
   );
@@ -507,10 +524,10 @@ const loginRequest = (username, password) => {
         window.location.reload(false);
       } else {
         console.log('login failed');
+        $('#username-label-login').css("color", "red");
+        $('#password-label-login').css("color", "red");
         $('#login-modal').addClass('animated shake');
 
-        $('#username-label').css("color", "red");
-        $('#password-label').css("color", "red");
        }
        setTimeout( function () {
          $('#login-modal').removeClass('animated shake');
@@ -519,7 +536,6 @@ const loginRequest = (username, password) => {
 
   );
 };
-
 
 const sendLoginForm = function(e) {
   e.preventDefault();

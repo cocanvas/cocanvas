@@ -22,7 +22,7 @@
           <a class="login open-login" href="#0">Login</a>
         </li>
         <li id="register-link">
-          <a class="register open-register" href="#0">Register</a>
+          <a class="register open-register" href="#0">Sign Up</a>
         </li>
         <li id="logout-link">
           <a class="logout" href="#0">Logout</a>
@@ -39,12 +39,12 @@
         <div class="group">
           <input type="text" required id="login-username">
           <span class="username bar"></span>
-          <label id="username-label">Username</label>
+          <label id="username-label-login">Username</label>
         </div>
         <div class="group">
           <input type="password" required minlength="6" id="login-password">
           <span class="password bar" id="password-bar"></span>
-          <label id="password-label">Password</label>
+          <label id="password-label-login">Password</label>
         </div>
         <button type="submit" id="login-button">Login</button>
       </form>
@@ -53,23 +53,23 @@
 
   <div class="register-modal-overlay">
 
-    <div class="register-modal">
+    <div class="register-modal" id="register-modal">
       <br>
       <form id="register-form">
         <div class="group">
           <input type="text" required id="register-username">
           <span class="bar"></span>
-          <label>Username</label>
+          <label id="username-label-register">Username</label>
         </div>
         <div class="group">
           <input type="password" required minlength="6" id="register-password">
           <span class="bar"></span>
-          <label>Password</label>
+          <label id="password-label-register">Password</label>
         </div>
         <div class="group">
           <input type="password" required minlength="6" id="register-password-conf">
           <span class="bar"></span>
-          <label>Confirm Password</label>
+          <label id="conf-pw-label-register">Confirm Password</label>
         </div>
         <button type="submit" id="register-button">Register</button>
       </form>
