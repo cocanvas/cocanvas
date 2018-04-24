@@ -472,7 +472,6 @@ $(document).ready(function() {
     event.stopPropagation();
   });
 
-<<<<<<< HEAD
   $('.info-modal-overlay').click(function() {
     $(this).fadeOut(200);
   });
@@ -539,8 +538,8 @@ const loginRequest = (username, password) => {
 // Conditional render of login elements
 
   if (window.localStorage.cocanvasAuthToken === 'undefined') {
-
-  } else if (window.localStorage.cocanvasAuthToken) {
+// Require undefined if statement otherwise any input logged results as undefined and is considered "logged in"
+} else if (window.localStorage.cocanvasAuthToken) {
     $('#logout-link').css("display","inline-block");
     $('#login-link').css("display","none");
     $('#register-link').css("display","none");
