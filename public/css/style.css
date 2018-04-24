@@ -301,7 +301,10 @@ li {
   min-height: 100px;
 }
 
-.chat-logs-
+.chat-logs {
+  text-align: left;
+  padding: 2px;
+}
 
 .chat-input-div {
   background-color: #fff;
