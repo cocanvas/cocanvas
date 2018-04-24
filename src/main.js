@@ -88,7 +88,7 @@ import App from './App';
       var self = this;
       var o = this.options;
       $.proxy($.fn.colorPick.defaults.onColorSelected, this)();
-      self.show(80, 160);
+      self.show(80, 165);
       // $('.customColorHash').val(self.color);
 
       $('.colorPickButton').click(function(event) {
@@ -235,7 +235,7 @@ $(document).ready(function() {
   $('.colorPickSelector').colorPick({
     initialColor: '#f1c40f',
     allowRecent: true,
-    recentMax: 12,
+    recentMax: 8,
     palette: [
       '#1abc9c',
       '#16a085',
