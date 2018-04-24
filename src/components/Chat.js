@@ -26,9 +26,9 @@ class Chat extends Component {
         console.log('connected to chat channel!');
       },
       received: (data) => {
-        console.log(data);
-        let chatLogs = this.state.chatLogs;
+        let chatLogs = this.state.chatLogs;        
         chatLogs.push(data);
+
         this.setState({chatLogs: chatLogs})
         // need to do something like the below with content and user_id??
         // ctx.fillStyle = data.colour;
@@ -65,6 +65,8 @@ class Chat extends Component {
 
   renderChatLog() {
     return this.state.chatLogs.map((el) => {
+      console.log(el);
+      
       return (
         <li key={`chat_${el.id}`}>
           <span className='chat-user'>{el.username}</span>
