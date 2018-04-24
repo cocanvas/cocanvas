@@ -51,9 +51,12 @@ class Chat extends Component {
 
   // just after component has been loaded to the DOM
   componentDidMount() {
-    this.setState({
-      user_id: getUserFromToken().user_id
-    });
+    const user = getUserFromToken();
+    if (user) {
+      this.setState({
+        user_id: user.user_id
+      });
+    }
   }
 
   updateCurrentMessage(e) {
