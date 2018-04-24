@@ -190,8 +190,10 @@ li {
 /* CHAT BOX */
 
 #chat-box {
-  /* display: none; */
+  display: none;
 }
+
+
 
 /* COLOUR PICK SELECTOR */
 .colorPickSelector {

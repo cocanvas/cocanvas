@@ -1,6 +1,6 @@
 import jwtDecoder from 'jwt-decode';
 import Cable from 'actioncable';
-import App from './App'
+import App from './App';
 
 ///////////////////////////////////////
 /*!
@@ -223,11 +223,12 @@ $(document).ready(function() {
   let h = (canvas.height = 600);
   let tileWidth = w / columns;
   let tileHeight = h / rows;
+  let userColour = '#f70';
 
   // color of the lines making up the grid
   ctx.strokeStyle = '#e3e3e3';
   // color when the small squares are filled (this will need to be changeable later)
-  ctx.fillStyle = '#f70';
+  // ctx.fillStyle = '#f70';
 
   // array of user's filled squares - relevant if we want to limit squares filled per turn. Otherwise, irrelevant.
   let filledSquares = [];
@@ -275,6 +276,7 @@ $(document).ready(function() {
     onColorSelected: function() {
       this.element.css({ backgroundColor: this.color, color: this.color });
       ctx.fillStyle = this.color;
+      userColour = this.color;
     }
   });
 
@@ -299,8 +301,10 @@ $(document).ready(function() {
     }
     ctx.stroke();
   }
+  // calling the render function to draw grid
   render();
 
+  // defining fetchCoords function 
   const fetchCoords = () => {
     $.ajax(`${serverUrl}/coordinates.json`, {
       method: 'get',
@@ -309,7 +313,6 @@ $(document).ready(function() {
     }).done(function(response) {
       for (let i = 0; i < response.length; i++) {
         ctx.fillStyle = response[i].colour;
-
         ctx.fillRect(response[i].x, response[i].y, tileWidth, tileHeight);
       }
     });
@@ -331,6 +334,8 @@ $(document).ready(function() {
         received: (data) => {
           ctx.fillStyle = data.colour;
           ctx.fillRect(data.x, data.y, tileWidth, tileHeight);
+
+          ctx.fillStyle = userColour;
         },
         create: function(data) {
           this.perform('create', {
@@ -381,6 +386,8 @@ $(document).ready(function() {
 
   canvas.onmousedown = fill;
   function fill(e) {
+    console.log(userColour);
+
     let rect = canvas.getBoundingClientRect();
     let mx = e.clientX - rect.left;
     let my = e.clientY - rect.top;
@@ -393,7 +400,7 @@ $(document).ready(function() {
     const fillDeets = {
       x: xIndex * tileWidth,
       y: yIndex * tileHeight,
-      colour: ctx.fillStyle
+      colour: userColour
     };
 
     filledSquares.push(fillDeets);
@@ -498,25 +505,27 @@ const sendRegisterForm = function(e) {
     })
   }).then((res) =>
     res.json().then((data) => {
-
       if (data.username) {
-        if (data.username[0] === "has already been taken") {
-          $('#username-label-register').css("color","red");
+        if (data.username[0] === 'has already been taken') {
+          $('#username-label-register').css('color', 'red');
           $('#register-modal').addClass('animated shake');
           let temp_username_input = $('#register-username').val();
-          $('#username-label-register').html(`${temp_username_input} has already been taken.`).css("margin","-10px").css("padding-top", "10px");
+          $('#username-label-register')
+            .html(`${temp_username_input} has already been taken.`)
+            .css('margin', '-10px')
+            .css('padding-top', '10px');
 
-          setTimeout( function () {
+          setTimeout(function() {
             $('#register-modal').removeClass('animated shake');
           }, 900);
         }
       }
       if (data.password_confirmation) {
-        $('#password-label-register').css("color","red");
-        $('#conf-pw-label-register').css("color","red");
+        $('#password-label-register').css('color', 'red');
+        $('#conf-pw-label-register').css('color', 'red');
         $('#register-modal').addClass('animated shake');
 
-        setTimeout( function () {
+        setTimeout(function() {
           $('#register-modal').removeClass('animated shake');
         }, 900);
       }
@@ -542,25 +551,21 @@ const loginRequest = (username, password) => {
         window.location.reload(false);
       } else {
         console.log('login failed');
-        $('#username-label-login').css("color", "red");
-        $('#password-label-login').css("color", "red");
+        $('#username-label-login').css('color', 'red');
+        $('#password-label-login').css('color', 'red');
         $('#login-modal').addClass('animated shake');
-
-        }
-       setTimeout( function () {
-         $('#login-modal').removeClass('animated shake');
-         }, 900);
-       })
-
+      }
+      setTimeout(function() {
+        $('#login-modal').removeClass('animated shake');
+      }, 900);
+    })
   );
 };
-
 
 // Conditional render of login elements
 if (window.localStorage.cocanvasAuthToken === 'undefined') {
   // Require undefined if statement otherwise any input logged results as undefined and is considered "logged in"
 } else if (window.localStorage.cocanvasAuthToken) {
-
   $('#logout-link').css('display', 'inline-block');
   $('#login-link').css('display', 'none');
   $('#register-link').css('display', 'none');
