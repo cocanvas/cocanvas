@@ -406,7 +406,7 @@ $(document).ready(function() {
   }
 
   const sendCoordDeets = function(deets) {
-    const user = getUserFromToken();   
+    const user = getUserFromToken();
 
     coordSocket.create({ x: deets.x, y: deets.y, colour: deets.colour, user_id: user.user_id });
 
