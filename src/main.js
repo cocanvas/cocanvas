@@ -202,6 +202,7 @@ import Cable from 'actioncable';
 })(jQuery);
 
 /////////////////////////////////////////
+
 const serverUrl = 'https://cocanvas-server.herokuapp.com';
 
 $(document).ready(function() {
@@ -273,17 +274,29 @@ $(document).ready(function() {
     }
   });
 
-  // $.ajax('https://cocanvas-server.herokuapp.com/coordinates.json', {
-  //   method: 'get',
-  //   dataType: 'json' // data type you want back
-  // }).done(function(response) {
-  //   // console.log(response);
-  //   for (let i = 0; i < response.length; i++) {
-  //     ctx.fillStyle = response[i].colour;
-  //     // console.log(response[i].colour);
-  //     ctx.fillRect(response[i].x, response[i].y, tileWidth, tileHeight);
-  //   }
-  // });
+  // render function creates 80 vertical lines and 60 horizontal lines to create grid
+  function render() {
+    // below: if statement for distinguishing btw hover and click (bonus for later)
+    // if (clicked) {
+    //
+    // } else {
+    //   ctx.clearRect(0, 0, w, h);
+    // }
+
+    ctx.beginPath();
+
+    for (let x = 0; x < columns; x++) {
+      ctx.moveTo(x * tileWidth, 0);
+      ctx.lineTo(x * tileWidth, h);
+    }
+    for (let y = 0; y < rows; y++) {
+      ctx.moveTo(0, y * tileHeight);
+      ctx.lineTo(w, y * tileHeight);
+    }
+    ctx.stroke();
+  }
+  render();
+
   const fetchCoords = () => {
     // $.ajax('https://cocanvas-server.herokuapp.com/coordinates.json', {
     $.ajax(`${serverUrl}/coordinates.json`, {
@@ -302,6 +315,7 @@ $(document).ready(function() {
   };
 
   fetchCoords();
+
   const createSocket = () => {
     let cable = Cable.createConsumer('wss://cocanvas-server.herokuapp.com/cable');
 
@@ -328,28 +342,6 @@ $(document).ready(function() {
 
   const coordSocket = createSocket();
 
-  // render function creates 80 vertical lines and 60 horizontal lines to create grid
-  function render() {
-    // below: if statement for distinguishing btw hover and click (bonus for later)
-    // if (clicked) {
-    //
-    // } else {
-    //   ctx.clearRect(0, 0, w, h);
-    // }
-
-    ctx.beginPath();
-
-    for (let x = 0; x < columns; x++) {
-      ctx.moveTo(x * tileWidth, 0);
-      ctx.lineTo(x * tileWidth, h);
-    }
-    for (let y = 0; y < rows; y++) {
-      ctx.moveTo(0, y * tileHeight);
-      ctx.lineTo(w, y * tileHeight);
-    }
-    ctx.stroke();
-  }
-  render();
 
   // below: bonus feature for showing colour on hover
   // let currentParams = [];
@@ -443,7 +435,6 @@ $(document).ready(function() {
   };
 
   // Modal Overlay
-
   $('.login-modal-overlay').click(function() {
     $(this).fadeOut(200);
   });
@@ -471,7 +462,6 @@ $(document).ready(function() {
     event.stopPropagation();
   });
 
-<<<<<<< HEAD
   $('.info-modal-overlay').click(function() {
     $(this).fadeOut(200);
   });
@@ -491,6 +481,7 @@ $(document).ready(function() {
     window.localStorage.cocanvasAuthToken = '';
     window.location.reload(false);
   });
+  
 }); // end of DOCREADY
 
 const sendRegisterForm = function(e) {

@@ -187,6 +187,12 @@ li {
   height: 20px !important;
 }
 
+/* CHAT BOX */
+
+#chat-box {
+  /* display: none; */
+}
+
 /* COLOUR PICK SELECTOR */
 .colorPickSelector {
   position: absolute;
