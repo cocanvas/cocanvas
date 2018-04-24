@@ -531,8 +531,8 @@ const sendLoginForm = function(e) {
 
 // Conditional render of login elements
   if (window.localStorage.cocanvasAuthToken === 'undefined') {
-
-  } else if (window.localStorage.cocanvasAuthToken) {
+// Require undefined if statement otherwise any input logged results as undefined and is considered "logged in"
+} else if (window.localStorage.cocanvasAuthToken) {
     $('#logout-link').css("display","inline-block");
     $('#login-link').css("display","none");
     $('#register-link').css("display","none");
