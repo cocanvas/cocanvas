@@ -210,7 +210,7 @@ $(document).ready(function() {
   let canvas = document.getElementById('canvas');
 
   if (!canvas.getContext) {
-    console.log('sorry your browser sucks');
+    console.log('sorry your browser sucks'); //TODO work out fallback
   }
   var ctx = canvas.getContext('2d');
 
@@ -501,7 +501,10 @@ const sendRegisterForm = function(e) {
         $('#register-modal').addClass('animated shake');
         let temp_username_input = $('#register-username').val();
         $('#username-label-register').html(`${temp_username_input} has already been taken.`).css("margin","-10px").css("padding-top", "10px");
-
+        
+        setTimeout( function () {
+          $('#register-modal').removeClass('animated shake');
+        }, 900);
       }
 
       if (data.password_confirmation) {
