@@ -224,7 +224,7 @@ $(document).ready(function() {
   // color of the lines making up the grid
   ctx.strokeStyle = '#e3e3e3';
   // color when the small squares are filled (this will need to be changeable later)
-  ctx.fillStyle = '#f70';
+  // ctx.fillStyle = '#f70';
 
   // array of user's filled squares - relevant if we want to limit squares filled per turn. Otherwise, irrelevant.
   let filledSquares = [];
@@ -272,7 +272,6 @@ $(document).ready(function() {
     onColorSelected: function() {
       this.element.css({ backgroundColor: this.color, color: this.color });
       ctx.fillStyle = this.color;
-      console.log(ctx.fillStyle);
     }
   });
 
@@ -307,7 +306,6 @@ $(document).ready(function() {
     }).done(function(response) {
       for (let i = 0; i < response.length; i++) {
         ctx.fillStyle = response[i].colour;
-
         ctx.fillRect(response[i].x, response[i].y, tileWidth, tileHeight);
       }
     });
@@ -327,8 +325,10 @@ $(document).ready(function() {
           console.log('connected to coord channel!');
         },
         received: (data) => {
-          // ctx.fillStyle = data.colour;
+          const userColor = ctx.fillStyle;
+          ctx.fillStyle = data.colour;
           ctx.fillRect(data.x, data.y, tileWidth, tileHeight);
+          ctx.fillStyle = userColor;
         },
         create: function(data) {
           this.perform('create', {
@@ -393,6 +393,7 @@ $(document).ready(function() {
       y: yIndex * tileHeight,
       colour: ctx.fillStyle
     };
+    console.log(fillDeets.colour);
 
     filledSquares.push(fillDeets);
     ctx.fillRect(xIndex * tileWidth, yIndex * tileHeight, tileWidth, tileHeight);
