@@ -15,7 +15,7 @@ class Chat extends Component {
 
   createSocket() {
     // TODO: address will need to be changed to heroku once deployment with action cable is working
-    let cable = Cable.createConsumer('ws://localhost:3000/cable');
+    let cable = Cable.createConsumer('wss://cocanvas-server.herokuapp.com/cable');
     // below: this.chats is an instance variable which is an action cable subscription with ChatChannel
     this.chats = cable.subscriptions.create(
       {
@@ -50,6 +50,7 @@ class Chat extends Component {
 
   // just after component has been loaded to the DOM
   componentDidMount() {
+    
     this.setState({
       user_id: getUserFromToken().user_id
     })
