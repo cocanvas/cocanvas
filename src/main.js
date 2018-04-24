@@ -298,8 +298,10 @@ $(document).ready(function() {
     }
     ctx.stroke();
   }
+  // calling the render function to draw grid
   render();
 
+  // defining fetchCoords function 
   const fetchCoords = () => {
     $.ajax(`${serverUrl}/coordinates.json`, {
       method: 'get',

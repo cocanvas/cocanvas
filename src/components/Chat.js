@@ -24,10 +24,13 @@ class Chat extends Component {
       },
       received: (data) => {
         console.log(data);
+        // need to do something like the below with content and user_id??
+        // ctx.fillStyle = data.colour;
+        // ctx.fillRect(data.x, data.y, tileWidth, tileHeight);
       },
-      create: function(data) {
+      create: function(chatContent) {
         this.perform('create', {
-          message: { content: data.content, user_id: data.user_id }
+          message: { content: chatContent.content, user_id: chatContent.user_id }
         });
       }
     });
@@ -63,7 +66,6 @@ class Chat extends Component {
             type="text"
             value={this.state.currentMessage}
             onChange={e => this.updateCurrentMessage(e)}
-            onKeyPress={(e) => this._handleChatInputKeyPress(e)}
           />
           <button className="send" onClick={e => this._handleSendEvent(e)}>Send</button>
         </div>
