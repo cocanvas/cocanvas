@@ -1,6 +1,6 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import Cable from 'actioncable';
-import getUserFromToken from '../getUserFromToken'
+import getUserFromToken from '../getUserFromToken';
 // import css file?
 
 class Chat extends Component {
@@ -10,7 +10,7 @@ class Chat extends Component {
       currentMessage: '',
       user_id: '',
       chatLogs: []
-    }
+    };
   }
 
   createSocket() {
@@ -19,28 +19,29 @@ class Chat extends Component {
     // below: this.chats is an instance variable which is an action cable subscription with ChatChannel
     this.chats = cable.subscriptions.create(
       {
-      channel: 'ChatChannel'
+        channel: 'ChatChannel'
       },
       {
-      connected: () => {
-        console.log('connected to chat channel!');
-      },
-      received: (data) => {
-        let chatLogs = this.state.chatLogs;        
-        chatLogs.push(data);
+        connected: () => {
+          console.log('connected to chat channel!');
+        },
+        received: (data) => {
+          let chatLogs = this.state.chatLogs;
+          chatLogs.push(data);
 
-        this.setState({chatLogs: chatLogs})
-        // need to do something like the below with content and user_id??
-        // ctx.fillStyle = data.colour;
-        // ctx.fillRect(data.x, data.y, tileWidth, tileHeight);
-      },
-      create: function(state) {
-        console.log(state);
-        this.perform('create', {
-          message: {content: state.currentMessage, user_id: state.user_id}
-        });
+          this.setState({ chatLogs: chatLogs });
+          // need to do something like the below with content and user_id??
+          // ctx.fillStyle = data.colour;
+          // ctx.fillRect(data.x, data.y, tileWidth, tileHeight);
+        },
+        create: function(state) {
+          console.log(state);
+          this.perform('create', {
+            message: { content: state.currentMessage, user_id: state.user_id }
+          });
+        }
       }
-    });
+    );
   }
 
   // when component is about to be loaded to the DOM
@@ -50,10 +51,9 @@ class Chat extends Component {
 
   // just after component has been loaded to the DOM
   componentDidMount() {
-    
     this.setState({
       user_id: getUserFromToken().user_id
-    })
+    });
   }
 
   updateCurrentMessage(e) {
@@ -66,19 +66,19 @@ class Chat extends Component {
   renderChatLog() {
     return this.state.chatLogs.map((el) => {
       console.log(el);
-      
+
       return (
         <li key={`chat_${el.id}`}>
-          <span className='chat-user'>{el.username}:</span>
-          <span className='chat-message'>{el.content}:</span>
-          <span className='chat-created-at'>{el.created_at}</span>
+          <span className="chat-user">{el.username}:</span>
+          <span className="chat-message">{el.content}:</span>
+          <span className="chat-created-at">{el.created_at}</span>
         </li>
       );
     });
   }
 
   render() {
-    return (
+    return this.state.user_id ? (
       <div className="Chat">
         <div className="chat-header">
           <p className="live-chat-heading">
@@ -86,9 +86,7 @@ class Chat extends Component {
           </p>
         </div>
         <div className="chat-logs-div">
-          <ul className="chat-logs">
-            {this.renderChatLog()}
-          </ul>
+          <ul className="chat-logs">{this.renderChatLog()}</ul>
         </div>
         <div className="chat-input-div">
           <input
@@ -99,10 +97,14 @@ class Chat extends Component {
             value={this.state.currentMessage}
             onChange={(e) => this.updateCurrentMessage(e)}
           />
-          <button className="send" onClick={e => this._handleSendEvent(e)}>Send</button>
+          <button className="send" onClick={(e) => this._handleSendEvent(e)}>
+            Send
+          </button>
         </div>
       </div>
-    )
+    ) : (
+      <p>please login to chat</p>
+    );
   }
 
   _handleSendEvent(e) {
@@ -114,11 +116,10 @@ class Chat extends Component {
   }
 
   _handleChatInputKeyPress(e) {
-    if(e.key === 'Enter') {
+    if (e.key === 'Enter') {
       this._handleSendEvent(e);
     }
   }
-
 } // final curly - end of class Chat
 
-export default Chat
+export default Chat;
