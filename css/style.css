@@ -190,9 +190,17 @@ li {
 /* CHAT BOX */
 
 #chat-box {
-  display: none;
+  /* display: none; */
+  width: 238px !important;
+  /* height: 400px; */
+  border-radius: 10px;
+  position: relative;
 }
 
+.chat-header {
+  top: 0;
+  left: 0;
+}
 
 
 /* COLOUR PICK SELECTOR */
