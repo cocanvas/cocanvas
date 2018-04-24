@@ -1,6 +1,6 @@
 import jwtDecoder from 'jwt-decode';
 import Cable from 'actioncable';
-import App from './App'
+import App from './App';
 
 ///////////////////////////////////////
 /*!
@@ -210,7 +210,7 @@ $(document).ready(function() {
   let canvas = document.getElementById('canvas');
 
   if (!canvas.getContext) {
-    console.log('sorry your browser sucks');
+    console.log('sorry your browser sucks'); //TODO work out fallback
   }
   var ctx = canvas.getContext('2d');
 
@@ -224,7 +224,7 @@ $(document).ready(function() {
   // color of the lines making up the grid
   ctx.strokeStyle = '#e3e3e3';
   // color when the small squares are filled (this will need to be changeable later)
-  ctx.fillStyle = '#f70';
+  // ctx.fillStyle = '#f70';
 
   // array of user's filled squares - relevant if we want to limit squares filled per turn. Otherwise, irrelevant.
   let filledSquares = [];
@@ -308,7 +308,6 @@ $(document).ready(function() {
     }).done(function(response) {
       for (let i = 0; i < response.length; i++) {
         ctx.fillStyle = response[i].colour;
-
         ctx.fillRect(response[i].x, response[i].y, tileWidth, tileHeight);
       }
     });
@@ -328,8 +327,14 @@ $(document).ready(function() {
           console.log('connected to coord channel!');
         },
         received: (data) => {
+          const userColor = ctx.fillStyle;
+          console.log('before:,',userColor);
+
           ctx.fillStyle = data.colour;
           ctx.fillRect(data.x, data.y, tileWidth, tileHeight);
+          console.log('after', userColor);
+
+          ctx.fillStyle = userColor;
         },
         create: function(data) {
           this.perform('create', {
@@ -394,6 +399,7 @@ $(document).ready(function() {
       y: yIndex * tileHeight,
       colour: ctx.fillStyle
     };
+    console.log(fillDeets.colour);
 
     filledSquares.push(fillDeets);
     ctx.fillRect(xIndex * tileWidth, yIndex * tileHeight, tileWidth, tileHeight);
@@ -497,6 +503,30 @@ const sendRegisterForm = function(e) {
     })
   }).then((res) =>
     res.json().then((data) => {
+      if (data.username) {
+        if (data.username[0] === 'has already been taken') {
+          $('#username-label-register').css('color', 'red');
+          $('#register-modal').addClass('animated shake');
+          let temp_username_input = $('#register-username').val();
+          $('#username-label-register')
+            .html(`${temp_username_input} has already been taken.`)
+            .css('margin', '-10px')
+            .css('padding-top', '10px');
+
+          setTimeout(function() {
+            $('#register-modal').removeClass('animated shake');
+          }, 900);
+        }
+      }
+      if (data.password_confirmation) {
+        $('#password-label-register').css('color', 'red');
+        $('#conf-pw-label-register').css('color', 'red');
+        $('#register-modal').addClass('animated shake');
+
+        setTimeout(function() {
+          $('#register-modal').removeClass('animated shake');
+        }, 900);
+      }
       loginRequest(registerUsername, registerPassword);
     })
   );
@@ -519,10 +549,9 @@ const loginRequest = (username, password) => {
         window.location.reload(false);
       } else {
         console.log('login failed');
+        $('#username-label-login').css('color', 'red');
+        $('#password-label-login').css('color', 'red');
         $('#login-modal').addClass('animated shake');
-
-        $('#username-label').css('color', 'red');
-        $('#password-label').css('color', 'red');
       }
       setTimeout(function() {
         $('#login-modal').removeClass('animated shake');
