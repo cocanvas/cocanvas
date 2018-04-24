@@ -382,12 +382,6 @@ input[type=text] {
   color: #49589f;
 }
 
-#info-modal p {
-  font-family: 'Poppins', sans-serif !important;
-  line-height: 1.9em;
-  color: #626464;
-}
-
 .accent {
   font-weight: bold;
   color: #49589f;
@@ -416,9 +410,28 @@ input[type=text] {
   transition: all 250ms linear;
 }
 
-#info-modal a {
+#info-modal p {
+  font-family: 'Poppins', sans-serif !important;
+  line-height: 1.85em;
+  color: #626464;
+}
+
+#info-modal p a {
   padding: 0 !important;
   margin: 0 !important;
   color: #4f61ad;
   font-weight: bold;
+  height: 20px;
+  opacity: 0.6;
+  border-bottom: 1px dashed #4f61ad;
+  -webkit-transition: all 0.2s ease;
+  -moz-transition: all 0.2s ease;
+  -ms-transition: all 0.2s ease;
+  -o-transition: all 0.2s ease;
+  transition: all 0.2s ease;
 }
+
+#info-modal p a:hover {
+  opacity: 1;
+}
+ 
