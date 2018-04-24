@@ -326,8 +326,12 @@ $(document).ready(function() {
         },
         received: (data) => {
           const userColor = ctx.fillStyle;
+          console.log('before:,',userColor);
+
           ctx.fillStyle = data.colour;
           ctx.fillRect(data.x, data.y, tileWidth, tileHeight);
+          console.log('after', userColor);
+
           ctx.fillStyle = userColor;
         },
         create: function(data) {
