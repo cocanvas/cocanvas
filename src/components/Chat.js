@@ -6,8 +6,9 @@ class Chat extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentMessage: ''
-    };
+      currentMessage: '',
+      user_id: ''
+    }
   }
 
   createSocket() {
@@ -28,9 +29,9 @@ class Chat extends Component {
         // ctx.fillStyle = data.colour;
         // ctx.fillRect(data.x, data.y, tileWidth, tileHeight);
       },
-      create: function(chatContent) {
+      create: function(state) {
         this.perform('create', {
-          message: { content: chatContent.content, user_id: chatContent.user_id }
+          message: {content: state.content, user_id: state.user_id}
         });
       }
     });
@@ -65,7 +66,7 @@ class Chat extends Component {
             placeholder="Type a message..."
             type="text"
             value={this.state.currentMessage}
-            onChange={e => this.updateCurrentMessage(e)}
+            onChange={this.updateCurrentMessage}
           />
           <button className="send" onClick={e => this._handleSendEvent(e)}>Send</button>
         </div>
@@ -75,7 +76,7 @@ class Chat extends Component {
 
   _handleSendEvent(e) {
     e.preventDefault();
-    this.chats.create(this.state.currentMessage);
+    this.chats.create(this.state);
     this.setState({
       currentMessage: ''
     });
