@@ -220,6 +220,7 @@ $(document).ready(function() {
   let h = (canvas.height = 600);
   let tileWidth = w / columns;
   let tileHeight = h / rows;
+  let userColour = '#f70';
 
   // color of the lines making up the grid
   ctx.strokeStyle = '#e3e3e3';
@@ -272,6 +273,7 @@ $(document).ready(function() {
     onColorSelected: function() {
       this.element.css({ backgroundColor: this.color, color: this.color });
       ctx.fillStyle = this.color;
+      userColour = this.color;
     }
   });
 
@@ -325,14 +327,10 @@ $(document).ready(function() {
           console.log('connected to coord channel!');
         },
         received: (data) => {
-          const userColor = ctx.fillStyle;
-          console.log('before:,',userColor);
-
           ctx.fillStyle = data.colour;
           ctx.fillRect(data.x, data.y, tileWidth, tileHeight);
-          console.log('after', userColor);
 
-          ctx.fillStyle = userColor;
+          ctx.fillStyle = userColour;
         },
         create: function(data) {
           this.perform('create', {
@@ -383,6 +381,8 @@ $(document).ready(function() {
 
   canvas.onmousedown = fill;
   function fill(e) {
+    console.log(userColour);
+
     let rect = canvas.getBoundingClientRect();
     let mx = e.clientX - rect.left;
     let my = e.clientY - rect.top;
@@ -395,9 +395,8 @@ $(document).ready(function() {
     const fillDeets = {
       x: xIndex * tileWidth,
       y: yIndex * tileHeight,
-      colour: ctx.fillStyle
+      colour: userColour
     };
-    console.log(fillDeets.colour);
 
     filledSquares.push(fillDeets);
     ctx.fillRect(xIndex * tileWidth, yIndex * tileHeight, tileWidth, tileHeight);
