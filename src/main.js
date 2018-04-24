@@ -202,6 +202,7 @@ import Cable from 'actioncable';
 })(jQuery);
 
 /////////////////////////////////////////
+// const serverUrl = 'http://localhost:3001';
 const serverUrl = 'https://cocanvas-server.herokuapp.com';
 
 $(document).ready(function() {
@@ -303,6 +304,8 @@ $(document).ready(function() {
   };
 
   fetchCoords();
+
+  // action cable function, creates the soceket for the coordinates channel
   const createSocket = () => {
     let cable = Cable.createConsumer('wss://cocanvas-server.herokuapp.com/cable');
 
