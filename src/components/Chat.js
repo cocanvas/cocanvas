@@ -53,7 +53,7 @@ class Chat extends Component {
         </div>
         <div className="chat-logs-div">
           <ul className="chat-logs">
-            {this.renderChatLog()}
+            {/* {this.renderChatLog()} */}
           </ul>
         </div>
         <div className="chat-input-div">
