@@ -306,6 +306,23 @@ li {
   padding: 2px;
 }
 
+.chat-logs > div {
+  margin-bottom: 6px;
+}
+.chat-logs p {
+  margin: 0;
+}
+
+.chat-user, .chat-created-at {
+  color: grey;
+  font-size: 14px;
+}
+
+.chat-message {
+  font-size: 15px;
+  margin-left: 10px;
+}
+
 .chat-input-div {
   background-color: #fff;
   color: black;

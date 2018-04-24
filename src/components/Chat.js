@@ -71,9 +71,9 @@ class Chat extends Component {
       console.log(el);
       return (
         <div key={`chat_${el.id}`}>
-          <p><span className="chat-user">{el.username}, </span>
+          <p><span className="chat-user">{el.username} </span>
           <span className="chat-created-at">{el.created_at}</span></p>
-          <p><span className="chat-message">{el.content} - </span></p>
+          <p><span className="chat-message">{el.content}</span></p>
         </div>
       );
     });
