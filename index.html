@@ -9,6 +9,7 @@
   <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
   <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
   <link href="./public/css/colorPick.css" rel="stylesheet">
+  <link href="./public/css/animate.css" rel="stylesheet">
   <link rel="stylesheet" href="./public/css/style.css">
   <link href="./public/css/images/favicon.ico" rel="icon" type="image/x-icon" />
 </head>
@@ -32,18 +33,18 @@
 
   <div class="login-modal-overlay">
 
-    <div class="login-modal">
+    <div class="login-modal" id="login-modal">
       <br>
       <form id="login-form">
         <div class="group">
           <input type="text" required id="login-username">
-          <span class="bar"></span>
-          <label>Username</label>
+          <span class="username bar"></span>
+          <label id="username-label">Username</label>
         </div>
         <div class="group">
           <input type="password" required minlength="6" id="login-password">
-          <span class="bar"></span>
-          <label>Password</label>
+          <span class="password bar" id="password-bar"></span>
+          <label id="password-label">Password</label>
         </div>
         <button type="submit" id="login-button">Login</button>
       </form>
@@ -75,6 +76,14 @@
     </div>
   </div>
 
+  <div class="info-modal-overlay">
+
+    <div id="info-modal">
+      <label id="info-heading">About CoCanvas</label>
+      <p><span class="accent">CoCanvas</span> is a cooperative, pixel art drawing game by <a href="#">Katrina Hayes</a>, <a href="https://twitter.com/amandytang">Mandy Tang</a>, <a href="https://github.com/robo2323">Rob Harkness</a> and <a href="https://github.com/vl9">Vu Le</a>.</p><p>
+       Make 8-bit art with your friends, or take over their pixels (we won't judge). If you make something awesome, let us know!</p>
+    </div>
+  </div>
 
   <div class="colorPickSelector"></div>
   <div class="container">
@@ -83,7 +92,7 @@
     <h3>Make collaborative pictures with strangers on the internet.</h3>
 
     <canvas id="canvas"></canvas>
-    <li class="info"><img class="info-button" src="./public/css/images/info.svg"/></li>
+    <li class="info"><img id="info-button" class-"open-info" src="./public/css/images/info.svg"/></li>
     <div class="chat-nav">
       <ul>
         <li>
