@@ -300,7 +300,18 @@ li {
   .colorPickSelector {
     margin-left: 2% !important;
   }
+
 }
+.chat-input-div {
+  background-color: #fff;
+  color: black;
+  border-top: 1px solid grey;
+  height: 40px;
+  line-height: 40px;
+  font-size: 14px;
+  border-bottom-left-radius: 10%;
+  border-bottom-right-radius: 10%;
+ }
 
 .up-arrow {
   width: 20px !important;
