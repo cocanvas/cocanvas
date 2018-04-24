@@ -71,11 +71,11 @@ class Chat extends Component {
       console.log(el);
 
       return (
-        <li key={`chat_${el.id}`}>
+        <div key={`chat_${el.id}`}>
           <span className="chat-user">{el.username}:</span>
           <span className="chat-message">{el.content}:</span>
           <span className="chat-created-at">{el.created_at}</span>
-        </li>
+        </div>
       );
     });
   }
@@ -89,7 +89,7 @@ class Chat extends Component {
           </p>
         </div>
         <div className="chat-logs-div">
-          <ul className="chat-logs">{this.renderChatLog()}</ul>
+          <div className="chat-logs">{this.renderChatLog()}</div>
         </div>
         <div className="chat-input-div">
           <input
