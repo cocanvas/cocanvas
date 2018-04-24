@@ -1,6 +1,6 @@
 import jwtDecoder from 'jwt-decode';
 import Cable from 'actioncable';
-import App from './App'
+import App from './App';
 
 ///////////////////////////////////////
 /*!
@@ -272,6 +272,7 @@ $(document).ready(function() {
     onColorSelected: function() {
       this.element.css({ backgroundColor: this.color, color: this.color });
       ctx.fillStyle = this.color;
+      console.log(ctx.fillStyle);
     }
   });
 
@@ -495,25 +496,27 @@ const sendRegisterForm = function(e) {
     })
   }).then((res) =>
     res.json().then((data) => {
-
       if (data.username) {
-        if (data.username[0] === "has already been taken") {
-          $('#username-label-register').css("color","red");
+        if (data.username[0] === 'has already been taken') {
+          $('#username-label-register').css('color', 'red');
           $('#register-modal').addClass('animated shake');
           let temp_username_input = $('#register-username').val();
-          $('#username-label-register').html(`${temp_username_input} has already been taken.`).css("margin","-10px").css("padding-top", "10px");
+          $('#username-label-register')
+            .html(`${temp_username_input} has already been taken.`)
+            .css('margin', '-10px')
+            .css('padding-top', '10px');
 
-          setTimeout( function () {
+          setTimeout(function() {
             $('#register-modal').removeClass('animated shake');
           }, 900);
         }
       }
       if (data.password_confirmation) {
-        $('#password-label-register').css("color","red");
-        $('#conf-pw-label-register').css("color","red");
+        $('#password-label-register').css('color', 'red');
+        $('#conf-pw-label-register').css('color', 'red');
         $('#register-modal').addClass('animated shake');
 
-        setTimeout( function () {
+        setTimeout(function() {
           $('#register-modal').removeClass('animated shake');
         }, 900);
       }
@@ -539,25 +542,21 @@ const loginRequest = (username, password) => {
         window.location.reload(false);
       } else {
         console.log('login failed');
-        $('#username-label-login').css("color", "red");
-        $('#password-label-login').css("color", "red");
+        $('#username-label-login').css('color', 'red');
+        $('#password-label-login').css('color', 'red');
         $('#login-modal').addClass('animated shake');
-
-        }
-       setTimeout( function () {
-         $('#login-modal').removeClass('animated shake');
-         }, 900);
-       })
-
+      }
+      setTimeout(function() {
+        $('#login-modal').removeClass('animated shake');
+      }, 900);
+    })
   );
 };
-
 
 // Conditional render of login elements
 if (window.localStorage.cocanvasAuthToken === 'undefined') {
   // Require undefined if statement otherwise any input logged results as undefined and is considered "logged in"
 } else if (window.localStorage.cocanvasAuthToken) {
-
   $('#logout-link').css('display', 'inline-block');
   $('#login-link').css('display', 'none');
   $('#register-link').css('display', 'none');
