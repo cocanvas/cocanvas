@@ -202,6 +202,10 @@ li {
 }
 
 /* CHAT BOX */
+
+.disappear {
+  display: none;
+}
 #chat-box {
   /* display: none; */
   width: 238px;
@@ -237,6 +241,7 @@ li {
   padding: 12px 14px 0px 14px;
   text-align: left;
   z-index: 2;
+  cursor: pointer;
   -webkit-transition: all linear .2s;
     -moz-transition: all linear .2s;
     -ms-transition: all linear .2s;
