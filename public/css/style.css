@@ -186,13 +186,9 @@ li {
 #chat-button {
   background: #4f60ad !important;
 }
-<<<<<<< HEAD
 
-#ch/* CHAT BOX */
+/* CHAT BOX */
 
-=======
-#ch/* CHAT BOX */
->>>>>>> 9e98e063b523b3332a2a7a15eb68f723e956696b
 #chat-box {
   /* display: none; */
   width: 250px !important;
@@ -207,19 +203,12 @@ li {
 #chat-box div {
   width: 238px;
 }
-<<<<<<< HEAD
 
-=======
->>>>>>> 9e98e063b523b3332a2a7a15eb68f723e956696b
 .Chat {
   border-radius: 10px;
   border: 1px solid #fff;
   width: 240px !important;
 }
-<<<<<<< HEAD
-
-=======
->>>>>>> 9e98e063b523b3332a2a7a15eb68f723e956696b
 .chat-header, .chat-header p {
   top: 0;
   left: 0;
@@ -230,18 +219,13 @@ li {
   height: 40px;
   border-bottom: 1px solid #fff;
 }
-<<<<<<< HEAD
+
 
 .chat-header p a {
   line-height: 40px;
 }
 
-=======
-.chat-header p a {
-  line-height: 40px;
-}
->>>>>>> 9e98e063b523b3332a2a7a15eb68f723e956696b
-.chat-logs-div {
+ .chat-logs-div {
   background-color: #E5E6F3;
   color: black;
   min-height: 100px;
@@ -326,7 +310,6 @@ li {
     margin-left: -3.2%;
     width: 90px;
   }
-
   #chooseColor {
     display: none !important;
   }
@@ -343,6 +326,7 @@ li {
     margin-left: 2% !important;
   }
 }
+
 @media only screen and (max-width: 1115px)  {
   .colorPickSelector {
     margin-left: 2% !important;
