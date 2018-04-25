@@ -363,11 +363,11 @@ li {
   }
 
   #colorPick {
-    width: 83vw;
+    width: 83vw !important;
     margin: auto !important;
-    top: auto !important;
+    top: 730px !important;
     margin-bottom: 2% !important;
-    margin-left:2%;
+    margin-left: 2%;
    }
 
   h1 {
@@ -387,16 +387,59 @@ li {
   }
 
   .colorPickDummy {
-    display: none;
+    display: none !important;
   }
 }
 
 
- @media only screen and (max-width: 1050px)  {
-
+ @media only screen and (max-width: 916px) {
+  #colorPick {
+    margin-left: -0.5% !important;
+   }
  }
 
+ @media only screen and (max-width: 888px) {
+  #colorPick {
+    margin-left: -1% !important;
+   }
+ }
 
+  @media only screen and (max-width: 835px) {
+   #colorPick {
+     margin-left: -1.5% !important;
+    }
+  }
+
+  @media only screen and (max-width: 790px) {
+   #colorPick {
+     margin-left: -2% !important;
+    }
+  }
+
+
+  @media only screen and (max-width: 752px)  {
+   #colorPick {
+     margin-left: -2.5% !important;
+    }
+  }
+
+  @media only screen and (max-width: 723px)  {
+   #colorPick {
+     margin-left: -3% !important;
+    }
+  }
+
+  @media only screen and (max-width: 690px)  {
+   #colorPick {
+     margin-left: -3.5% !important;
+    }
+  }
+
+  @media only screen and (max-width: 655px)  {
+   #colorPick {
+     margin-left: -3.5% !important;
+    }
+  }
 
 .chat-logs {
   text-align: left;
@@ -417,8 +460,12 @@ li {
   margin-left: 10px;
 }
 
-
 /* COLOUR PICK SELECTOR */
+.recentColor {
+  width: 26px;
+  display: inline-block;
+}
+
 .colorPickSelector {
   position: absolute;
   margin-top: 125px;
