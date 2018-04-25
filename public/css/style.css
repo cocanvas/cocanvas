@@ -270,15 +270,16 @@ li {
   padding: 0px 5px 5px 5px;
 }
 .chat-user {
-  color: grey;
+  color: #49589f;
   font-size: 0.85em;
-  font-weight:bold;
+  font-weight: bold;
+  font-family: 'Pacifico', sans-serif;
 }
 .chat-created-at {
   color: grey;
   font-size: 0.8em;
   opacity: 0.8;
-}
+ }
 
 .chat-message {
   font-size: 0.85em;
