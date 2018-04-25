@@ -437,6 +437,12 @@ li {
     }
   }
 
+  @media only screen and (max-width: 655px)  {
+   #colorPick {
+     margin-left: -3.5% !important;
+    }
+  }
+
 .chat-logs {
   text-align: left;
   padding: 2px;
