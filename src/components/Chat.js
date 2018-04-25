@@ -83,11 +83,22 @@ class Chat extends Component {
     return this.state.user_id ? (
       <div className="Chat">
         <div className="chat-header">
-          <p className="live-chat-heading">
-            <a>Live chat<span className="collapse">
+          {/* <a>
+            <p className="live-chat-heading">Live chat</p>
+            <span className="collapse">
               <img className="down-arrow" src="./public/css/images/down.svg" />
-            </span></a>
-          </p>
+            </span>
+          </a> */}
+          {/* <ul>
+            <li> */}
+              <a className="close-chat" id="close-chat-button">
+                Live chat
+                <span className="collapse">
+                  <img className="down-arrow" src="./public/css/images/down.svg" />
+                </span>
+              </a>
+            {/* </li>
+           </ul> */}
         </div>
         <div className="chat-logs-div">
           <div className="chat-logs">{this.renderChatLog()}</div>
