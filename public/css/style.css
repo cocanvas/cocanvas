@@ -209,6 +209,7 @@ li {
   bottom: 20px;
   right: 20px;
   z-index: 99;
+
 }
 
 #chat-box div {
@@ -266,11 +267,19 @@ li {
 }
 .chat-logs p {
   margin: 0;
+  padding: 0px 5px 5px 5px;
 }
-.chat-user, .chat-created-at {
+.chat-user {
   color: grey;
   font-size: 0.85em;
+  font-weight:bold;
 }
+.chat-created-at {
+  color: grey;
+  font-size: 0.8em;
+  opacity: 0.8;
+}
+
 .chat-message {
   font-size: 0.85em;
 }
