@@ -57,6 +57,20 @@ class Chat extends Component {
         user_id: user.user_id
       });
     }
+    fetch('https://cocanvas-server.herokuapp.com/chat_messages.json', {
+      method: 'GET',
+      headers: {
+        authorization: `Bearer ${window.localStorage.cocanvasAuthToken}`,
+        'Content-Type': 'application/json'
+      }
+    }).then((res) =>
+      res.json().then((data) => {
+        let chatLogs = this.state.chatLogs;
+        chatLogs.push(data);
+
+        this.setState({ chatLogs });
+      })
+    );
   }
 
   updateCurrentMessage(e) {
@@ -71,9 +85,13 @@ class Chat extends Component {
       console.log(el);
       return (
         <div key={`chat_${el.created_at}`}>
-          <p><span className="chat-user">{el.username} </span>
-          <span className="chat-created-at">{el.created_at}</span></p>
-          <p><span className="chat-message">{el.content}</span></p>
+          <p>
+            <span className="chat-user">{el.username} </span>
+            <span className="chat-created-at">{el.created_at}</span>
+          </p>
+          <p>
+            <span className="chat-message">{el.content}</span>
+          </p>
         </div>
       );
     });
