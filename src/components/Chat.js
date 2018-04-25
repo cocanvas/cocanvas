@@ -65,10 +65,8 @@ class Chat extends Component {
       }
     }).then((res) =>
       res.json().then((data) => {
-        let chatLogs = this.state.chatLogs;
-        chatLogs.push(data);
 
-        this.setState({ chatLogs });
+        this.setState({ chatLogs:data });
       })
     );
   }
