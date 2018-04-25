@@ -5,9 +5,9 @@
   "license": "MIT",
   "scripts": {
     
-    "start": "node ./node_modules/webpack-dev-server/bin/webpack-dev-server.js",
+    "start": "node ./server.js",
     "prod": "NODE_ENV=production node server.js",
-    "heroku-postbuild": "webpack -p --config ./webpack.config.js --progress"
+    "postinstall": "NODE_ENV=production webpack -p"
   },
   "dependencies": {
     "actioncable": "^5.2.0",
