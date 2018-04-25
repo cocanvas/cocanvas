@@ -288,7 +288,8 @@ li {
   border-bottom-right-radius: 10px;
 }
 .chat-input-div input {
-  padding-right: 20px;
+  height: 30px;
+  width: 78%; 
   border: none;
 }
 .chat-input-div button {
@@ -365,11 +366,11 @@ li {
 
   #colorPick {
     width: 83vw;
-    margin: 0 auto;
-    margin-left: 0;
+    margin: auto !important;
     top: auto !important;
-    margin-bottom: 2%;
-  }
+    margin-bottom: 2% !important;
+    margin-left:2%;
+   }
 
   h1 {
     padding-bottom: 2%;
@@ -385,6 +386,10 @@ li {
 
   #recent-heading {
     display:none !important;
+  }
+
+  .colorPickDummy {
+    display: none;
   }
 }
 
