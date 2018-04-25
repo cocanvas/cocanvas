@@ -319,6 +319,14 @@ li {
     width: 20px;
     height: 20px;
   }
+
+  #chat-button {
+    width: 100px;
+  }
+
+  .chat-button-text {
+    padding-left: 7px;
+  }
 }
 
 @media only screen and (max-width: 1115px)  {
