@@ -4,12 +4,10 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "serve": "live-server --browser=chrome public/",
-    "build": "webpack",
-    "dev-server": "webpack-dev-server",
-    "start": "node ./node_modules/webpack-dev-server/bin/webpack-dev-server.js",
+    
+    "start": "node ./server.js",
     "prod": "NODE_ENV=production node server.js",
-    "postinstall": "webpack -p"
+    "postinstall": "NODE_ENV=production webpack -p"
   },
   "dependencies": {
     "actioncable": "^5.2.0",
@@ -52,7 +50,6 @@
     "eslint-plugin-promise": "^3.6.0",
     "eslint-plugin-react": "7.4.0",
     "eslint-plugin-standard": "^3.0.1",
-    "uglifyjs-webpack-plugin": "^1.2.5",
     "webpack": "3.1.0",
     "webpack-dev-server": "2.5.1"
   }

@@ -8,6 +8,11 @@
   box-sizing: border-box;
   position: relative;
   }
+
+html {
+  min-height: 100vh;
+}
+
 body {
   background-color: #4f60ad;
   margin: 0 auto;
@@ -144,7 +149,7 @@ li {
   position: absolute;
   width: 40px;
   height: 35px;
-  bottom: -25px;
+  /* bottom: -25px; */
   left: 2px;
   -webkit-transition: all linear .2s;
   -moz-transition: all linear .2s;
@@ -356,22 +361,64 @@ li {
 
 @media only screen and (max-width: 1115px)  {
   .colorPickSelector {
-    margin-left: 2% !important;
-  }
-
-  #canvas {
-    width: 750px;
+    display:none;
   }
 
   #colorPick {
-    width: 85vw;
-    margin: 0 auto;
+    width: 83vw;
+    margin: auto !important;
+    top: auto !important;
+    margin-bottom: 2% !important;
+    margin-left:2%;
+   }
+
+  h1 {
+    padding-bottom: 2%;
+  }
+
+  h3 {
+    display: none;
+  }
+
+  .recentColor {
+    display: none;
+  }
+
+  #recent-heading {
+    display:none !important;
+  }
+
+  .colorPickDummy {
+    display: none;
   }
 }
+
 
  @media only screen and (max-width: 1050px)  {
 
  }
+
+
+
+.chat-logs {
+  text-align: left;
+  padding: 2px;
+}
+.chat-logs > div {
+  margin-bottom: 6px;
+}
+.chat-logs p {
+  margin: 0;
+}
+.chat-user, .chat-created-at {
+  color: grey;
+  font-size: 14px;
+}
+.chat-message {
+  font-size: 15px;
+  margin-left: 10px;
+}
+
 
 /* COLOUR PICK SELECTOR */
 .colorPickSelector {
