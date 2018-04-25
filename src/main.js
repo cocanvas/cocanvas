@@ -391,7 +391,7 @@ $(document).ready(function() {
     /// get index from mouse position
     let xIndex = Math.round((mx - tileWidth * 0.5) / tileWidth);
     let yIndex = Math.round((my - tileHeight * 0.5) / tileHeight);
-  
+
 
     // render(); // not sure this render is needed
     const fillDeets = {
@@ -434,7 +434,35 @@ $(document).ready(function() {
 
     //   fetchCoords();
     // });
+
+    // click events to expand and collapse the chatbox
+    // const chatOpenButton = document.getElementById('chat-button');
+    // chatOpenButton.onClick = function() {
+    //   console.log('open chat function just ran');
+    //   $('.Chat').removeClass('disappear');
+    //   $('.chat-open-button').addClass('disappear');
+    // }
+    // const chatCloseButton = document.getElementById('close-chat-button');
+    // chatCloseButton.onClick = function() {
+    //   console.log('close chat funciton just ran');
+    //   $('.Chat').addClass('disappear');
+    //   $('.chat-open-button').removeClass('disappear');
+    // }
+    // $('#close-chat-button').on('click', closeChat());
+
   };
+  // remove this if not using jQuery for the click functions to open and close chatbox
+  // const openChat = function() {
+  //   console.log('open chat funciton just ran');
+  //   $('.Chat').removeClass('disappear');
+  //   $('.chat-open-button').addClass('disappear');
+  // }
+  //
+  // const closeChat = function() {
+  //   console.log('close chat function just ran');
+  //   $('.Chat').addClass('disappear');
+  //   $('.chat-open-button').removeClass('disappear');
+  // }
 
   // Modal Overlay
   $('.login-modal-overlay').click(function() {
