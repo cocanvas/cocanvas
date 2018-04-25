@@ -9,6 +9,12 @@
   position: relative;
   }
 
+
+    .recentColor {
+      width: 26px;
+      display: inline-block;
+    }
+
 html {
   min-height: 100vh;
 }
@@ -368,7 +374,7 @@ li {
     margin: auto !important;
     top: auto !important;
     margin-bottom: 2% !important;
-    margin-left:2%;
+    margin-left: 2%;
    }
 
   h1 {
@@ -388,13 +394,14 @@ li {
   }
 
   .colorPickDummy {
-    display: none;
+    display: none !important;
   }
 }
 
 
- @media only screen and (max-width: 1050px)  {
-
+ @media only screen and (max-width: 916px)  {
+  #colorPick {
+   }
  }
 
 
@@ -417,7 +424,6 @@ li {
   font-size: 15px;
   margin-left: 10px;
 }
-
 
 /* COLOUR PICK SELECTOR */
 .colorPickSelector {
