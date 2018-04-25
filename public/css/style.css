@@ -210,9 +210,9 @@ li {
   right: 20px;
   z-index: 99;
 }
+
 #chat-box div {
-  width: 238px;
-}
+ }
 
 .Chat {
   border-radius: 10px;
@@ -268,11 +268,10 @@ li {
 }
 .chat-user, .chat-created-at {
   color: grey;
-  font-size: 14px;
+  font-size: 0.85em;
 }
 .chat-message {
-  font-size: 15px;
-  margin-left: 10px;
+  font-size: 0.85em;
 }
 .chat-input-div {
   background-color: #fff;
@@ -574,26 +573,8 @@ li {
 
 @media only screen and (max-width: 370px)  {
   #colorPick {
-  margin-left: -12.5% !important;
+  margin-left: -12.25% !important;
   }
-}
-.chat-logs {
-  text-align: left;
-  padding: 2px;
-}
-.chat-logs > div {
-  margin-bottom: 6px;
-}
-.chat-logs p {
-  margin: 0;
-}
-.chat-user, .chat-created-at {
-  color: grey;
-  font-size: 14px;
-}
-.chat-message {
-  font-size: 15px;
-  margin-left: 10px;
 }
 
 /* COLOUR PICK SELECTOR */
