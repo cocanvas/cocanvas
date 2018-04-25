@@ -554,6 +554,24 @@ li {
   }
 }
 
+@media only screen and (max-width: 395px)  {
+  #colorPick {
+  margin-left: -11.5% !important;
+  }
+}
+
+@media only screen and (max-width: 385px)  {
+  #colorPick {
+  margin-left: -11.75% !important;
+  }
+}
+
+@media only screen and (max-width: 375px)  {
+  #colorPick {
+  margin-left: -12% !important;
+  }
+}
+
 .chat-logs {
   text-align: left;
   padding: 2px;
