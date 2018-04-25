@@ -254,7 +254,8 @@ li {
   background-color: #E5E6F3;
   color: black;
   min-height: 100px;
-  max-height: 500px;
+  max-height: 400px;
+  overflow: auto;
 }
 .chat-logs {
   text-align: left;
