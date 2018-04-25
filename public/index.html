@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CoCanvas!</title>
+  <link rel="stylesheet" href="./css/normalize.css">
+  <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link href="./css/colorPick.css" rel="stylesheet">
+  <link href="./css/animate.css" rel="stylesheet">
+  <link rel="stylesheet" href="./css/style.css">
+  <link href="./css/images/favicon.ico" rel="icon" type="image/x-icon" />
+</head>
+
+<body>
+  <header>
+    <nav id="main-nav">
+      <ul>
+        <li id="login-link">
+          <a class="login open-login" href="#0">Login</a>
+        </li>
+        <li id="register-link">
+          <a class="register open-register" href="#0">Sign Up</a>
+        </li>
+        <li id="logout-link">
+          <a class="logout" href="#0">Logout</a>
+        </li>
+      </ul>
+    </nav>
+  </header>
+
+  <div class="login-modal-overlay">
+
+    <div class="login-modal" id="login-modal">
+      <br>
+      <form id="login-form">
+        <div class="group">
+          <input type="text" required id="login-username">
+          <span class="username bar"></span>
+          <label id="username-label-login">Username</label>
+        </div>
+        <div class="group">
+          <input type="password" required minlength="6" id="login-password">
+          <span class="password bar" id="password-bar"></span>
+          <label id="password-label-login">Password</label>
+        </div>
+        <button type="submit" id="login-button">Login</button>
+      </form>
+    </div>
+  </div>
+
+  <div class="register-modal-overlay">
+
+    <div class="register-modal" id="register-modal">
+      <br>
+      <form id="register-form">
+        <div class="group">
+          <input type="text" required id="register-username">
+          <span class="bar"></span>
+          <label id="username-label-register">Username</label>
+        </div>
+        <div class="group">
+          <input type="password" required minlength="6" id="register-password">
+          <span class="bar"></span>
+          <label id="password-label-register">Password</label>
+        </div>
+        <div class="group">
+          <input type="password" required minlength="6" id="register-password-conf">
+          <span class="bar"></span>
+          <label id="conf-pw-label-register">Confirm Password</label>
+        </div>
+        <button type="submit" id="register-button">Register</button>
+      </form>
+    </div>
+  </div>
+
+  <div class="info-modal-overlay">
+
+    <div id="info-modal">
+      <label id="info-heading">About CoCanvas</label>
+      <p><span class="accent">CoCanvas</span> is a cooperative, pixel art drawing game by <a href="#">Katrina Hayes</a>, <a href="https://twitter.com/amandytang">Mandy Tang</a>, <a href="https://github.com/robo2323">Rob Harkness</a> and <a href="https://github.com/vl9">Vu Le</a>.</p><p>
+       Make 8-bit art with your friends, or take over their pixels (we won't judge). If you make something awesome, let us know!</p>
+    </div>
+  </div>
+
+  <div class="colorPickSelector"></div>
+
+  <div class="container">
+    <h1 data-shadow='CoCanvas'>CoCanvas</span>
+    </h1>
+    <h3>Make collaborative pictures with strangers on the internet.</h3>
+
+    <canvas id="canvas"></canvas>
+    <li class="info"><img id="info-button" class-"open-info" src="./css/images/info.svg"/></li>
+    <div class="chat-nav">
+      <ul>
+        <li>
+          <a class="chat" id="chat-button">
+            <span class="live>Live </span><span class="chat-button-text">Chat</span>
+            <span class="expand">
+              <img class="up-arrow" src="./css/images/up.svg" />
+            </span>
+          </a>
+        </li>
+       </ul>
+    </div>
+  </div>
+  <div id="chat-box"></div>
+  <script src="./js/jquery.js"></script>
+  <script src="./bundle.js"></script>
+
+</body>
+
+</html>

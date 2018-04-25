@@ -291,7 +291,7 @@ li {
     padding-left: -2%;
   }
       .live {
-        display: none;
+        display: none !important;
       }
 }
 @media only screen and (max-width: 1332px)  {
