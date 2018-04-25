@@ -58,7 +58,7 @@ class Chat extends Component {
       });
     }
     fetch('https://cocanvas-server.herokuapp.com/chat_messages.json', {
-      method: 'POST',
+      method: 'GET',
       headers: {
         authorization: `Bearer ${window.localStorage.cocanvasAuthToken}`,
         'Content-Type': 'application/json'
