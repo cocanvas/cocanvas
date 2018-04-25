@@ -342,16 +342,13 @@ li {
   .colorPickSelector {
     margin-left: 2% !important;
   }
-
   #info-button {
     width: 20px;
     height: 20px;
   }
-
   #chat-button {
     width: 100px;
   }
-
   .chat-button-text {
     padding-left: 7px;
   }
@@ -361,40 +358,34 @@ li {
   .colorPickSelector {
     display:none;
   }
-
   #colorPick {
     width: 83vw !important;
     margin: auto !important;
     top: 730px !important;
     margin-bottom: 2% !important;
     margin-left: 2%;
-   }
-
+  }
   h1 {
     padding-bottom: 2%;
   }
-
   h3 {
     display: none;
   }
-
   .recentColor {
     display: none;
   }
-
   #recent-heading {
     display:none !important;
   }
-
   .colorPickDummy {
     display: none !important;
   }
 }
 
-
  @media only screen and (max-width: 916px) {
   #colorPick {
     margin-left: -0.5% !important;
+    padding-bottom: 10px;
    }
  }
 
@@ -416,7 +407,6 @@ li {
     }
   }
 
-
   @media only screen and (max-width: 752px)  {
    #colorPick {
      margin-left: -2.5% !important;
@@ -432,14 +422,17 @@ li {
   @media only screen and (max-width: 690px)  {
    #colorPick {
      margin-left: -3.5% !important;
+     margin-top: -1% !important;
+     padding-bottom: 8px;
+
     }
   }
 
-  @media only screen and (max-width: 655px)  {
-   #colorPick {
-     margin-left: -4.75% !important;
-    }
-
+@media only screen and (max-width: 655px)  {
+  #colorPick {
+    margin-left: -4.75% !important;
+    margin-top: -2.75% !important;
+  }
   #main-nav {
     margin-top: -15px;
   }
@@ -452,13 +445,59 @@ li {
     margin-left: 5px;
     padding:0;
   }
-
   .login:hover, .register:hover {
    box-shadow: none !important;
    opacity: 0.7;
   }
+}
 
+@media only screen and (max-width: 600px)  {
+  #colorPick {
+    margin-left: -5.5% !important;
   }
+}
+
+@media only screen and (max-width: 562px)  {
+  #colorPick {
+    margin-left: -6.25% !important;
+    margin-top: -3.75% !important;
+  }
+}
+
+@media only screen and (max-width: 536px)  {
+  #colorPick {
+    margin-left: -8% !important;
+    margin-top: -4.5% !important;
+    padding-bottom: 6px;
+  }
+}
+
+@media only screen and (max-width: 482px)  {
+  #colorPick {
+    margin-left: -9% !important;
+  }
+  #main-nav {
+    margin-top: -22px;
+  }
+  #info-button {
+    margin-top: -5px;
+    margin-left: -5px;
+  }
+}
+
+@media only screen and (max-width: 456px)  {
+  #colorPick {
+    margin-left: -10% !important;
+    padding-bottom: 5px;
+  }
+}
+
+@media only screen and (max-width: 432px)  {
+  #colorPick {
+    margin-left: -11% !important;
+    padding-bottom: 4px;
+  }
+}
 
 .chat-logs {
   text-align: left;
