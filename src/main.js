@@ -221,7 +221,6 @@ $(document).ready(function() {
   let tileWidth = w / columns;
   let tileHeight = h / rows;
   let userColour = '#f70';
-  let loadingCoords=[];
 
   // color of the lines making up the grid
   ctx.strokeStyle = '#e3e3e3';
@@ -316,7 +315,7 @@ $(document).ready(function() {
     });
   };
 
-  // fetchCoords();
+  fetchCoords();
 
   const createSocket = () => {
     let cable = Cable.createConsumer('wss://cocanvas-server.herokuapp.com/cable');
@@ -392,9 +391,7 @@ $(document).ready(function() {
     /// get index from mouse position
     let xIndex = Math.round((mx - tileWidth * 0.5) / tileWidth);
     let yIndex = Math.round((my - tileHeight * 0.5) / tileHeight);
-    loadingCoords.push([xIndex * tileWidth,yIndex * tileWidth,])
-    console.log(loadingCoords);
-    
+  
 
     // render(); // not sure this render is needed
     const fillDeets = {
