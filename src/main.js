@@ -167,7 +167,7 @@ import App from './App';
           top +
           'px;left:' +
           left +
-          'px"><span>' +
+          'px"><span id="chooseColor">' +
           $.fn.colorPick.defaults.paletteLabel +
           '</span></div>'
       );

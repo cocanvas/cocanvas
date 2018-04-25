@@ -211,6 +211,7 @@ li {
 #chat-box div {
   width: 238px;
 }
+
 .Chat {
   border-radius: 10px;
   border: 1px solid #fff;
@@ -239,7 +240,8 @@ li {
   height: 20px;
   float: right;
 }
-.chat-logs-div {
+
+ .chat-logs-div {
   background-color: #E5E6F3;
   color: black;
   min-height: 100px;
@@ -283,30 +285,24 @@ li {
   padding: 2px;
 }
 /* RESPONSIVENESS */
-@media only screen and (max-width: 1356px)  {
+@media only screen and (max-width: 1350px)  {
   #chat-button {
     width: 160px;
     padding-left: -2%;
   }
+      .live {
+        display: none;
+      }
 }
 @media only screen and (max-width: 1332px)  {
   #chat-button, .register {
     margin-right: -5%;
   }
-  #info-button {
-    width: 20px;
-    height: 20px;
-  }
+
 }
-@media only screen and (max-width: 1256px)  {
-  #colorPick {
-    margin-left: -5%;
-  }
-  .colorPickSelector {
-    margin-left: -5% !important;
-  }
-}
-@media only screen and (max-width: 1265px)  {
+
+
+@media only screen and (max-width: 1295px)  {
   #colorPick {
     margin-left: -2.75%;
   }
@@ -314,10 +310,14 @@ li {
     margin-left: 2% !important;
   }
 }
-@media only screen and (max-width: 1209px)  {
+@media only screen and (max-width: 1215px)  {
   #colorPick {
+    padding-top: 2%;
     margin-left: -3.2%;
     width: 90px;
+  }
+  #chooseColor {
+    display: none !important;
   }
   h1 {
     font-size: 3em;
@@ -331,11 +331,30 @@ li {
   .colorPickSelector {
     margin-left: 2% !important;
   }
+
+  #info-button {
+    width: 20px;
+    height: 20px;
+  }
+
+  #chat-button {
+    width: 100px;
+  }
+
+  .chat-button-text {
+    padding-left: 7px;
+  }
 }
+
 @media only screen and (max-width: 1115px)  {
   .colorPickSelector {
     margin-left: 2% !important;
   }
+
+  #canvas {
+    width: 750px;
+  }
+
 }
 .chat-logs {
   text-align: left;
