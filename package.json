@@ -5,7 +5,7 @@
   "license": "MIT",
   "scripts": {
     "dev-start": "webpack-dev-server",
-    "postinstall": "webpack -p --config /webpack.config.js",
+    "postinstall": "NODE_ENV=production webpack -p",
     "start": "node server.js"
   },
   "dependencies": {
