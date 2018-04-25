@@ -281,21 +281,10 @@ li {
   #chat-button, .register {
     margin-right: -5%;
   }
-  #info-button {
-    width: 20px;
-    height: 20px;
-  }
 
 }
-@media only screen and (max-width: 1256px)  {
-  #colorPick {
-    margin-left: -5%;
-  }
-  .colorPickSelector {
-    margin-left: -5% !important;
-  }
 
-}
+
 @media only screen and (max-width: 1295px)  {
   #colorPick {
     margin-left: -2.75%;
@@ -324,6 +313,11 @@ li {
   }
   .colorPickSelector {
     margin-left: 2% !important;
+  }
+
+  #info-button {
+    width: 20px;
+    height: 20px;
   }
 }
 
