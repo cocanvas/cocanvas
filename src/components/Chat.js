@@ -14,7 +14,6 @@ class Chat extends Component {
   }
 
   createSocket() {
-    // TODO: address will need to be changed to heroku once deployment with action cable is working
     let cable = Cable.createConsumer('wss://cocanvas-server.herokuapp.com/cable');
     // below: this.chats is an instance variable which is an action cable subscription with ChatChannel
     this.chats = cable.subscriptions.create(
@@ -30,9 +29,6 @@ class Chat extends Component {
           chatLogs.push(data);
 
           this.setState({ chatLogs: chatLogs });
-          // need to do something like the below with content and user_id??
-          // ctx.fillStyle = data.colour;
-          // ctx.fillRect(data.x, data.y, tileWidth, tileHeight);
         },
         create: function(state) {
           console.log(state);
