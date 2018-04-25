@@ -355,6 +355,11 @@ li {
     width: 750px;
   }
 
+  #colorPick {
+    width: 85vw;
+    margin: 0 auto;
+  }
+
 }
 .chat-logs {
   text-align: left;
@@ -383,6 +388,11 @@ li {
   font-size: 14px;
   border-bottom-left-radius: 10%;
   border-bottom-right-radius: 10%;
+ }
+
+
+ @media only screen and (max-width: 1050px)  {
+
  }
 
 /* COLOUR PICK SELECTOR */
