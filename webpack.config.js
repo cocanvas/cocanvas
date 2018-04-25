@@ -10,15 +10,15 @@ module.exports = {
   },
   plugins: [
     new webpack.DefinePlugin({
-        'process.env.NODE_ENV': JSON.stringify('production')
+      'process.env.NODE_ENV': JSON.stringify('production')
     })
-],
+  ],
   module: {
     rules: [
       {
         loader: 'babel-loader',
         test: /\.js$/,
-        exclude: [/node_modules/,'/public/']
+        exclude: [/node_modules/, '/public/']
       },
       {
         test: /\.s?css$/,
