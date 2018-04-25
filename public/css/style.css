@@ -265,7 +265,7 @@ li {
   margin-left: 10px;
 }
 .chat-input-div {
-  background-color: #fff;
+  background-color: red;
   color: black;
   border: 1px solid #fff;
   border-top: 1px solid grey;
