@@ -334,6 +334,10 @@ li {
     margin-left: 2% !important;
   }
 
+  #canvas {
+    width: 750px;
+  }
+
 }
 .chat-logs {
   text-align: left;
