@@ -479,12 +479,18 @@ li {
   }
 }
 
+@media only screen and (max-width: 550px)  {
+  #colorPick {
+    margin-left: -7% !important;
+  }
+}
+
 @media only screen and (max-width: 502px)  {
   #colorPick {
     margin-left: -8% !important;
   }
   #main-nav {
-    margin-top: -22px;
+    margin-top: -25px;
   }
   #info-button {
     margin-top: -5px;
