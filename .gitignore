@@ -13,3 +13,6 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 public/bundle.js
+public/bundle.js.gz
+public/vendor.c6c34088ab1e8074dd6e.js
+public/vendor.c6c34088ab1e8074dd6e.js.gz
