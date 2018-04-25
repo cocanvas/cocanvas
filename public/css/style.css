@@ -439,13 +439,13 @@ li {
   h1 {
     font-size: 2.5em;
   }
-  .register, .login {
+  .register, .login, .logout {
     font-size: 0.8em;
     border:none;
     margin-left: 5px;
     padding:0;
   }
-  .login:hover, .register:hover {
+  .login:hover, .register:hover, .logout:hover {
    box-shadow: none !important;
    opacity: 0.7;
   }
@@ -554,7 +554,7 @@ li {
   }
 }
 
-@media only screen and (max-width: 395px)  {
+@media only screen and (max-width: 398px)  {
   #colorPick {
   margin-left: -11.5% !important;
   }
@@ -566,12 +566,17 @@ li {
   }
 }
 
-@media only screen and (max-width: 375px)  {
+@media only screen and (max-width: 378px)  {
   #colorPick {
   margin-left: -12% !important;
   }
 }
 
+@media only screen and (max-width: 370px)  {
+  #colorPick {
+  margin-left: -12.5% !important;
+  }
+}
 .chat-logs {
   text-align: left;
   padding: 2px;
