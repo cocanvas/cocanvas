@@ -180,7 +180,7 @@ import App from './App';
         $('#colorPick').append('<input type="text" style="margin-top:5px" class="customColorHash" />');
       }
       if ($.fn.colorPick.defaults.allowRecent === true) {
-        $('#colorPick').append('<span style="margin-top:5px">Recent:</span>');
+        $('#colorPick').append('<span id="recent-heading" style="margin-top:5px">Recent:</span>');
         if (
           JSON.parse(localStorage.getItem('colorPickRecentItems')) == null ||
           JSON.parse(localStorage.getItem('colorPickRecentItems')) == []
@@ -189,7 +189,7 @@ import App from './App';
         } else {
           jQuery.each(JSON.parse(localStorage.getItem('colorPickRecentItems')), (index, item) => {
             $('#colorPick').append(
-              '<div class="colorPickButton" hexValue="' + item + '" style="background:' + item + '"></div>'
+              '<div class="recentColor"><div class="colorPickButton" hexValue="' + item + '" style="background:' + item + '"></div></div>'
             );
             if (index == $.fn.colorPick.defaults.recentMax - 1) {
               return false;
