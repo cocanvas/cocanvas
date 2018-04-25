@@ -365,11 +365,11 @@ li {
 
   #colorPick {
     width: 83vw;
-    margin: 0 auto;
-    margin-left: 0;
+    margin: auto !important;
     top: auto !important;
-    margin-bottom: 2%;
-  }
+    margin-bottom: 2% !important;
+    margin-left:2%;
+   }
 
   h1 {
     padding-bottom: 2%;
@@ -385,6 +385,10 @@ li {
 
   #recent-heading {
     display:none !important;
+  }
+
+  .colorPickDummy {
+    display: none;
   }
 }
 
