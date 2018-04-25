@@ -106,7 +106,7 @@ class Chat extends Component {
           <div className="chat-logs">{this.renderChatLog()}</div>
         </div>
         <div className="chat-input-div">
-          <input
+          <input  
             onKeyPress={(e) => this._handleChatInputKeyPress(e)}
             className="chat-input"
             placeholder="Type a message..."
