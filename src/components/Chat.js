@@ -70,7 +70,7 @@ class Chat extends Component {
     return this.state.chatLogs.map((el) => {
       console.log(el);
       return (
-        <div key={`chat_${el.id}`}>
+        <div key={`chat_${el.created_at}`}>
           <p><span className="chat-user">{el.username} </span>
           <span className="chat-created-at">{el.created_at}</span></p>
           <p><span className="chat-message">{el.content}</span></p>
