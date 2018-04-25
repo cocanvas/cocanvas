@@ -383,7 +383,6 @@ $(document).ready(function() {
 
   canvas.onmousedown = fill;
   function fill(e) {
-    console.log(userColour);
 
     let rect = canvas.getBoundingClientRect();
     let mx = e.clientX - rect.left;
@@ -392,6 +391,7 @@ $(document).ready(function() {
     /// get index from mouse position
     let xIndex = Math.round((mx - tileWidth * 0.5) / tileWidth);
     let yIndex = Math.round((my - tileHeight * 0.5) / tileHeight);
+  
 
     // render(); // not sure this render is needed
     const fillDeets = {

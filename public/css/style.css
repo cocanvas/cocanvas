@@ -99,16 +99,16 @@ header {
     cursor: pointer;
   margin-top: -5px;
 }
-.chat-nav {
+.chat-open-button {
   position: absolute;
-  bottom: 0;
-  right: 0;
+  bottom: 20px;
+  right: 20px;
   height: 40px;
   padding: 0 !important;
-  margin-right: 2%;
+  /* margin-right: 2%; */
   cursor: pointer;
 }
-.chat-nav a {
+.chat-open-button a {
   display: inline-block;
   height: 40px;
   line-height: 1em;
@@ -204,14 +204,11 @@ li {
 /* CHAT BOX */
 #chat-box {
   /* display: none; */
-  width: 250px !important;
-  /* height: 400px; */
+  width: 238px;
   position: absolute;
-  bottom: 0;
-  right: 0;
-  margin-right: 2%;
-  margin-bottom: 4%;
-  padding: 5px;
+  bottom: 20px;
+  right: 20px;
+  z-index: 99;
 }
 #chat-box div {
   width: 238px;
@@ -257,6 +254,7 @@ li {
   background-color: #E5E6F3;
   color: black;
   min-height: 100px;
+  max-height: 500px;
 }
 .chat-logs {
   text-align: left;
