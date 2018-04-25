@@ -127,8 +127,9 @@ li {
     display: inline-block;
     margin-left: 1em;
 }
+
 /* NAVIGATION & CHAT */
-.logout, .login, .register, .chat {
+.logout, .login, .register, .open-chat, .close-chat {
   padding: 10px 14px 0px 14px;
   border: 1px solid #fff;
   border-radius: 10px;
@@ -175,7 +176,7 @@ li {
 #info-button:hover {
   opacity: 0.6;
  }
- .chat {
+.open-chat {
   width: 238px;
   padding: 12px 14px 0px 14px;
   height: 40px;
@@ -186,7 +187,16 @@ li {
 #chat-button {
   background: #4f60ad !important;
 }
-#ch/* CHAT BOX */
+.up-arrow {
+  width: 20px !important;
+  height: 20px;
+}
+.expand {
+  float: right;
+  height: 20px !important;
+}
+
+/* CHAT BOX */
 #chat-box {
   /* display: none; */
   width: 250px !important;
@@ -204,9 +214,10 @@ li {
 .Chat {
   border-radius: 10px;
   border: 1px solid #fff;
-  width: 240px !important;
+  /* width: 240px !important; */
+  background-color: #fff;
 }
-.chat-header, .chat-header p {
+.chat-header {
   top: 0;
   left: 0;
   padding: 0;
@@ -214,10 +225,19 @@ li {
   margin: 0;
   background: #4f60ad !important;
   height: 40px;
-  border-bottom: 1px solid #fff;
+  border: 1px solid #fff;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
 }
-.chat-header p a {
-  line-height: 40px;
+.close-chat {
+  width: 238px;
+  padding: 12px 14px 0px 14px;
+  text-align: left;
+}
+.down-arrow {
+  width: 20px !important;
+  height: 20px;
+  float: right;
 }
 .chat-logs-div {
   background-color: #E5E6F3;
@@ -245,12 +265,13 @@ li {
 .chat-input-div {
   background-color: #fff;
   color: black;
+  border: 1px solid #fff;
   border-top: 1px solid grey;
   height: 40px;
   line-height: 40px;
   font-size: 14px;
-  border-bottom-left-radius: 10%;
-  border-bottom-right-radius: 10%;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
 }
 .chat-input-div input {
   padding-right: 20px;
@@ -344,14 +365,7 @@ li {
   border-bottom-left-radius: 10%;
   border-bottom-right-radius: 10%;
  }
-.up-arrow {
-  width: 20px !important;
-  height: 20px;
-}
-.expand {
-  float: right;
-  height: 20px !important;
-}
+
 /* COLOUR PICK SELECTOR */
 .colorPickSelector {
   position: absolute;
