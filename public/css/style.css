@@ -299,11 +299,17 @@ li {
   height: 30px;
   width: 78%;
   border: none;
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.95em;
+  opacity: 0.8;
 }
 .chat-input-div button {
-  border: 1px solid black;
   font-size: 14px;
   padding: 2px;
+  background-color: #fff !important;
+  border: none !important;
+  font-family: 'Poppins', sans-serif;
+  color: #49589f;
 }
 
 /* RESPONSIVENESS */
