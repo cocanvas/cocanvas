@@ -4,9 +4,10 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "dev-start": "webpack-dev-server",
-    "postinstall": "NODE_ENV=production webpack -p",
-    "start": "node server.js"
+    "heroku-postbuild": "webpack -p --config ./webpack.config.js --progress",
+    "start": "node server.js",
+    "dev-start": "webpack-dev-server"
+    
   },
   "dependencies": {
     "actioncable": "^5.2.0",
