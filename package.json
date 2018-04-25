@@ -4,9 +4,9 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
+    "dev-start": "webpack-dev-server",    
     "heroku-postbuild": "webpack -p --config ./webpack.config.js --progress",
-    "start": "node server.js",
-    "dev-start": "webpack-dev-server"
+    "start": "node server.js"
   },
   "dependencies": {
     "actioncable": "^5.2.0",
@@ -14,8 +14,7 @@
     "jwt-decode": "^2.2.0",
     "normalize.css": "7.0.0",
     "react": "16.0.0",
-    "react-dom": "16.0.0",
-    "npm": "^5.8.0"
+    "react-dom": "16.0.0"
   },
   "devDependencies": {
     "babel-cli": "6.24.1",
@@ -48,6 +47,7 @@
     "style-loader": "0.18.2",
     "validator": "8.0.0",
     "webpack": "3.1.0",
-    "webpack-dev-server": "2.5.1"
+    "webpack-dev-server": "2.5.1",
+    "npm": "^5.8.0"
   }
 }
