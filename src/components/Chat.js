@@ -115,11 +115,11 @@ class Chat extends Component {
         </div>
         <div className="chat-logs-div">
           <div className="chat-logs">{this.renderChatLog()}
-          <div style={{ float:"left", clear: "both" }}
+          <div style={{ float:"left", clear: "both"}}
              ref={this.messagesEnd}>
         </div>
           </div>
-         
+
         </div>
         <div className="chat-input-div">
           <input
@@ -138,6 +138,10 @@ class Chat extends Component {
     ) : (
       <p></p>
     );
+  }
+  
+  componentDidUpdate() {
+      this.scrollToBottom();
   }
 
   _handleSendEvent(e) {
