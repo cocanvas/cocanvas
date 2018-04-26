@@ -180,6 +180,7 @@ li {
   outline-offset: 15px;
   text-shadow: 1px 1px 2px #427388;
 }
+
 #info-button:hover {
   opacity: 0.6;
  }
@@ -191,6 +192,10 @@ li {
   text-align: left;
   border-radius: 10px;
 }
+#chat-button {
+  background: #4f60ad !important;
+  transition: all 0.25s;
+}
 .up-arrow {
   width: 20px !important;
   height: 20px;
@@ -201,17 +206,18 @@ li {
 }
 
 /* CHAT BOX */
-
-.disappear {
-  display: none;
+.invisible {
+  opacity: 0;
 }
+
 #chat-box {
   /* display: none; */
   width: 238px;
   position: absolute;
   bottom: 20px;
   right: 20px;
-  z-index: 99;
+  /* z-index: 5; */
+  transition: all 0.25s;
 }
 
 .Chat {
@@ -221,6 +227,7 @@ li {
   background-color: #fff;
 }
 .chat-header {
+  z-index: 6;
   top: 0;
   left: 0;
   padding: 0;
@@ -235,7 +242,7 @@ li {
   width: 238px;
   padding: 12px 14px 0px 14px;
   text-align: left;
-  z-index: 2;
+  z-index: 3;
   cursor: pointer;
   -webkit-transition: all linear .2s;
   -moz-transition: all linear .2s;
@@ -251,6 +258,7 @@ li {
 }
 
  .chat-logs-div {
+  z-index: 6;
   background-color: #E5E6F3;
   color: black;
   min-height: 100px;
@@ -284,6 +292,7 @@ li {
   font-size: 0.85em;
 }
 .chat-input-div {
+  z-index: 6;
   background-color: #fff;
   color: black;
   border: 1px solid #fff;
