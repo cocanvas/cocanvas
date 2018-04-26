@@ -189,7 +189,11 @@ import App from './App';
         } else {
           jQuery.each(JSON.parse(localStorage.getItem('colorPickRecentItems')), (index, item) => {
             $('#colorPick').append(
-              '<div class="recentColor"><div class="colorPickButton" hexValue="' + item + '" style="background:' + item + '"></div></div>'
+              '<div class="recentColor"><div class="colorPickButton" hexValue="' +
+                item +
+                '" style="background:' +
+                item +
+                '"></div></div>'
             );
             if (index == $.fn.colorPick.defaults.recentMax - 1) {
               return false;
@@ -210,7 +214,7 @@ $(document).ready(function() {
   let canvas = document.getElementById('canvas');
 
   if (!canvas.getContext) {
-    console.log('sorry your browser sucks'); 
+    console.log('sorry your browser sucks');
     //TODO test this on internet explorer
     $('.change-browser-modal-overlay').fadeIn(200);
   }
@@ -281,13 +285,6 @@ $(document).ready(function() {
 
   // render function creates 80 vertical lines and 60 horizontal lines to create grid
   function render() {
-    // below: if statement for distinguishing btw hover and click (bonus for later)
-    // if (clicked) {
-    //
-    // } else {
-    //   ctx.clearRect(0, 0, w, h);
-    // }
-
     ctx.beginPath();
 
     for (let x = 0; x < columns; x++) {
@@ -313,6 +310,9 @@ $(document).ready(function() {
       for (let i = 0; i < response.length; i++) {
         ctx.fillStyle = response[i].colour;
         ctx.fillRect(response[i].x, response[i].y, tileWidth, tileHeight);
+        if (ctx.fillStyle === '#ffffff') {
+          ctx.strokeRect(response[i].x + 0.5, response[i].y + 0.5, tileWidth - 1, tileHeight - 1);
+        }
       }
     });
   };
@@ -347,45 +347,8 @@ $(document).ready(function() {
 
   const coordSocket = createSocket();
 
-  // below: bonus feature for showing colour on hover
-  // let currentParams = [];
-  // canvas.onmousemove = highlight;
-  // function highlight(e) {
-  //
-  //   if (filledSquares.length > 0) {
-  //     for (let i = 0; i < filledSquares.length; i++) {
-  //       if (filledSquares[i] === currentParams) {
-  //         return;
-  //       } else {
-  //         ctx.clearRect(currentParams[0], currentParams[1], currentParams[2], currentParams[3]);
-  //       }
-  //     }
-  //   } else {
-  //     ctx.clearRect(currentCoords.xCoord, currentCoords.yCoord, tileWidth, tileHeight);
-  //   }
-  //
-  //   render();
-  //
-  //   var rect = canvas.getBoundingClientRect(),
-  //       mx = e.clientX - rect.left,
-  //       my = e.clientY - rect.top,
-  //
-  //       /// get index from mouse position
-  //       xIndex = Math.round((mx - tileWidth * 0.5) / tileWidth),
-  //       yIndex = Math.round((my - tileHeight * 0.5) / tileHeight);
-  //
-  //   currentCoords = {
-  // xCoord: xIndex * tileWidth,
-  // yCoord: yIndex * tileHeight
-  // }
-  //   console.log(currentParams);
-  //   ctx.fillRect(xIndex * tileWidth, yIndex * tileHeight, tileWidth, tileHeight);
-  //
-  // }
-
   canvas.onmousedown = fill;
   function fill(e) {
-
     let rect = canvas.getBoundingClientRect();
     let mx = e.clientX - rect.left;
     let my = e.clientY - rect.top;
@@ -393,7 +356,6 @@ $(document).ready(function() {
     /// get index from mouse position
     let xIndex = Math.round((mx - tileWidth * 0.5) / tileWidth);
     let yIndex = Math.round((my - tileHeight * 0.5) / tileHeight);
-
 
     // render(); // not sure this render is needed
     const fillDeets = {
@@ -403,7 +365,18 @@ $(document).ready(function() {
     };
 
     filledSquares.push(fillDeets);
-    ctx.fillRect(xIndex * tileWidth, yIndex * tileHeight, tileWidth, tileHeight);
+
+    if (ctx.fillStyle === '#ffffff') {
+      ctx.strokeStyle = '#e3e3e3';
+      ctx.fillRect(xIndex * tileWidth, yIndex * tileHeight, tileWidth, tileHeight);
+
+      ctx.strokeRect(xIndex * tileWidth + 0.5, yIndex * tileHeight + 0.5, tileWidth - 1, tileHeight - 1);
+    } else {
+      ctx.strokeStyle = ctx.fillStyle;
+      // ctx.strokeRect(xIndex * tileWidth - 1, yIndex * tileHeight + 1, tileWidth - 1, tileHeight - 1);
+      ctx.fillRect(xIndex * tileWidth, yIndex * tileHeight, tileWidth, tileHeight);
+    }
+
     sendCoordDeets(fillDeets);
   }
 
@@ -411,34 +384,7 @@ $(document).ready(function() {
     const user = getUserFromToken();
 
     coordSocket.create({ x: deets.x, y: deets.y, colour: deets.colour, user_id: user.user_id });
-
-    // fetch('https://cocanvas-server.herokuapp.com/coordinates', {
-    //   method: 'POST',
-    //   headers: {
-    //     authorization: `Bearer ${token}`,
-    //     'Content-Type': 'application/json'
-    //   },
-    //   body: JSON.stringify({
-    //     coordinate: { x: deets.x, y: deets.y, colour: deets.colour, user_id: user.user_id }
-    //   })
-    // }).then((res) => {
-    //   fetchCoords();
-    // });
-    // $.ajax('https://cocanvas-server.herokuapp.com/coordinates', {
-    //   method: 'post',
-    //   headers: {
-    //     authorization: `Bearer ${token}`
-    //   },
-    //   dataType: 'json', // data type you want back
-    //   data: { coordinate: { x: deets.x, y: deets.y, colour: deets.colour, user_id: user.user_id } } // what you're sending - needs to be a json object? needs a madeup key for each value
-    // }).done((res) => {
-    //   console.log(res);
-
-    //   fetchCoords();
-    // });
-
-  }; // end of send coord deets function (still inside doc ready!)
-
+  };
 
   // Modal Overlay
   $('.login-modal-overlay').click(function() {
@@ -501,7 +447,6 @@ $(document).ready(function() {
     $(this).fadeOut(200);
     $('#chat-button').removeClass('invisible');
   });
-
 }); // end of DOCREADY
 
 const openChat = function() {
@@ -513,7 +458,7 @@ const openChat = function() {
     $('.login-to-chat-modal-overlay').fadeIn(200);
     console.log('fade in triggered');
   }
-}
+};
 
 const sendRegisterForm = function(e) {
   e.preventDefault();
