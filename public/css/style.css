@@ -207,7 +207,7 @@ li {
 
 /* CHAT BOX */
 .invisible {
-  opacity: 0;
+  display:none !important;
 }
 
 #chat-box {
@@ -423,7 +423,7 @@ li {
     display: none;
   }
   .recentColor {
-    display: none;
+    display: none !important;
   }
   #recent-heading {
     display:none !important;
@@ -436,8 +436,8 @@ li {
     width: 238px;
     right: auto !important;
     margin-left: 2% !important;
-    top: 45px;
-    left: 40px;
+    top: 20px;
+    left: 38px;
   }
   .Chat {
     width: 238px;
