@@ -388,8 +388,12 @@ $(document).ready(function() {
 
   // Modal Overlay
   $('.login-modal-overlay').click(function() {
+    // select the login form password input
     $(this).fadeOut(200);
+    $('#login-username').val('');
+    $('#login-password').val('');
   });
+
   $('.open-login').click(function() {
     $('.login-modal-overlay').fadeIn(200);
   });
@@ -406,7 +410,11 @@ $(document).ready(function() {
 
   $('.register-modal-overlay').click(function() {
     $(this).fadeOut(200);
+    $('#register-username').val('');
+    $('#register-password').val('');
+    $('#register-password-conf').val('');
   });
+
   $('.open-register').click(function() {
     $('.register-modal-overlay').fadeIn(200);
   });
