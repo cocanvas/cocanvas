@@ -81,7 +81,7 @@ class Chat extends Component {
         <div key={`chat_${el.id}`}>
           <p>
             <span className="chat-user">{el.username} </span>
-            <span>&nbsp</span>
+            <span>&nbsp;</span>
             <span className="chat-created-at">{`${new Date(el.created_at).getHours()}:${new Date(el.created_at).getMinutes()}`}</span>
           </p>
           <p>
