@@ -11,6 +11,7 @@ class Chat extends Component {
       user_id: '',
       chatLogs: []
     };
+    this.messagesEnd = React.createRef();
   }
 
   createSocket() {
@@ -45,8 +46,16 @@ class Chat extends Component {
     this.createSocket();
   }
 
+  scrollToBottom = (e) => {
+    this.messagesEnd.current.scrollIntoView({ behavior: "smooth" });
+  };
+
+  componentDidUpdate() {}
+
   // just after component has been loaded to the DOM
   componentDidMount() {
+    // this.scrollToBottom();
+
     const user = getUserFromToken();
     if (user) {
       this.setState({
@@ -61,8 +70,7 @@ class Chat extends Component {
       }
     }).then((res) =>
       res.json().then((data) => {
-
-        this.setState({ chatLogs:data });
+        this.setState({ chatLogs: data });
       })
     );
   }
@@ -82,10 +90,12 @@ class Chat extends Component {
           <p>
             <span className="chat-user">{el.username} </span>
             <span>&nbsp;</span>
-            <span className="chat-created-at">{`${new Date(el.created_at).getHours()}:${new Date(el.created_at).getMinutes()}`}</span>
+            <span className="chat-created-at">{`${new Date(el.created_at).getHours()}:${new Date(
+              el.created_at
+            ).getMinutes()}`}</span>
           </p>
           <p>
-            <span className="chat-message">{el.content}</span>
+            <span ref={this.messagesEnd} className="chat-message">{el.content}</span>
           </p>
         </div>
       );
@@ -105,6 +115,7 @@ class Chat extends Component {
         </div>
         <div className="chat-logs-div">
           <div className="chat-logs">{this.renderChatLog()}</div>
+         
         </div>
         <div className="chat-input-div">
           <input
@@ -131,6 +142,7 @@ class Chat extends Component {
     this.setState({
       currentMessage: ''
     });
+    this.scrollToBottom();
   }
 
   _handleChatInputKeyPress(e) {
