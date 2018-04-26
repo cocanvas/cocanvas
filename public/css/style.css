@@ -254,8 +254,8 @@ li {
 }
 
 .down-arrow {
-  width: 20px !important;
-  height: 20px;
+  width: 18px !important;
+  height: 18px;
   float: right;
 }
 
@@ -449,7 +449,7 @@ li {
     display: none;
   }
   #chat-button {
-    width: 62px;
+    width: 28px;
     border:none;
    }
   .chat-img {
@@ -470,15 +470,16 @@ li {
   .chat-open-button {
     top: 0 !important;
     left: 46px !important;
-    width: 62px;
+    width: 28px;
     margin-top: 5px;
+  }
+  .open-chat {
+    width: 28px;
   }
 }
 
  @media only screen and (max-width: 1054px) {
-   #chat-button {
-     width: 62px;
-   }
+ 
  }
 
 
@@ -609,11 +610,10 @@ li {
     margin-left: -5px;
   }
   .chat-open-button {
-    margin-top: 11px !important;
+    margin-top: 12px !important;
     margin-left: -5px;
   }
 }
-
 
 @media only screen and (max-width: 472px)  {
   #colorPick {
