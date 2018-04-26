@@ -11,6 +11,7 @@ class Chat extends Component {
       user_id: '',
       chatLogs: []
     };
+    this.scrollToBottom = this.scrollToBottom.bind(this);
   }
 
   createSocket() {
