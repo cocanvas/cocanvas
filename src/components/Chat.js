@@ -47,15 +47,14 @@ class Chat extends Component {
   }
 
   scrollToBottom = (e) => {
-    this.messagesEnd.scrollIntoView({ behavior: 'smooth' });
+    this.messagesEnd.current.scrollIntoView({ behavior: "smooth" });
   };
 
-  componentDidUpdate() {
-  }
+  componentDidUpdate() {}
 
   // just after component has been loaded to the DOM
   componentDidMount() {
-    this.scrollToBottom();
+    // this.scrollToBottom();
 
     const user = getUserFromToken();
     if (user) {
@@ -116,12 +115,7 @@ class Chat extends Component {
         </div>
         <div className="chat-logs-div">
           <div className="chat-logs">{this.renderChatLog()}</div>
-          <div
-            style={{ float: 'left', clear: 'both' }}
-            ref={(el) => {
-              this.messagesEnd = el;
-            }}
-          />
+          <div style={{ float: 'left', clear: 'both' }} ref={this.messagesEnd} />
         </div>
         <div className="chat-input-div">
           <input
@@ -148,6 +142,7 @@ class Chat extends Component {
     this.setState({
       currentMessage: ''
     });
+    this.scrollToBottom();
   }
 
   _handleChatInputKeyPress(e) {
