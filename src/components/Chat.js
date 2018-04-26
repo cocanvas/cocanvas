@@ -11,7 +11,7 @@ class Chat extends Component {
       user_id: '',
       chatLogs: []
     };
-    this.scrollToBottom = this.scrollToBottom.bind(this);
+    this.messagesEnd = React.createRef();
   }
 
   createSocket() {
@@ -46,12 +46,11 @@ class Chat extends Component {
     this.createSocket();
   }
 
-  scrollToBottom = () => {
+  scrollToBottom = (e) => {
     this.messagesEnd.scrollIntoView({ behavior: 'smooth' });
   };
 
   componentDidUpdate() {
-    this.scrollToBottom();
   }
 
   // just after component has been loaded to the DOM
