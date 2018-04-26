@@ -95,8 +95,8 @@ header {
 #main-nav {
   position: absolute;
   right: 0;
-    margin-right: 2%;
-    cursor: pointer;
+  margin-right: 2%;
+  cursor: pointer;
   margin-top: -5px;
 }
 .chat-open-button {
@@ -119,11 +119,11 @@ header {
   font-weight: lighter;
  }
 a {
-    display: inline-block;
-    height: 40px;
-    line-height: 1em;
-    padding-left: 5%;
-    color: #FFF;
+  display: inline-block;
+  height: 40px;
+  line-height: 1em;
+  padding-left: 5%;
+  color: #FFF;
   text-decoration: none;
   font-family: 'Poppins', sans-serif !important;
   font-weight: lighter;
@@ -207,7 +207,7 @@ li {
 
 /* CHAT BOX */
 .invisible {
-  opacity: 0;
+  display:none !important;
 }
 
 #chat-box {
@@ -245,6 +245,8 @@ li {
   padding: 12px 14px 0px 14px;
   text-align: left;
   z-index: 3;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
   cursor: pointer;
   -webkit-transition: all linear .2s;
   -moz-transition: all linear .2s;
@@ -254,8 +256,8 @@ li {
 }
 
 .down-arrow {
-  width: 20px !important;
-  height: 20px;
+  width: 18px !important;
+  height: 18px;
   float: right;
 }
 
@@ -286,12 +288,15 @@ li {
 }
 .chat-created-at {
   color: grey;
-  font-size: 0.8em;
+  font-size: 0.75em;
   opacity: 0.8;
+  font-family: 'Poppins', sans-serif !important;
+
  }
 
 .chat-message {
-  font-size: 0.85em;
+  font-size: 0.8em;
+  font-family: 'Poppins', sans-serif !important;
 }
 .chat-input-div {
   z-index: 6;
@@ -423,7 +428,7 @@ li {
     display: none;
   }
   .recentColor {
-    display: none;
+    display: none !important;
   }
   #recent-heading {
     display:none !important;
@@ -436,8 +441,8 @@ li {
     width: 238px;
     right: auto !important;
     margin-left: 2% !important;
-    top: 45px;
-    left: 40px;
+    top: 20px;
+    left: 38px;
   }
   .Chat {
     width: 238px;
@@ -449,7 +454,7 @@ li {
     display: none;
   }
   #chat-button {
-    width: 62px;
+    width: 28px;
     border:none;
    }
   .chat-img {
@@ -470,15 +475,16 @@ li {
   .chat-open-button {
     top: 0 !important;
     left: 46px !important;
-    width: 62px;
+    width: 28px;
     margin-top: 5px;
+  }
+  .open-chat {
+    width: 28px;
   }
 }
 
  @media only screen and (max-width: 1054px) {
-   #chat-button {
-     width: 62px;
-   }
+
  }
 
 
@@ -613,7 +619,6 @@ li {
     margin-left: -5px;
   }
 }
-
 
 @media only screen and (max-width: 472px)  {
   #colorPick {

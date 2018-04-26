@@ -109,7 +109,7 @@ class Chat extends Component {
           <a className="close-chat" id="close-chat-button">
             Live chat
             <span className="collapse">
-              <img className="down-arrow" src="./css/images/down.svg" />
+              <img className="down-arrow" src="./css/images/close.svg" />
             </span>
           </a>
         </div>
@@ -134,6 +134,10 @@ class Chat extends Component {
     ) : (
       <p></p>
     );
+  }
+
+  componentDidUpdate() {
+      this.scrollToBottom();
   }
 
   _handleSendEvent(e) {

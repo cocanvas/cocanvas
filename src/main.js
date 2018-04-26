@@ -259,7 +259,7 @@ $(document).ready(function() {
       '#8A2755',
       '#CC647B',
       '#FF747C',
-      '#002642',
+      '#8C4F27',
       '#34495e',
       '#2c3e50',
       '#000000',
@@ -454,7 +454,7 @@ const openChat = function() {
     $('#chat-box').removeClass('invisible');
     $('#chat-button').addClass('invisible');
   }
-  if (window.localStorage.cocanvasAuthToken === '') {
+  if (!window.localStorage.cocanvasAuthToken || window.localStorage.cocanvasAuthToken === '') {
     $('.login-to-chat-modal-overlay').fadeIn(200);
     console.log('fade in triggered');
   }
