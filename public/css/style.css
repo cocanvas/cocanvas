@@ -423,7 +423,7 @@ li {
     display: none;
   }
   .recentColor {
-    display: none;
+    display: none !important;
   }
   #recent-heading {
     display:none !important;
