@@ -95,7 +95,7 @@ class Chat extends Component {
             ).getMinutes()}`}</span>
           </p>
           <p>
-            <span ref={this.messagesEnd} className="chat-message">{el.content}</span>
+            <span className="chat-message">{el.content}</span>
           </p>
         </div>
       );
@@ -114,7 +114,11 @@ class Chat extends Component {
           </a>
         </div>
         <div className="chat-logs-div">
-          <div className="chat-logs">{this.renderChatLog()}</div>
+          <div className="chat-logs">{this.renderChatLog()}
+          <div style={{ float:"left", clear: "both" }}
+             ref={this.messagesEnd}>
+        </div>
+          </div>
          
         </div>
         <div className="chat-input-div">
@@ -132,7 +136,7 @@ class Chat extends Component {
         </div>
       </div>
     ) : (
-      <p>please login to chat</p>
+      <p></p>
     );
   }
 
