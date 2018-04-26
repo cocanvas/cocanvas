@@ -3,6 +3,8 @@ const webpack = require('webpack');
 
 // webpack config requires entry point and output
 module.exports = {
+  devtool: 'source-map',
+
   entry: ['./src/main.js'],
   output: {
     path: path.join(__dirname, 'public'),
@@ -11,9 +13,7 @@ module.exports = {
   plugins: [
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify('production')
-    }),
-    new webpack.optimize.ModuleConcatenationPlugin(),
-    
+    })         
   ],
   module: {
     rules: [
@@ -28,7 +28,6 @@ module.exports = {
       }
     ]
   },
-  devtool: 'cheap-module-eval-source-map',
   devServer: {
     contentBase: path.join(__dirname, 'public'),
     open: true,

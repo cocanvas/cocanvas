@@ -295,6 +295,7 @@ $(document).ready(function() {
     for (let y = 0; y < rows; y++) {
       ctx.moveTo(0, y * tileHeight);
       ctx.lineTo(w, y * tileHeight);
+      
     }
     ctx.stroke();
     const loadingCoords = loadingData();
