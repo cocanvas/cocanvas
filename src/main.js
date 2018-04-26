@@ -210,7 +210,9 @@ $(document).ready(function() {
   let canvas = document.getElementById('canvas');
 
   if (!canvas.getContext) {
-    console.log('sorry your browser sucks'); //TODO work out fallback
+    console.log('sorry your browser sucks'); 
+    //TODO test this on internet explorer
+    $('.change-browser-modal-overlay').fadeIn(200);
   }
   var ctx = canvas.getContext('2d');
 
@@ -484,16 +486,34 @@ $(document).ready(function() {
   });
 
   // click events to expand and collapse the chatbox
-  $('#chat-button').on('click', function() {
-    $('#chat-box').removeClass('invisible');
-    $('#chat-button').addClass('invisible');
-  });
+
+  $('#chat-button').on('click', openChat);
+  // {
+  //   $('#chat-box').removeClass('invisible');
+  //   $('#chat-button').addClass('invisible');
+  // });
   $('#close-chat-button').on('click', function() {
     $('#chat-box').addClass('invisible');
     $('#chat-button').removeClass('invisible');
   });
 
+  $('.login-to-chat-modal-overlay').click(function() {
+    $(this).fadeOut(200);
+    $('#chat-button').removeClass('invisible');
+  });
+
 }); // end of DOCREADY
+
+const openChat = function() {
+  if (window.localStorage.cocanvasAuthToken !== 'undefined') {
+    $('#chat-box').removeClass('invisible');
+    $('#chat-button').addClass('invisible');
+  }
+  if (window.localStorage.cocanvasAuthToken === '') {
+    $('.login-to-chat-modal-overlay').fadeIn(200);
+    console.log('fade in triggered');
+  }
+}
 
 const sendRegisterForm = function(e) {
   e.preventDefault();

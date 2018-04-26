@@ -121,7 +121,7 @@ class Chat extends Component {
         </div>
       </div>
     ) : (
-      <p>please login to chat</p>
+      <p></p>
     );
   }
 
