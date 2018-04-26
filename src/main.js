@@ -1,5 +1,6 @@
 import Cable from 'actioncable';
 import getUserFromToken from './getUserFromToken';
+import loadingData from './loadingData';
 import App from './App';
 
 ///////////////////////////////////////
@@ -296,6 +297,11 @@ $(document).ready(function() {
       ctx.lineTo(w, y * tileHeight);
     }
     ctx.stroke();
+    const loadingCoords = loadingData();
+    for (let i = 0; i < loadingCoords.length; i++) {
+      ctx.fillStyle = loadingCoords[i].colour;
+      ctx.fillRect(loadingCoords[i].x, loadingCoords[i].y, tileWidth, tileHeight);
+    }
   }
   // calling the render function to draw grid
   render();
@@ -307,6 +313,15 @@ $(document).ready(function() {
       headers: { Authorization: `Bearer ${window.localStorage.cocanvasAuthToken}` },
       dataType: 'json' // data type you want back
     }).done(function(response) {
+
+      //erase the loading graphic      
+      const loadingCoords = loadingData();
+      ctx.fillStyle = '#ffffff';
+      for (let i = 0; i < loadingCoords.length; i++) {
+        ctx.fillRect(loadingCoords[i].x, loadingCoords[i].y, tileWidth, tileHeight);
+        ctx.strokeRect(loadingCoords[i].x + 0.5, loadingCoords[i].y + 0.5, tileWidth - 1, tileHeight - 1);
+      }
+      //draw existing coordinates
       for (let i = 0; i < response.length; i++) {
         ctx.fillStyle = response[i].colour;
         ctx.fillRect(response[i].x, response[i].y, tileWidth, tileHeight);
