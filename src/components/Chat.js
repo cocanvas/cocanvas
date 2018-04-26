@@ -47,7 +47,7 @@ class Chat extends Component {
   }
 
   scrollToBottom = (e) => {
-    this.messagesEnd.current.scrollIntoView({ behavior: "smooth" });
+    this.messagesEnd.current.scrollIntoView({ behavior: 'smooth' });
   };
 
   componentDidUpdate() {}
@@ -114,12 +114,8 @@ class Chat extends Component {
           </a>
         </div>
         <div className="chat-logs-div">
-          <div className="chat-logs">{this.renderChatLog()}
-          <div style={{ float:"left", clear: "both"}}
-             ref={this.messagesEnd}>
-        </div>
-          </div>
-
+          <div className="chat-logs">{this.renderChatLog()}</div>
+          <div style={{ float: 'left', clear: 'both' }} ref={this.messagesEnd} />
         </div>
         <div className="chat-input-div">
           <input
@@ -139,7 +135,7 @@ class Chat extends Component {
       <p></p>
     );
   }
-  
+
   componentDidUpdate() {
       this.scrollToBottom();
   }
