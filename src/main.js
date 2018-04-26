@@ -210,7 +210,7 @@ $(document).ready(function() {
   let canvas = document.getElementById('canvas');
 
   if (!canvas.getContext) {
-    console.log('sorry your browser sucks'); 
+    console.log('sorry your browser sucks');
     //TODO test this on internet explorer
     $('.change-browser-modal-overlay').fadeIn(200);
   }
@@ -401,8 +401,8 @@ $(document).ready(function() {
       y: yIndex * tileHeight,
       colour: userColour
     };
-
-    filledSquares.push(fillDeets);
+    let loadingSquares = [];
+    loadingSquares.push(fillDeets);
     ctx.fillRect(xIndex * tileWidth, yIndex * tileHeight, tileWidth, tileHeight);
     sendCoordDeets(fillDeets);
   }
