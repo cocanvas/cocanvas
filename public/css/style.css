@@ -354,7 +354,9 @@ li {
   #chat-box {
     margin-right: -0.6% !important;
   }
-
+  .chat-input-div input {
+    width: 120px !important;
+   }
 }
 
 @media only screen and (max-width: 1295px)  {
