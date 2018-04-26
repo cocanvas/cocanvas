@@ -210,7 +210,7 @@ $(document).ready(function() {
   let canvas = document.getElementById('canvas');
 
   if (!canvas.getContext) {
-    console.log('sorry your browser sucks'); 
+    console.log('sorry your browser sucks');
     //TODO test this on internet explorer
     $('.change-browser-modal-overlay').fadeIn(200);
   }
@@ -255,7 +255,7 @@ $(document).ready(function() {
       '#8A2755',
       '#CC647B',
       '#FF747C',
-      '#002642',
+      '#8C4F27',
       '#34495e',
       '#2c3e50',
       '#000000',
