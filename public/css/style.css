@@ -245,6 +245,8 @@ li {
   padding: 12px 14px 0px 14px;
   text-align: left;
   z-index: 3;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
   cursor: pointer;
   -webkit-transition: all linear .2s;
   -moz-transition: all linear .2s;
@@ -479,7 +481,7 @@ li {
 }
 
  @media only screen and (max-width: 1054px) {
- 
+
  }
 
 
@@ -610,7 +612,7 @@ li {
     margin-left: -5px;
   }
   .chat-open-button {
-    margin-top: 12px !important;
+    margin-top: 11px !important;
     margin-left: -5px;
   }
 }
