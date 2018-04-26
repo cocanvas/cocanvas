@@ -401,8 +401,8 @@ $(document).ready(function() {
       y: yIndex * tileHeight,
       colour: userColour
     };
-
-    filledSquares.push(fillDeets);
+    let loadingSquares = [];
+    loadingSquares.push(fillDeets);
     ctx.fillRect(xIndex * tileWidth, yIndex * tileHeight, tileWidth, tileHeight);
     sendCoordDeets(fillDeets);
   }
