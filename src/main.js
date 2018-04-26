@@ -484,34 +484,16 @@ $(document).ready(function() {
   });
 
   // click events to expand and collapse the chatbox
-  const chatOpenButton = document.getElementById('chat-button');
-  chatOpenButton.onClick = function() {
-    console.log('open chat function just ran');
-    $('.Chat').removeClass('disappear');
-    $('.chat-open-button').addClass('disappear');
-  }
-  const chatCloseButton = document.getElementById('close-chat-button');
-  chatCloseButton.onClick = function() {
-    console.log('close chat funciton just ran');
-    $('.Chat').addClass('disappear');
-    $('.chat-open-button').removeClass('disappear');
-  }
-  $('#close-chat-button').on('click', closeChat());
+  $('#chat-button').on('click', function() {
+    $('#chat-box').removeClass('invisible');
+    $('#chat-button').addClass('invisible');
+  });
+  $('#close-chat-button').on('click', function() {
+    $('#chat-box').addClass('invisible');
+    $('#chat-button').removeClass('invisible');
+  });
 
 }); // end of DOCREADY
-
-// remove this if not using jQuery for the click functions to open and close chatbox
-// const openChat = function() {
-//   console.log('open chat funciton just ran');
-//   $('.Chat').removeClass('disappear');
-//   $('.chat-open-button').addClass('disappear');
-// }
-//
-// const closeChat = function() {
-//   console.log('close chat function just ran');
-//   $('.Chat').addClass('disappear');
-//   $('.chat-open-button').removeClass('disappear');
-// }
 
 const sendRegisterForm = function(e) {
   e.preventDefault();
