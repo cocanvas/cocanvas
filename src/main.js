@@ -435,34 +435,8 @@ $(document).ready(function() {
     //   fetchCoords();
     // });
 
-    // click events to expand and collapse the chatbox
-    // const chatOpenButton = document.getElementById('chat-button');
-    // chatOpenButton.onClick = function() {
-    //   console.log('open chat function just ran');
-    //   $('.Chat').removeClass('disappear');
-    //   $('.chat-open-button').addClass('disappear');
-    // }
-    // const chatCloseButton = document.getElementById('close-chat-button');
-    // chatCloseButton.onClick = function() {
-    //   console.log('close chat funciton just ran');
-    //   $('.Chat').addClass('disappear');
-    //   $('.chat-open-button').removeClass('disappear');
-    // }
-    // $('#close-chat-button').on('click', closeChat());
+  }; // end of send coord deets function (still inside doc ready!)
 
-  };
-  // remove this if not using jQuery for the click functions to open and close chatbox
-  // const openChat = function() {
-  //   console.log('open chat funciton just ran');
-  //   $('.Chat').removeClass('disappear');
-  //   $('.chat-open-button').addClass('disappear');
-  // }
-  //
-  // const closeChat = function() {
-  //   console.log('close chat function just ran');
-  //   $('.Chat').addClass('disappear');
-  //   $('.chat-open-button').removeClass('disappear');
-  // }
 
   // Modal Overlay
   $('.login-modal-overlay').click(function() {
@@ -508,7 +482,36 @@ $(document).ready(function() {
     window.localStorage.cocanvasAuthToken = '';
     window.location.reload(false);
   });
+
+  // click events to expand and collapse the chatbox
+  const chatOpenButton = document.getElementById('chat-button');
+  chatOpenButton.onClick = function() {
+    console.log('open chat function just ran');
+    $('.Chat').removeClass('disappear');
+    $('.chat-open-button').addClass('disappear');
+  }
+  const chatCloseButton = document.getElementById('close-chat-button');
+  chatCloseButton.onClick = function() {
+    console.log('close chat funciton just ran');
+    $('.Chat').addClass('disappear');
+    $('.chat-open-button').removeClass('disappear');
+  }
+  $('#close-chat-button').on('click', closeChat());
+
 }); // end of DOCREADY
+
+// remove this if not using jQuery for the click functions to open and close chatbox
+// const openChat = function() {
+//   console.log('open chat funciton just ran');
+//   $('.Chat').removeClass('disappear');
+//   $('.chat-open-button').addClass('disappear');
+// }
+//
+// const closeChat = function() {
+//   console.log('close chat function just ran');
+//   $('.Chat').addClass('disappear');
+//   $('.chat-open-button').removeClass('disappear');
+// }
 
 const sendRegisterForm = function(e) {
   e.preventDefault();

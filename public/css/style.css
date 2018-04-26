@@ -335,12 +335,24 @@ li {
   .live {
     display: none !important;
   }
-
+  #chat-box {
+    width: 180px;
+  }
+  .close-chat {
+    width: 180px;
+  }
+  .down-arrow {
+    width: 0px;
+  }
 
 }
 @media only screen and (max-width: 1332px)  {
   #chat-button, .register {
     margin-right: -5% !important;
+  }
+
+  #chat-box {
+    margin-right: -0.6% !important;
   }
 
 }
