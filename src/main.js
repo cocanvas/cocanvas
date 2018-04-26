@@ -509,7 +509,7 @@ const openChat = function() {
     $('#chat-box').removeClass('invisible');
     $('#chat-button').addClass('invisible');
   }
-  if (window.localStorage.cocanvasAuthToken === '') {
+  if (!window.localStorage.cocanvasAuthToken || window.localStorage.cocanvasAuthToken === '') {
     $('.login-to-chat-modal-overlay').fadeIn(200);
     console.log('fade in triggered');
   }
