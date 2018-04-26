@@ -356,7 +356,9 @@ li {
   #chat-box {
     margin-right: -0.6% !important;
   }
-
+  .chat-input-div input {
+    width: 110px !important;
+   }
 }
 
 @media only screen and (max-width: 1295px)  {
@@ -398,6 +400,7 @@ li {
   .chat-button-text {
     padding-left: 7px;
   }
+
 }
 
 @media only screen and (max-width: 1115px)  {
@@ -426,7 +429,33 @@ li {
   .colorPickDummy {
     display: none !important;
   }
+
+  #chat-box {
+    width: 70vw;
+    right: auto !important;
+    margin-left: 2% !important;
+  }
+  .Chat {
+    width: 70vw;
+  }
+  .close-chat {
+    width: 70vw;
+  }
+  .up-arrow {
+    display: none;
+  }
+  #chat-button {
+    width: 62px;
+  }
 }
+
+ @media only screen and (max-width: 1054px) {
+  #colorPick {
+    margin-left: -0.5% !important;
+    padding-bottom: 10px;
+   }
+ }
+
 
  @media only screen and (max-width: 916px) {
   #colorPick {
@@ -488,12 +517,22 @@ li {
 
   .register, .login, .logout {
     font-size: 0.8em;
-    border:none;
+    border: none;
     margin-left: 5px;
-    padding:0;
+    padding: 0;
   }
 
-  .login:hover, .register:hover, .logout:hover {
+  .open-chat {
+    font-size: 0.8em;
+    border:none;
+    padding: 0;
+  }
+
+  .chat-open-button {
+    margin-top: 19px !important;
+    padding: 0;
+   }
+  .login:hover, .register:hover, .logout:hover, .open-chat:hover  {
    box-shadow: none !important;
    opacity: 0.7;
   }
