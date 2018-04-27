@@ -375,18 +375,6 @@ $(document).ready(function() {
     let xIndex = Math.round((mx - tileWidth * 0.5) / tileWidth);
     let yIndex = Math.round((my - tileHeight * 0.5) / tileHeight);
 
-    if (loginModalTriggered === true) {
-      return;
-    }
-
-    if (!window.localStorage.cocanvasAuthToken || window.localStorage.cocanvasAuthToken === '') {
-    $('.login-to-draw-modal-overlay').fadeIn(200);
-       loginModalTriggered = true;
-    }
-
-    $('.login-to-draw-modal-overlay').click(function() {
-      $(this).fadeOut(200);
-    })
 
     // render(); // not sure this render is needed
     const fillDeets = {
@@ -409,6 +397,20 @@ $(document).ready(function() {
     }
 
     sendCoordDeets(fillDeets);
+
+    if (loginModalTriggered === true) {
+      return;
+    }
+
+    if (!window.localStorage.cocanvasAuthToken || window.localStorage.cocanvasAuthToken === '') {
+    $('.login-to-draw-modal-overlay').fadeIn(200);
+       loginModalTriggered = true;
+    }
+
+    $('.login-to-draw-modal-overlay').click(function() {
+      $(this).fadeOut(200);
+    })
+
   }
 
   const sendCoordDeets = function(deets) {
@@ -416,6 +418,7 @@ $(document).ready(function() {
 
     coordSocket.create({ x: deets.x, y: deets.y, colour: deets.colour, user_id: user.user_id });
   };
+
 
   // Modal Overlay
   $('.login-modal-overlay').click(function() {
