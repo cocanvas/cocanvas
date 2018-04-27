@@ -85,7 +85,7 @@ class Chat extends Component {
   };
 
   scrollToBottom = (e) => {
-    this.messagesEnd.current.scrollIntoView({ behavior: 'smooth' });
+    this.messagesEnd.current && this.messagesEnd.current.scrollIntoView({ behavior: 'smooth' });
   };
 
   updateCurrentMessage(e) {
