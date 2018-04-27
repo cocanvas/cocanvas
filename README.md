@@ -13,9 +13,9 @@
 
 ## Possible Improvements
 * Private group canvases
-* Timelapse gif of canvas
+* Time-lapse gif of canvas
 * Adding emoji picker to the chat
-* Decrease loading time (caching or reducing coordinate loading time)
+* Chunk coordinates JSON data when fetching via ajax
 
 ## Technologies Used
 ### [Server](https://github.com/cocanvas/cocanvas-server)
@@ -26,11 +26,17 @@
 * Action Cable
 
 ### [Front End](https://github.com/cocanvas/cocanvas)
-The front end is a basic Node.js app using Express.js to create a server that is deployed to Heroku. This uses Webpack to build all the dependencies for deployment.
+The front end is a basic Nodejs app using expressJS to create a server that is deployed to Heroku. Project uses Webpack for the build.
+The following libraries/api's/frameworks are used:
 * Canvas 🖌
 * jQuery
+* colourpick (jQuery plugin)
 * React
 * Animate.css
+* Nodejs
+* expressJS
+* webpack
+* babel
 
 ## Acknowledgements
 A big thanks to Joel, John and Theo at GA.
