@@ -361,6 +361,8 @@ $(document).ready(function() {
 
   // canvas click logic
   canvas.onmousedown = fill;
+  let loginModalTriggered = false;
+
   function fill(e) {
     let rect = canvas.getBoundingClientRect();
     let mx = e.clientX - rect.left;
@@ -369,14 +371,6 @@ $(document).ready(function() {
     /// get index from mouse position
     let xIndex = Math.round((mx - tileWidth * 0.5) / tileWidth);
     let yIndex = Math.round((my - tileHeight * 0.5) / tileHeight);
-
-    if (!window.localStorage.cocanvasAuthToken || window.localStorage.cocanvasAuthToken === '') {
-      $('.login-to-draw-modal-overlay').fadeIn(200);
-    }
-
-    $('.login-to-draw-modal-overlay').click(function() {
-      $(this).fadeOut(200);
-    })
 
     const fillDeets = {
       x: xIndex * tileWidth,
@@ -396,6 +390,20 @@ $(document).ready(function() {
     }
 
     sendCoordDeets(fillDeets);
+
+    if (loginModalTriggered === true) {
+      return;
+    }
+
+    if (!window.localStorage.cocanvasAuthToken || window.localStorage.cocanvasAuthToken === '') {
+    $('.login-to-draw-modal-overlay').fadeIn(200);
+       loginModalTriggered = true;
+    }
+
+    $('.login-to-draw-modal-overlay').click(function() {
+      $(this).fadeOut(200);
+    })
+
   }
 
   const sendCoordDeets = function(deets) {
@@ -403,6 +411,7 @@ $(document).ready(function() {
 
     coordSocket.create({ x: deets.x, y: deets.y, colour: deets.colour, user_id: user.user_id });
   };
+
 
   // Modal Overlay
   $('.login-modal-overlay').click(function() {
