@@ -295,7 +295,7 @@ $(document).ready(function() {
     for (let y = 0; y < rows; y++) {
       ctx.moveTo(0, y * tileHeight);
       ctx.lineTo(w, y * tileHeight);
-      
+
     }
     ctx.stroke();
     const loadingCoords = loadingData();
@@ -315,7 +315,7 @@ $(document).ready(function() {
       dataType: 'json' // data type you want back
     }).done(function(response) {
 
-      //erase the loading graphic      
+      //erase the loading graphic
       const loadingCoords = loadingData();
       ctx.fillStyle = '#ffffff';
       for (let i = 0; i < loadingCoords.length; i++) {
@@ -364,6 +364,8 @@ $(document).ready(function() {
   const coordSocket = createSocket();
 
   canvas.onmousedown = fill;
+  let loginModalTriggered = false;
+
   function fill(e) {
     let rect = canvas.getBoundingClientRect();
     let mx = e.clientX - rect.left;
@@ -372,6 +374,7 @@ $(document).ready(function() {
     /// get index from mouse position
     let xIndex = Math.round((mx - tileWidth * 0.5) / tileWidth);
     let yIndex = Math.round((my - tileHeight * 0.5) / tileHeight);
+
 
     // render(); // not sure this render is needed
     const fillDeets = {
@@ -394,6 +397,20 @@ $(document).ready(function() {
     }
 
     sendCoordDeets(fillDeets);
+
+    if (loginModalTriggered === true) {
+      return;
+    }
+
+    if (!window.localStorage.cocanvasAuthToken || window.localStorage.cocanvasAuthToken === '') {
+    $('.login-to-draw-modal-overlay').fadeIn(200);
+       loginModalTriggered = true;
+    }
+
+    $('.login-to-draw-modal-overlay').click(function() {
+      $(this).fadeOut(200);
+    })
+
   }
 
   const sendCoordDeets = function(deets) {
@@ -401,6 +418,7 @@ $(document).ready(function() {
 
     coordSocket.create({ x: deets.x, y: deets.y, colour: deets.colour, user_id: user.user_id });
   };
+
 
   // Modal Overlay
   $('.login-modal-overlay').click(function() {
@@ -480,7 +498,6 @@ const openChat = function() {
   }
   if (!window.localStorage.cocanvasAuthToken || window.localStorage.cocanvasAuthToken === '') {
     $('.login-to-chat-modal-overlay').fadeIn(200);
-    console.log('fade in triggered');
   }
 };
 
