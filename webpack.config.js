@@ -1,15 +1,16 @@
 const path = require('path');
 const webpack = require('webpack');
 
-// webpack config requires entry point and output
+// entry point and output
 module.exports = {
+  // use source map but seperate map from bundle
   devtool: 'source-map',
-
   entry: ['./src/main.js'],
   output: {
     path: path.join(__dirname, 'public'),
     filename: 'bundle.js'
   },
+  // production build
   plugins: [
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify('production')

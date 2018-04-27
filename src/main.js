@@ -215,7 +215,6 @@ $(document).ready(function() {
   let canvas = document.getElementById('canvas');
 
   if (!canvas.getContext) {
-    console.log('sorry your browser sucks');
     //TODO test this on internet explorer
     $('.change-browser-modal-overlay').fadeIn(200);
   }
@@ -231,11 +230,6 @@ $(document).ready(function() {
 
   // color of the lines making up the grid
   ctx.strokeStyle = '#e3e3e3';
-  // color when the small squares are filled (this will need to be changeable later)
-  // ctx.fillStyle = '#f70';
-
-  // array of user's filled squares - relevant if we want to limit squares filled per turn. Otherwise, irrelevant.
-  let filledSquares = [];
 
   $('.colorPickSelector').colorPick();
 
@@ -335,6 +329,7 @@ $(document).ready(function() {
 
   fetchCoords();
 
+  // create websocket for actioncable
   const createSocket = () => {
     let cable = Cable.createConsumer('wss://cocanvas-server.herokuapp.com/cable');
 
@@ -361,8 +356,10 @@ $(document).ready(function() {
     );
   };
 
+  // create actioncable variable 
   const coordSocket = createSocket();
 
+  // canvas click logic
   canvas.onmousedown = fill;
   function fill(e) {
     let rect = canvas.getBoundingClientRect();
@@ -375,20 +372,17 @@ $(document).ready(function() {
 
     if (!window.localStorage.cocanvasAuthToken || window.localStorage.cocanvasAuthToken === '') {
       $('.login-to-draw-modal-overlay').fadeIn(200);
-      console.log('login to draw modal triggered');
     }
 
     $('.login-to-draw-modal-overlay').click(function() {
       $(this).fadeOut(200);
-    }
-    // render(); // not sure this render is needed
+    })
+
     const fillDeets = {
       x: xIndex * tileWidth,
       y: yIndex * tileHeight,
       colour: userColour
     };
-
-    filledSquares.push(fillDeets);
 
     if (ctx.fillStyle === '#ffffff') {
       ctx.strokeStyle = '#e3e3e3';
@@ -397,7 +391,7 @@ $(document).ready(function() {
       ctx.strokeRect(xIndex * tileWidth + 0.5, yIndex * tileHeight + 0.5, tileWidth - 1, tileHeight - 1);
     } else {
       ctx.strokeStyle = ctx.fillStyle;
-      // ctx.strokeRect(xIndex * tileWidth - 1, yIndex * tileHeight + 1, tileWidth - 1, tileHeight - 1);
+
       ctx.fillRect(xIndex * tileWidth, yIndex * tileHeight, tileWidth, tileHeight);
     }
 
@@ -466,10 +460,7 @@ $(document).ready(function() {
   // click events to expand and collapse the chatbox
 
   $('#chat-button').on('click', openChat);
-  // {
-  //   $('#chat-box').removeClass('invisible');
-  //   $('#chat-button').addClass('invisible');
-  // });
+
   $('#close-chat-button').on('click', function() {
     $('#chat-box').addClass('invisible');
     $('#chat-button').removeClass('invisible');
@@ -550,7 +541,6 @@ const loginRequest = (username, password) => {
     })
   }).then((res) =>
     res.json().then((data) => {
-      console.log(data);
       window.localStorage.cocanvasAuthToken = data.access_token;
       if (window.localStorage.cocanvasAuthToken !== 'undefined') {
         window.location.reload(false);

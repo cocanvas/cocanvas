@@ -1,3 +1,4 @@
+// basic express server so app can be deployed and run from heroku
 var express = require('express');
 var app = express();
 

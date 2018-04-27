@@ -1,3 +1,4 @@
+// decodes auth token to get user/id
 import jwtDecoder from 'jwt-decode';
 const getUserFromToken = () => {
   const token = window.localStorage.cocanvasAuthToken;
