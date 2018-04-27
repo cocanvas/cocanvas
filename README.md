@@ -12,6 +12,7 @@
 * Colourpicker with most recent colours saved
 
 ## Possible Improvements
+* refactor code, use oop, create class/constructor and eliminate global variables
 * Private group canvases
 * Time-lapse gif of canvas
 * Adding emoji picker to the chat
