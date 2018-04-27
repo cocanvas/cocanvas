@@ -380,7 +380,8 @@ $(document).ready(function() {
 
     $('.login-to-draw-modal-overlay').click(function() {
       $(this).fadeOut(200);
-    }
+    })
+
     // render(); // not sure this render is needed
     const fillDeets = {
       x: xIndex * tileWidth,
