@@ -18,7 +18,7 @@
 * Decrease loading time (caching or reducing coordinate loading time)
 
 ## Technologies Used
-### [Server](https://github.com/amandytang/cocanvas-server)
+### [Server](https://github.com/cocanvas/cocanvas-server)
 * Ruby on Rails
 * PostgreSQL
 * bcrypt
