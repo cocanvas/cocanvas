@@ -364,6 +364,8 @@ $(document).ready(function() {
   const coordSocket = createSocket();
 
   canvas.onmousedown = fill;
+  let loginModalTriggered = false;
+
   function fill(e) {
     let rect = canvas.getBoundingClientRect();
     let mx = e.clientX - rect.left;
@@ -373,15 +375,13 @@ $(document).ready(function() {
     let xIndex = Math.round((mx - tileWidth * 0.5) / tileWidth);
     let yIndex = Math.round((my - tileHeight * 0.5) / tileHeight);
 
-    let loginModalTriggered = 0;
-
-    if (loginModalTriggered === 1) {
+    if (loginModalTriggered === true) {
       return;
     }
 
     if (!window.localStorage.cocanvasAuthToken || window.localStorage.cocanvasAuthToken === '') {
     $('.login-to-draw-modal-overlay').fadeIn(200);
-       loginModalTriggered = 1;
+       loginModalTriggered = true;
     }
 
     $('.login-to-draw-modal-overlay').click(function() {
