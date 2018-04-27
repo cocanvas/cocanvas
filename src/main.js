@@ -373,9 +373,16 @@ $(document).ready(function() {
     let xIndex = Math.round((mx - tileWidth * 0.5) / tileWidth);
     let yIndex = Math.round((my - tileHeight * 0.5) / tileHeight);
 
+    let loginModalTriggered = false;
+
+    if (loginModalTriggered === true) {
+      return;
+    }
+    
     if (!window.localStorage.cocanvasAuthToken || window.localStorage.cocanvasAuthToken === '') {
-      $('.login-to-draw-modal-overlay').fadeIn(200);
+    $('.login-to-draw-modal-overlay').fadeIn(200);
       console.log('login to draw modal triggered');
+      loginModalTriggered = true;
     }
 
     $('.login-to-draw-modal-overlay').click(function() {
