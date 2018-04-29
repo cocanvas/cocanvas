@@ -318,7 +318,7 @@ $(document).ready(function() {
       }
       //draw existing coordinates
       for (let i = 0; i < response.c.length; i++) {
-        ctx.fillStyle = response.c[i][0]
+        ctx.fillStyle =`#${response.c[i][0]}`
         ctx.fillRect(response.c[i][1], response.c[i][2], tileWidth, tileHeight);
         if (ctx.fillStyle === '#ffffff') {
           ctx.strokeRect(response.c[1] + 0.5, response.c[2] + 0.5, tileWidth - 1, tileHeight - 1);
