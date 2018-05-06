@@ -681,6 +681,9 @@ li {
   #colorPick {
   margin-left: -11.5% !important;
   }
+  #info-modal p, #login-to-chat-modal p {
+    font-size: 0.82em;
+  }
 }
 
 @media only screen and (max-width: 385px)  {
@@ -698,9 +701,6 @@ li {
 @media only screen and (max-width: 370px)  {
   #colorPick {
   margin-left: -12.25% !important;
-  }
-  #info-modal p, #login-to-chat-modal p {
-    font-size: 0.82em;
   }
 }
 
