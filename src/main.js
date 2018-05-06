@@ -317,11 +317,11 @@ $(document).ready(function() {
         ctx.strokeRect(loadingCoords[i].x + 0.5, loadingCoords[i].y + 0.5, tileWidth - 1, tileHeight - 1);
       }
       //draw existing coordinates
-      for (let i = 0; i < response.length; i++) {
-        ctx.fillStyle = response[i].colour;
-        ctx.fillRect(response[i].x, response[i].y, tileWidth, tileHeight);
+      for (let i = 0; i < response.c.length; i++) {
+        ctx.fillStyle =`#${response.c[i][0]}`
+        ctx.fillRect(response.c[i][1], response.c[i][2], tileWidth, tileHeight);
         if (ctx.fillStyle === '#ffffff') {
-          ctx.strokeRect(response[i].x + 0.5, response[i].y + 0.5, tileWidth - 1, tileHeight - 1);
+          ctx.strokeRect(response.c[1] + 0.5, response.c[2] + 0.5, tileWidth - 1, tileHeight - 1);
         }
       }
     });
