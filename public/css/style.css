@@ -699,6 +699,9 @@ li {
   #colorPick {
   margin-left: -12.25% !important;
   }
+  #info-modal p, #chat-modal p {
+    font-size: 0.85em;
+  }
 }
 
 /* COLOUR PICK SELECTOR */
